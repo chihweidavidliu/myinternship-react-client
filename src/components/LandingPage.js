@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, Dropdown, Message } from "semantic-ui-react";
-import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
-import * as actions from "actions";
 import history from "history.js";
+import LanguageSelector from "components/LanguageSelector";
 
 class LandingPage extends Component {
   state = {
@@ -39,42 +38,64 @@ class LandingPage extends Component {
 
   renderSelect = (formProps) => {
     return (
-      <Dropdown
-        {...formProps.input}
-        onChange={(e, { value }) => formProps.input.onChange(value)}
-        placeholder={formProps.placeholder}
-        className="ui fluid selection dropdown"
-        options={this.state.departments[this.props.language]}
-      />
+      <React.Fragment>
+        <Dropdown
+          {...formProps.input}
+          onChange={(e, { value }) => formProps.input.onChange(value)}
+          placeholder={formProps.placeholder}
+          className="ui fluid selection dropdown"
+          options={this.state.departments[this.props.language]}
+        />
+        {this.renderError(formProps.meta)}
+      </React.Fragment>
     );
   };
 
   onSubmit = async (formValues) => {
     await this.props.studentSignup(formValues);
-    history.push("/dashboard")
+    history.push("/dashboard");
   };
 
   render() {
     return (
       <div className="flex-container">
+        <LanguageSelector />
         <div className="box">
           <h1>My Internship</h1>
           <Form onSubmit={this.props.handleSubmit(this.onSubmit)} error>
             <Form.Field>
-              <Field name="studentid" placeholder="Studentid" component={this.renderInput} />
+              <Field
+                name="studentid"
+                placeholder={
+                  this.props.language === "English" ? "Studentid (without initial s)" : "請輸入學號 (不要加 s)"
+                }
+                component={this.renderInput}
+              />
             </Form.Field>
             <Form.Field>
-              <Field name="name" placeholder="Name" component={this.renderInput} />
+              <Field
+                name="name"
+                placeholder={this.props.language === "English" ? "Name" : "請輸入姓名"}
+                component={this.renderInput}
+              />
             </Form.Field>
             <Form.Field>
-              <Field name="password" placeholder="Password" component={this.renderInput} />
+              <Field
+                name="password"
+                placeholder={this.props.language === "English" ? "Password" : "請自訂密碼 (6位數字)"}
+                component={this.renderInput}
+              />
             </Form.Field>
 
             <Form.Field>
-              <Field name="department" placeholder="Department" component={this.renderSelect} />
+              <Field
+                name="department"
+                placeholder={this.props.language === "English" ? "Department" : "請選擇系別"}
+                component={this.renderSelect}
+              />
             </Form.Field>
 
-            <Button type="submit">Submit</Button>
+            <Button type="submit">{this.props.language === "English" ? "Submit" : "報名"}</Button>
           </Form>
         </div>
       </div>
@@ -83,37 +104,33 @@ class LandingPage extends Component {
 }
 
 // validate function that returns any errors as an object - connect it with reduxForm and these errors will appear on the formProps.meta object of the component
-const validate = (formValues) => {
+const validate = (formValues, props) => {
   const errors = {};
   if (!formValues.studentid) {
-    errors.studentid = "A studentid is required";
+    props.language === "English" ? (errors.studentid = "A studentid is required") : (errors.studentid = "請輸入學號");
   } else if (formValues.studentid.split("")[0] === "s") {
-    errors.studentid = "Studentid should not include initial s";
+    props.language === "English"
+      ? (errors.studentid = "Studentid should not include initial s")
+      : (errors.studentid = "學號不要加 s");
   }
 
   if (!formValues.name) {
-    errors.name = "A name is required";
+    props.language === "English" ? (errors.name = "A name is required") : (errors.name = "請輸入姓名");
   }
 
   if (!formValues.password) {
-    errors.password = "A password is required";
+    props.language === "English" ? (errors.password = "A password is required") : (errors.password = "請輸入密碼");
+  } else if (formValues.password.length < 6) {
+    errors.password = "Password must be at least 6 characters long";
   }
 
   if (!formValues.department) {
-    errors.department = "A department is required";
+    props.language === "English"
+      ? (errors.department = "A department is required")
+      : (errors.department = "請選擇系別");
   }
 
   return errors;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    language: state.language
-  };
-};
-
-const wrapped = reduxForm({ form: "studentLogin", validate: validate })(LandingPage);
-export default connect(
-  mapStateToProps,
-  actions
-)(wrapped);
+export default reduxForm({ form: "studentLogin", validate: validate })(LandingPage);

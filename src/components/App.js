@@ -31,7 +31,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <div className="app-container" style={style}>
-          <Route path="/" exact component={LandingPage} />
+          <Route path="/" exact render={(props) => <LandingPage {...props} language={this.props.language} />} />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/admin" exact component={AdminLandingPage} />
           <Route path="/admin/sorter" exact component={AdminSorter} />
@@ -45,7 +45,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state.auth
+    auth: state.auth,
+    language: state.language
   }
 }
 export default connect(mapStateToProps, actions) (App);

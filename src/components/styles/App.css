@@ -29,3 +29,13 @@ body {
   margin-bottom: 15px;
   text-indent: 7px;
 }
+
+.language-selector {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
+.country {
+  cursor: pointer;
+}

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { STUDENT_SIGNUP, FETCH_USER } from "actions/types";
+import { STUDENT_SIGNUP, FETCH_USER, TOGGLE_LANGUAGE } from "actions/types";
 
 export const studentSignup = (formData) => async (dispatch) => {
   try {
@@ -20,3 +20,10 @@ export const fetchUser = () => async (dispatch, getState) => {
     dispatch({ type: FETCH_USER, payload: false });
   }
 };
+
+export const toggleLanguage = (language) => {
+  return {
+    type: TOGGLE_LANGUAGE,
+    payload: language,
+  }
+}
