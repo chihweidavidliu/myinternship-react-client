@@ -1,0 +1,31 @@
+body {
+  margin: 0 auto;
+}
+
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  color: white;
+}
+
+
+.flex-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box h1 {
+  font-size: 48px;
+}
+.box {
+  width: 350px;
+  text-align: center;
+}
+
+.departments {
+  margin-bottom: 15px;
+  text-indent: 7px;
+}
