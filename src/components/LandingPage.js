@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 
 import * as actions from "actions";
+import history from "history.js";
 
 class LandingPage extends Component {
   state = {
@@ -48,9 +49,9 @@ class LandingPage extends Component {
     );
   };
 
-  onSubmit = (formValues) => {
-    console.log(formValues);
-    this.props.studentSignup(formValues);
+  onSubmit = async (formValues) => {
+    await this.props.studentSignup(formValues);
+    history.push("/dashboard")
   };
 
   render() {

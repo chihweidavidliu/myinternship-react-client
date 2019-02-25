@@ -1,14 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import requireStudentAuth from "requireStudentAuth";
 
-const Dashboard = () => {
-  return (
-    <div>
-      Dashboard
-      <a href="/auth/logout">Log Out</a>
-    </div>
-  )
+class Dashboard extends Component {
+
+  renderWelcome() {
+    if(this.props.auth) {
+      return `Welcome ${this.props.auth.name}`
+    }
+  }
+  render() {
+    return (
+      <div>
+        Dashboard
+        <p>{this.renderWelcome()}</p>
+        <a href="/auth/logout">Log Out</a>
+      </div>
+    )
+  }
 };
 
-export default requireStudentAuth(Dashboard);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth
+  }
+}
+export default connect(mapStateToProps) (requireStudentAuth(Dashboard));
