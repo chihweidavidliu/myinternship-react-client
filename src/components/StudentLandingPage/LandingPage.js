@@ -31,7 +31,7 @@ class LandingPage extends Component {
   render() {
     return (
       <div className="flex-container">
-        <LanguageSelector />
+        <LanguageSelector position="language-selector-top" />
         <div className="box">
           <h1>My Internship</h1>
           {this.renderForm()}

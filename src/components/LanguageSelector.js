@@ -10,7 +10,7 @@ class LanguageSelector extends Component {
 
   render() {
     return (
-      <div className="language-selector">
+      <div className={this.props.position}>
         <Flag name="taiwan" className="country" onClick={() => this.handleClick("ch")}/>
         <Flag name="uk" className="country" onClick={() => this.handleClick("en")}/>
       </div>

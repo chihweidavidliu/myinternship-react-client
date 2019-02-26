@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import requireStudentAuth from "requireStudentAuth";
 import Navbar from "./Navbar";
+import LanguageSelector from "components/LanguageSelector";
 
 class Dashboard extends Component {
   renderWelcome() {
@@ -16,7 +17,7 @@ class Dashboard extends Component {
         <Navbar auth={this.props.auth} />
         <div className="dashboard-flex-box">
           <div className="main-box">
-          
+
           </div>
         </div>
       </div>

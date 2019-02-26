@@ -31,5 +31,9 @@
       "username": { "missing": "A username is required" },
       "password": { "missing": "A password is requried", "tooShort": "Password must be at least 6 characters long" }
     }
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "signout": "Signout"
   }
 }

@@ -30,9 +30,15 @@ body {
   text-indent: 7px;
 }
 
-.language-selector {
+.language-selector-top {
   position: absolute;
-  top: 1px;
+  top: 2px;
+  right: 1px;
+}
+
+.language-selector-bottom {
+  position: absolute;
+  bottom: 2px;
   right: 1px;
 }
 
@@ -60,6 +66,7 @@ body {
   color: #4c4c4c !important;
   border-radius: 0 !important;
   height: 8vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .navbar a {
   color: #4c4c4c !important;
@@ -78,4 +85,5 @@ body {
   width: 70vw;
   background-color: whitesmoke;
   border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

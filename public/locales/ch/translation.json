@@ -31,5 +31,9 @@
       "username": { "missing": "A username is required" },
       "password": { "missing": "請輸入密碼", "tooShort": "Password must be at least 6 characters long" }
     }
+  },
+  "dashboard": {
+    "welcome": "歡迎",
+    "signout": "退出"
   }
 }
