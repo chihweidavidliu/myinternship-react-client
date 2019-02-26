@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Dropdown, Message } from "semantic-ui-react";
+import { Button, Form, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from 'react-i18next';
 
@@ -15,31 +15,7 @@ class SignUpForm extends Component {
     const error = formProps.meta.error && formProps.meta.touched ? true : false;
     return (
       <React.Fragment>
-        <Form.Input {...formProps.input} autoComplete="off" placeholder={formProps.placeholder} error={error} />
-        {this.renderError(formProps.meta)}
-      </React.Fragment>
-    );
-  };
-
-  renderSelect = (formProps) => {
-    const { t } = this.props;
-    const departments = [
-      { key: "1", text: t("studentForms.departments.Business"), value: t("studentForms.departments.Business") },
-      { key: "2", text: t("studentForms.departments.Trade"), value: t("studentForms.departments.Trade") },
-      { key: "3", text: t("studentForms.departments.Finance"), value: t("studentForms.departments.Finance") },
-      { key: "4", text: t("studentForms.departments.Management"), value: t("studentForms.departments.Management") },
-      { key: "5", text: t("studentForms.departments.Systems"), value: t("studentForms.departments.Systems") }
-    ];
-
-    return (
-      <React.Fragment>
-        <Dropdown
-          {...formProps.input}
-          onChange={(e, { value }) => formProps.input.onChange(value)}
-          placeholder={formProps.placeholder}
-          className="ui fluid selection dropdown"
-          options={departments}
-        />
+        <Form.Input {...formProps.input} type={formProps.type} autoComplete="off" placeholder={formProps.placeholder} error={error} />
         {this.renderError(formProps.meta)}
       </React.Fragment>
     );
@@ -47,7 +23,7 @@ class SignUpForm extends Component {
 
   onSubmit = (formValues) => {
     // handleForm passed down from LandingPage
-    this.props.handleForm("signup", formValues);
+    this.props.handleForm("signin", formValues);
   };
 
   render() {
@@ -57,33 +33,19 @@ class SignUpForm extends Component {
         <Form.Field>
           <Field
             name="studentid"
+            type="text"
             placeholder={t("studentForms.placeholders.studentid")}
             component={this.renderInput}
           />
         </Form.Field>
         <Form.Field>
           <Field
-            name="name"
-            placeholder={t("studentForms.placeholders.name")}
-            component={this.renderInput}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Field
             name="password"
+            type="password"
             placeholder={t("studentForms.placeholders.password")}
             component={this.renderInput}
           />
         </Form.Field>
-
-        <Form.Field>
-          <Field
-            name="department"
-            placeholder={t("studentForms.placeholders.department")}
-            component={this.renderSelect}
-          />
-        </Form.Field>
-
         <Button type="submit">{t("studentForms.placeholders.submit")}</Button>
       </Form>
     )
@@ -101,22 +63,14 @@ const validate = (formValues, props) => {
     errors.studentid = t("studentForms.formErrors.studentid.initialS");
   }
 
-  if (!formValues.name) {
-    errors.name = t("studentForms.formErrors.name.missing");
-  }
-
   if (!formValues.password) {
     errors.password = t("studentForms.formErrors.password.missing");
   } else if (formValues.password.length < 6) {
     errors.password = t("studentForms.formErrors.password.tooShort");
   }
 
-  if (!formValues.department) {
-    errors.department = t("studentForms.formErrors.department.missing");
-  }
-
   return errors;
 };
 
-const wrapped =  reduxForm({ form: "studentSignup", validate: validate })(SignUpForm);
+const wrapped =  reduxForm({ form: "studentSignin", validate: validate })(SignUpForm);
 export default withTranslation()(wrapped)

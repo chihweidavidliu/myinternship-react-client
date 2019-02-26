@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import requireStudentAuth from "requireStudentAuth";
 
 class Dashboard extends Component {
-
   renderWelcome() {
     if(this.props.auth) {
       return `Welcome ${this.props.auth.name}`
