@@ -2,11 +2,12 @@
   "title": "My Internship",
   "studentForms": {
     "placeholders": {
-      "studentid": "請輸入學號 (不要加 s)",
+      "studentid": "請輸入學號",
       "name": "請輸入姓名",
-      "password": "請自訂密碼 (6位數字)",
+      "password": "請自訂密碼",
       "department": "請選擇系別",
-      "submit": "報名"
+      "signup": "報名",
+      "signin": "登入"
     },
     "formErrors": {
       "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s" },

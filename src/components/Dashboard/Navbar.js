@@ -8,7 +8,6 @@ import LanguageSelector from "components/LanguageSelector";
 class Navbar extends Component {
   renderWelcome() {
     const { t } = this.props;
-
     if(this.props.auth) {
       return `${t("dashboard.welcome")} ${this.props.auth.name}`
     }

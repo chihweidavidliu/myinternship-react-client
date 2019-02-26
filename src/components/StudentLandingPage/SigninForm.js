@@ -46,7 +46,7 @@ class SignUpForm extends Component {
             component={this.renderInput}
           />
         </Form.Field>
-        <Button type="submit">{t("studentForms.placeholders.submit")}</Button>
+        <Button type="submit">{t("studentForms.placeholders.signin")}</Button>
       </Form>
     )
   }

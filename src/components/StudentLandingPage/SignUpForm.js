@@ -3,6 +3,8 @@ import { Button, Form, Dropdown, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from 'react-i18next';
 
+import ConfirmDetailsModal from "./ConfirmDetailsModal";
+
 class SignUpForm extends Component {
   renderError = (meta) => {
     // meta object passed via the renderInput function and its formProps
@@ -51,6 +53,7 @@ class SignUpForm extends Component {
   };
 
   render() {
+    console.log(this.props)
     const { t } = this.props;
     return (
       <Form onSubmit={this.props.handleSubmit(this.onSubmit)} error>
@@ -84,7 +87,8 @@ class SignUpForm extends Component {
           />
         </Form.Field>
 
-        <Button type="submit">{t("studentForms.placeholders.submit")}</Button>
+        <Button type="submit">{t("studentForms.placeholders.signup")}</Button>
+        <ConfirmDetailsModal handleSubmit={this.props.handleSubmit} onSubmit={this.onSubmit} />
       </Form>
     )
   }

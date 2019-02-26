@@ -6,7 +6,8 @@
       "name": "Name",
       "password": "Password",
       "department": "Department",
-      "submit": "Submit"
+      "signup": "Sign up",
+      "signin": "Sign in"
     },
     "formErrors": {
       "studentid": { "missing": "A studentid is required", "initialS": "Studentid should not include initial s" },
