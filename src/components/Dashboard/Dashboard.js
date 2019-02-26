@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import requireStudentAuth from "requireStudentAuth";
+import Navbar from "./Navbar";
 
 class Dashboard extends Component {
   renderWelcome() {
@@ -11,10 +12,13 @@ class Dashboard extends Component {
   }
   render() {
     return (
-      <div>
-        Dashboard
-        <p>{this.renderWelcome()}</p>
-        <a href="/auth/logout">Log Out</a>
+      <div className="dashboard-container">
+        <Navbar auth={this.props.auth} />
+        <div className="dashboard-flex-box">
+          <div className="main-box">
+          
+          </div>
+        </div>
       </div>
     )
   }

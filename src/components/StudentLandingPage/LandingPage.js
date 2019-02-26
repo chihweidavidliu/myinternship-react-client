@@ -8,7 +8,7 @@ import SignUpForm from "components/StudentLandingPage/SignUpForm";
 import SigninForm from "components/StudentLandingPage/SigninForm";
 
 class LandingPage extends Component {
-  state = { signUp: true }
+  state = { signUp: false }
 
   handleForm = async (type, formValues) => {
     if(type === "signup") {
