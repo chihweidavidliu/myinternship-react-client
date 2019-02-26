@@ -1,0 +1,35 @@
+{
+  "title": "My Internship",
+  "studentForms": {
+    "placeholders": {
+      "studentid": "請輸入學號 (不要加 s)",
+      "name": "請輸入姓名",
+      "password": "請自訂密碼 (6位數字)",
+      "department": "請選擇系別",
+      "submit": "報名"
+    },
+    "formErrors": {
+      "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s" },
+      "name": { "missing": "請輸入姓名" },
+      "password": { "missing": "請輸入密碼", "tooShort": "Password must be at least 6 characters long" },
+      "department": { "missing": "請選擇系別" }
+    },
+    "departments": {
+      "Business": "企管系",
+      "Trade": "國貿系",
+      "Finance": "財金系",
+      "Management": "資管系",
+      "Systems": "行流系"
+    }
+  },
+  "adminForms": {
+    "placeholders": {
+      "username": "用戶名",
+      "password": "請自訂密碼"
+    },
+    "formErrors": {
+      "username": { "missing": "A username is required" },
+      "password": { "missing": "請輸入密碼", "tooShort": "Password must be at least 6 characters long" }
+    }
+  }
+}

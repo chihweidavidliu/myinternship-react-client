@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -6,12 +6,13 @@ import background from "images/internship.jpg";
 import history from "history.js";
 import * as actions from "actions";
 import "components/styles/App.css";
-import LandingPage from "components/LandingPage";
+import LandingPage from "components/StudentLandingPage/LandingPage";
 import Dashboard from "components/Dashboard/Dashboard";
 import AdminLandingPage from "components/AdminLandingPage";
 import AdminSorter from "components/AdminDashboard/AdminSorter";
 import AdminStudentView from "components/AdminDashboard/AdminStudentView";
 import AdminCompanyView from "components/AdminDashboard/AdminCompanyView";
+import LoadingPage from "components/LoadingPage";
 
 class App extends Component {
 
@@ -30,6 +31,7 @@ class App extends Component {
     const style = { backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundPosition: "center" }
     return (
       <Router history={history}>
+        <Suspense fallback={<LoadingPage />}>
         <div className="app-container" style={style}>
           <Route path="/" exact render={(props) => <LandingPage {...props} language={this.props.language} />} />
           <Route path="/dashboard" exact component={Dashboard} />
@@ -38,6 +40,7 @@ class App extends Component {
           <Route path="/admin/students" exact component={AdminStudentView} />
           <Route path="/admin/companies" exact component={AdminCompanyView} />
         </div>
+        </Suspense>
       </Router>
     )
   }

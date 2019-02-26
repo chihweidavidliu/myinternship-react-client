@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { Flag } from "semantic-ui-react";
-import { connect } from "react-redux";
-import * as actions from "actions";
+import { withTranslation } from 'react-i18next';
 
 class LanguageSelector extends Component {
   handleClick = (language) => {
-    this.props.toggleLanguage(language);
+    const { i18n } = this.props;
+    i18n.changeLanguage(language)
   }
 
   render() {
     return (
       <div className="language-selector">
-        <Flag name="taiwan" className="country" onClick={() => this.handleClick("Chinese")}/>
-        <Flag name="uk" className="country" onClick={() => this.handleClick("English")}/>
+        <Flag name="taiwan" className="country" onClick={() => this.handleClick("ch")}/>
+        <Flag name="uk" className="country" onClick={() => this.handleClick("en")}/>
       </div>
     )
   }
 }
 
-export default connect (null, actions) (LanguageSelector);
+export default withTranslation()(LanguageSelector);

@@ -1,0 +1,35 @@
+{
+  "title": "My Internship",
+  "studentForms": {
+    "placeholders": {
+      "studentid": "Studentid (without initial s)",
+      "name": "Name",
+      "password": "Password",
+      "department": "Department",
+      "submit": "Submit"
+    },
+    "formErrors": {
+      "studentid": { "missing": "A studentid is required", "initialS": "Studentid should not include initial s" },
+      "name": { "missing": "A name is required" },
+      "password": { "missing": "A password is required", "tooShort": "Password must be at least 6 characters long" },
+      "department": { "missing": "A department is required" }
+    },
+    "departments": {
+      "Business": "Business",
+      "Trade": "Trade",
+      "Finance": "Finance",
+      "Management": "Management",
+      "Systems": "Systems"
+    }
+  },
+  "adminForms": {
+    "placeholders": {
+      "username": "Username",
+      "password": "Password"
+    },
+    "formErrors": {
+      "username": { "missing": "A username is required" },
+      "password": { "missing": "A password is requried", "tooShort": "Password must be at least 6 characters long" }
+    }
+  }
+}
