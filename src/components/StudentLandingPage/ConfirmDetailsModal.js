@@ -29,6 +29,8 @@ class ConfirmDetailsModal extends Component {
     if (signUpForm && signUpForm.values) {
       if (!signUpForm.values.studentid) {
         errorMessage.push(t("studentForms.formErrors.studentid.missing"));
+      } else if(signUpForm.values.studentid.split("")[0] === "s" || signUpForm.values.studentid.split("")[0] === "S") {
+        errorMessage.push(t("studentForms.formErrors.studentid.initialS"))
       }
 
       if (!signUpForm.values.name) {

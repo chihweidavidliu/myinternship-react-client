@@ -4,6 +4,6 @@ import history from "history.js";
 const submitSignup = async (values, dispatch, props) => {
   await props.studentSignup(values);
   history.push("/dashboard");
-}
+};
 
 export default submitSignup;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from "react-i18next";
 
 class SignUpForm extends Component {
   renderError = (meta) => {
@@ -15,7 +15,13 @@ class SignUpForm extends Component {
     const error = formProps.meta.error && formProps.meta.touched ? true : false;
     return (
       <React.Fragment>
-        <Form.Input {...formProps.input} type={formProps.type} autoComplete="off" placeholder={formProps.placeholder} error={error} />
+        <Form.Input
+          {...formProps.input}
+          type={formProps.type}
+          autoComplete="off"
+          placeholder={formProps.placeholder}
+          error={error}
+        />
         {this.renderError(formProps.meta)}
       </React.Fragment>
     );
@@ -48,7 +54,7 @@ class SignUpForm extends Component {
         </Form.Field>
         <Button type="submit">{t("studentForms.placeholders.signin")}</Button>
       </Form>
-    )
+    );
   }
 }
 
@@ -66,9 +72,9 @@ const validate = (formValues, props) => {
   if (!formValues.password) {
     errors.password = t("studentForms.formErrors.password.missing");
   }
-  
+
   return errors;
 };
 
-const wrapped =  reduxForm({ form: "studentSignin", validate: validate })(SignUpForm);
-export default withTranslation()(wrapped)
+const wrapped = reduxForm({ form: "studentSignin", validate: validate })(SignUpForm);
+export default withTranslation()(wrapped);

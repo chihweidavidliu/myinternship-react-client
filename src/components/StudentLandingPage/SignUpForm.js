@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Dropdown, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from "react-i18next";
 
 // custom submit function for signUp form to be passed to redux form constructor and triggered by modal confirm
 import submitSignup from "./submitSignup";
@@ -55,25 +55,13 @@ class SignUpForm extends Component {
     return (
       <Form onSubmit={handleSubmit} error>
         <Form.Field>
-          <Field
-            name="studentid"
-            placeholder={t("studentForms.placeholders.studentid")}
-            component={this.renderInput}
-          />
+          <Field name="studentid" placeholder={t("studentForms.placeholders.studentid")} component={this.renderInput} />
         </Form.Field>
         <Form.Field>
-          <Field
-            name="name"
-            placeholder={t("studentForms.placeholders.name")}
-            component={this.renderInput}
-          />
+          <Field name="name" placeholder={t("studentForms.placeholders.name")} component={this.renderInput} />
         </Form.Field>
         <Form.Field>
-          <Field
-            name="password"
-            placeholder={t("studentForms.placeholders.password")}
-            component={this.renderInput}
-          />
+          <Field name="password" placeholder={t("studentForms.placeholders.password")} component={this.renderInput} />
         </Form.Field>
         <Form.Field>
           <Field
@@ -84,7 +72,7 @@ class SignUpForm extends Component {
         </Form.Field>
         <ConfirmDetailsModal auth={this.props.auth} />
       </Form>
-    )
+    );
   }
 }
 
@@ -116,5 +104,5 @@ const validate = (formValues, props) => {
   return errors;
 };
 
-const wrapped =  reduxForm({ form: "studentSignup", validate: validate, onSubmit: submitSignup })(SignUpForm);
-export default withTranslation()(wrapped)
+const wrapped = reduxForm({ form: "studentSignup", validate: validate, onSubmit: submitSignup })(SignUpForm);
+export default withTranslation()(wrapped);
