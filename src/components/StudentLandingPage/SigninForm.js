@@ -65,10 +65,8 @@ const validate = (formValues, props) => {
 
   if (!formValues.password) {
     errors.password = t("studentForms.formErrors.password.missing");
-  } else if (formValues.password.length < 6) {
-    errors.password = t("studentForms.formErrors.password.tooShort");
   }
-
+  
   return errors;
 };
 

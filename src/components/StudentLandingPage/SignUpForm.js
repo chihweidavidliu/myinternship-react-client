@@ -82,7 +82,7 @@ class SignUpForm extends Component {
             component={this.renderSelect}
           />
         </Form.Field>
-        <ConfirmDetailsModal />
+        <ConfirmDetailsModal auth={this.props.auth} />
       </Form>
     )
   }

@@ -1,14 +1,18 @@
 import axios from "axios";
 import { submit } from "redux-form";
+import i18n from "i18n";
 
-import { STUDENT_SIGNUP, STUDENT_SIGNIN, FETCH_USER, TOGGLE_LANGUAGE } from "actions/types";
+import { ADD_ERROR_MESSAGE, STUDENT_SIGNUP, STUDENT_SIGNIN, FETCH_USER, TOGGLE_LANGUAGE } from "actions/types";
 
 export const studentSignup = (formData) => async (dispatch) => {
   try {
     const response = await axios.post("/auth/signup", formData);
     dispatch({ type: STUDENT_SIGNUP, payload: response.data });
   } catch (err) {
-    dispatch({ type: STUDENT_SIGNUP, payload: false });
+    if(err.response.data.message === "studentid is in use") {
+      return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("studentForms.formErrors.studentid.duplicateId") });
+    }
+    return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("studentForms.formErrors.signupFailure") })
   }
 };
 
@@ -17,7 +21,7 @@ export const studentSignin = (formData) => async (dispatch) => {
     const response = await axios.post("/auth/signin", formData);
     dispatch({ type: STUDENT_SIGNIN, payload: response.data });
   } catch (err) {
-    dispatch({ type: STUDENT_SIGNIN, payload: false });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("studentForms.formErrors.signinFailure") });
   }
 };
 
@@ -37,6 +41,6 @@ export const toggleLanguage = (language) => {
   }
 }
 
-export const submitReduxForm = (formName) => (dispatch) => {
-  dispatch(submit(formName));
+export const submitReduxForm = (formName) => async (dispatch) => {
+  await dispatch(submit(formName));
 }

@@ -16,10 +16,10 @@ class ConfirmDetailsModal extends Component {
     this.show();
   };
 
-  handleConfirm = () => {
+  handleConfirm = async () => {
     // dispatches custom action creator that dispatches redux-form submit method with the relevant form name
     // the submit method will then call the external submit function 'submitSignup' to call the signup action creator with the form values
-    this.props.submitReduxForm("studentSignup");
+    await this.props.submitReduxForm("studentSignup");
   };
 
   validate() {
@@ -68,16 +68,16 @@ class ConfirmDetailsModal extends Component {
       return (
         <div>
           <p>
-            <strong>{t("studentForms.placeholders.studentid")}:</strong> {this.props.signUpForm.values.studentid}
+            <strong>{t("studentForms.placeholders.studentid")} :</strong> {this.props.signUpForm.values.studentid}
           </p>
           <p>
-            <strong>{t("studentForms.placeholders.name")}:</strong> {this.props.signUpForm.values.name}
+            <strong>{t("studentForms.placeholders.name")} :</strong> {this.props.signUpForm.values.name}
           </p>
           <p>
-            <strong>{t("studentForms.placeholders.password")}:</strong> {this.props.signUpForm.values.password}
+            <strong>{t("studentForms.placeholders.password")} :</strong> {this.props.signUpForm.values.password}
           </p>
           <p>
-            <strong>{t("studentForms.placeholders.department")}:</strong> {this.props.signUpForm.values.department}
+            <strong>{t("studentForms.placeholders.department")} :</strong> {this.props.signUpForm.values.department}
           </p>
         </div>
       );
@@ -141,7 +141,8 @@ class ConfirmDetailsModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    signUpForm: state.form.studentSignup
+    signUpForm: state.form.studentSignup,
+    auth: state.auth
   };
 };
 const wrapped = connect(

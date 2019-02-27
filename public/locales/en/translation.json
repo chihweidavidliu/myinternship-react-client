@@ -10,10 +10,12 @@
       "signin": "Sign in"
     },
     "formErrors": {
-      "studentid": { "missing": "A studentid is required", "initialS": "Studentid should not include initial s" },
+      "studentid": { "missing": "A studentid is required", "initialS": "Studentid should not include initial s", "duplicateId": "This studentid has already been registered." },
       "name": { "missing": "A name is required" },
       "password": { "missing": "A password is required", "tooShort": "Password must be at least 6 characters long" },
-      "department": { "missing": "A department is required" }
+      "department": { "missing": "A department is required" },
+      "signupFailure": "There was a problem signing you up. Please try again later or contact the administrator.",
+      "signinFailure": "There was a problem signing you in. Please check your credentials or contact the administrator."
     },
     "departments": {
       "Business": "Business",

@@ -10,10 +10,12 @@
       "signin": "登入"
     },
     "formErrors": {
-      "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s" },
+      "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s", "duplicateId": "此學號已完成報名。"},
       "name": { "missing": "請輸入姓名" },
       "password": { "missing": "請輸入密碼", "tooShort": "Password must be at least 6 characters long" },
-      "department": { "missing": "請選擇系別" }
+      "department": { "missing": "請選擇系別" },
+      "signupFailure": "There was a problem signing you up. Please try again later or contact the administrator.",
+      "signinFailure": "There was a problem signing you in. Please check your credentials or contact the administrator."
     },
     "departments": {
       "Business": "企管系",

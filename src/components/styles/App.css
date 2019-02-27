@@ -46,6 +46,10 @@ body {
   cursor: pointer;
 }
 
+.error-box {
+  margin-top: 20px;
+}
+
 /* Student Dashboard */
 
 @media only screen and (max-width: 768px) {
@@ -62,14 +66,11 @@ body {
 }
 
 .navbar {
-  background-color: whitesmoke !important;
-  color: #4c4c4c !important;
+  background-color: none !important;
+  background: none !important;
   border-radius: 0 !important;
   height: 8vh;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.navbar a {
-  color: #4c4c4c !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
 .dashboard-flex-box {
