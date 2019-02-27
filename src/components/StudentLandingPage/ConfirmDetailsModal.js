@@ -64,9 +64,9 @@ class ConfirmDetailsModal extends Component {
           return <p key={index}>{error}</p>;
         });
       }
+
       return (
         <div>
-          <p>Please confirm the following details:</p>
           <p>
             <strong>{t("studentForms.placeholders.studentid")}:</strong> {this.props.signUpForm.values.studentid}
           </p>
@@ -85,11 +85,13 @@ class ConfirmDetailsModal extends Component {
   }
 
   renderActions() {
+    const { t } = this.props;
+
     if (this.state.errorMessage.length > 0) {
       return (
         <Modal.Actions>
           <Button color="red" onClick={this.close}>
-            <Icon name="cancel" /> Back
+            <Icon name="cancel" /> {t("studentForms.signupModal.dismiss")}
           </Button>
         </Modal.Actions>
       );
@@ -97,10 +99,10 @@ class ConfirmDetailsModal extends Component {
     return (
       <Modal.Actions>
         <Button color="red" onClick={this.close}>
-          <Icon name="cancel" /> Back
+          <Icon name="cancel" /> {t("studentForms.signupModal.cancel")}
         </Button>
         <Button color="green" onClick={this.handleConfirm}>
-          <Icon name="checkmark" /> Confirm
+          <Icon name="checkmark" /> {t("studentForms.signupModal.confirm")}
         </Button>
       </Modal.Actions>
     );
@@ -122,7 +124,11 @@ class ConfirmDetailsModal extends Component {
       >
         <Modal.Content>
           <Modal.Description>
-            <Header>{this.state.errorMessage.length === 0 ? "Confirm details" : "Error"}</Header>
+            <Header>
+              {this.state.errorMessage.length === 0
+                ? t("studentForms.signupModal.title")
+                : t("studentForms.signupModal.errorTitle")}
+            </Header>
             {this.renderDetails()}
           </Modal.Description>
         </Modal.Content>

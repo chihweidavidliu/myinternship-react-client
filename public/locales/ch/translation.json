@@ -21,6 +21,13 @@
       "Finance": "財金系",
       "Management": "資管系",
       "Systems": "行流系"
+    },
+    "signupModal": {
+      "errorTitle": "輸入錯誤",
+      "title": "請確認所輸入的資料",
+      "cancel": "取消",
+      "dismiss": "重試",
+      "confirm": "確認"
     }
   },
   "adminForms": {

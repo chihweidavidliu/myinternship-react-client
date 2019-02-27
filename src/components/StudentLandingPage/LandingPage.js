@@ -10,6 +10,10 @@ import SigninForm from "components/StudentLandingPage/SigninForm";
 class LandingPage extends Component {
   state = { signUp: true }
 
+  componentDidMount() {
+    // need some action creator that checks if signUp is available
+  }
+
   handleSignin = async (formValues) => {
     await this.props.studentSignin(formValues);
     history.push("/dashboard");

@@ -21,6 +21,13 @@
       "Finance": "Finance",
       "Management": "Management",
       "Systems": "Systems"
+    },
+    "signupModal": {
+      "errorTitle": "Error",
+      "title": "Please confirm your details",
+      "cancel": "Cancel",
+      "dismiss": "Dismiss",
+      "confirm": "Confirm"
     }
   },
   "adminForms": {
