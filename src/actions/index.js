@@ -1,4 +1,5 @@
 import axios from "axios";
+import { submit } from "redux-form";
 
 import { STUDENT_SIGNUP, STUDENT_SIGNIN, FETCH_USER, TOGGLE_LANGUAGE } from "actions/types";
 
@@ -34,4 +35,8 @@ export const toggleLanguage = (language) => {
     type: TOGGLE_LANGUAGE,
     payload: language,
   }
+}
+
+export const submitReduxForm = (formName) => (dispatch) => {
+  dispatch(submit(formName));
 }

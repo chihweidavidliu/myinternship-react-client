@@ -2,7 +2,7 @@
   "title": "My Internship",
   "studentForms": {
     "placeholders": {
-      "studentid": "Studentid (without initial s)",
+      "studentid": "Studentid",
       "name": "Name",
       "password": "Password",
       "department": "Department",

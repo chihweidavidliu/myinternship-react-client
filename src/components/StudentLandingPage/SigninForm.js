@@ -23,7 +23,7 @@ class SignUpForm extends Component {
 
   onSubmit = (formValues) => {
     // handleForm passed down from LandingPage
-    this.props.handleForm("signin", formValues);
+    this.props.handleSignin(formValues);
   };
 
   render() {

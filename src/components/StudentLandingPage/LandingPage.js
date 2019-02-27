@@ -10,21 +10,16 @@ import SigninForm from "components/StudentLandingPage/SigninForm";
 class LandingPage extends Component {
   state = { signUp: true }
 
-  handleForm = async (type, formValues) => {
-    if(type === "signup") {
-      await this.props.studentSignup(formValues);
-      history.push("/dashboard");
-    } else {
-      await this.props.studentSignin(formValues);
-      history.push("/dashboard");
-    }
+  handleSignin = async (formValues) => {
+    await this.props.studentSignin(formValues);
+    history.push("/dashboard");
   }
 
   renderForm() {
     if(this.state.signUp === true ) {
-      return <SignUpForm handleForm={this.handleForm} />
+      return <SignUpForm studentSignup={this.props.studentSignup}/>
     } else {
-      return <SigninForm handleForm={this.handleForm} />
+      return <SigninForm handleSignin={this.handleSignin} />
     }
   }
 

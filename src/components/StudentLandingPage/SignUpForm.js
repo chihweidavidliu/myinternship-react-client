@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { Button, Form, Dropdown, Message } from "semantic-ui-react";
+import { Form, Dropdown, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from 'react-i18next';
+
+// custom submit function for signUp form to be passed to redux form constructor and triggered by modal confirm
+import submitSignup from "./submitSignup";
 
 import ConfirmDetailsModal from "./ConfirmDetailsModal";
 
@@ -47,16 +50,10 @@ class SignUpForm extends Component {
     );
   };
 
-  onSubmit = (formValues) => {
-    // handleForm passed down from LandingPage
-    this.props.handleForm("signup", formValues);
-  };
-
   render() {
-    console.log(this.props)
-    const { t } = this.props;
+    const { t, handleSubmit } = this.props;
     return (
-      <Form onSubmit={this.props.handleSubmit(this.onSubmit)} error>
+      <Form onSubmit={handleSubmit} error>
         <Form.Field>
           <Field
             name="studentid"
@@ -78,7 +75,6 @@ class SignUpForm extends Component {
             component={this.renderInput}
           />
         </Form.Field>
-
         <Form.Field>
           <Field
             name="department"
@@ -86,9 +82,7 @@ class SignUpForm extends Component {
             component={this.renderSelect}
           />
         </Form.Field>
-
-        <Button type="submit">{t("studentForms.placeholders.signup")}</Button>
-        <ConfirmDetailsModal handleSubmit={this.props.handleSubmit} onSubmit={this.onSubmit} />
+        <ConfirmDetailsModal />
       </Form>
     )
   }
@@ -101,7 +95,7 @@ const validate = (formValues, props) => {
 
   if (!formValues.studentid) {
     errors.studentid = t("studentForms.formErrors.studentid.missing");
-  } else if (formValues.studentid.split("")[0] === "s") {
+  } else if (formValues.studentid.split("")[0] === "s" || formValues.studentid.split("")[0] === "S") {
     errors.studentid = t("studentForms.formErrors.studentid.initialS");
   }
 
@@ -122,5 +116,5 @@ const validate = (formValues, props) => {
   return errors;
 };
 
-const wrapped =  reduxForm({ form: "studentSignup", validate: validate })(SignUpForm);
+const wrapped =  reduxForm({ form: "studentSignup", validate: validate, onSubmit: submitSignup })(SignUpForm);
 export default withTranslation()(wrapped)
