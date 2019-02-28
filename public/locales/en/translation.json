@@ -46,6 +46,10 @@
   "dashboard": {
     "welcome": "Welcome",
     "signout": "Signout",
-    "header": "Internship Choices"
+    "header": "Internship Choices",
+    "choices": "Your Choices",
+    "choicesPrompt": "Choose up to 10",
+    "options": "Companies",
+    "optionsPrompt": "Drag choices to the left"
   }
 }
