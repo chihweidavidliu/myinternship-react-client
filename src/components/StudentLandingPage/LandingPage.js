@@ -32,8 +32,12 @@ class LandingPage extends Component {
       return;
     }
     if (this.state.currentForm === "signUp") {
+      // clear error messages
+      this.props.addErrorMesssage(null);
       return this.setState({ currentForm: "signIn" });
     }
+    // clear error messages
+    this.props.addErrorMesssage(null);
     return this.setState({ currentForm: "signUp" });
   };
 

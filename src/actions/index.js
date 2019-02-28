@@ -25,6 +25,13 @@ export const studentSignin = (formData) => async (dispatch) => {
   }
 };
 
+export const addErrorMesssage = (message) => {
+  return {
+    type: ADD_ERROR_MESSAGE,
+    payload: message
+  }
+}
+
 export const fetchUser = () => async (dispatch, getState) => {
   try {
     const response = await axios.get("/api/current_user");
