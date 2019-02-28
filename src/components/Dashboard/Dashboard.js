@@ -7,9 +7,40 @@ import Navbar from "./Navbar";
 import SharedList from "./SharedList";
 
 class Dashboard extends Component {
+  state = {
+    choices: [],
+    options: [
+      "Apple",
+      "Google",
+      "AirBnb",
+      "Uber",
+      "Huawei",
+      "Deliveroo",
+      "Amazon",
+      "Microsoft",
+      "Dropbox",
+      "Samsung",
+      "LG",
+      "Gigabyte",
+      "FitBit",
+      "TaskMaster",
+      "Facebook",
+      "Siemens",
+      "Oneplus",
+      "Razer",
+      "ENS",
+      "Acer",
+      "Asus",
+      "BenQ",
+      "Boeing",
+      "Nike",
+      "Airbus"
+    ]
+  };
   componentDidMount() {
     // need some action creator that checks if students are allowed to make their choices yet
   }
+
   render() {
     const { t } = this.props;
 
@@ -23,12 +54,24 @@ class Dashboard extends Component {
               <div id="choices">
                 <h2>{t("dashboard.choices")}</h2>
                 <p>{t("dashboard.choicesPrompt")}</p>
-                <SharedList items={["Apple", "Google", "AirBnb", "Uber"]} listType="ol" />
+                <SharedList
+                  items={this.state.choices}
+                  onChange={(order, sortable, evt) => {
+                    this.setState({ choices: order });
+                  }}
+                  listType="ol"
+                />
               </div>
               <div id="options">
                 <h2>{t("dashboard.options")}</h2>
                 <p>{t("dashboard.optionsPrompt")}</p>
-                <SharedList items={["Deliveroo", "Amazon", "Microsoft", "Dropbox"]} listType="ul" />
+                <SharedList
+                  items={this.state.options}
+                  onChange={(order, sortable, evt) => {
+                    this.setState({ options: order });
+                  }}
+                  listType="ul"
+                />
               </div>
             </div>
           </div>

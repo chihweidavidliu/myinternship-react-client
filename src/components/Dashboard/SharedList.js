@@ -3,7 +3,7 @@ import React from 'react';
 import Sortable from 'react-sortablejs';
 
 // Functional Component
-const SharedList = ({ items, listType }) => {
+const SharedList = ({ items, listType, onChange }) => {
     items = items.map(val => (<li key={uniqueId()} data-id={val}>{val}</li>));
 
     return (
@@ -13,6 +13,7 @@ const SharedList = ({ items, listType }) => {
                 group: 'shared'
             }}
             tag={listType}
+            onChange={onChange}
         >
             {items}
         </Sortable>

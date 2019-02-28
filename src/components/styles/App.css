@@ -1,3 +1,8 @@
+::-webkit-scrollbar {
+   width: 3px !important;
+   height: 3px !important;
+}
+
 body {
   margin: 0 auto;
 }
@@ -98,7 +103,7 @@ body {
 
 .main-box {
   height: 75vh;
-  width: 70vw;
+  width: 85vw;
   background-color: whitesmoke;
   border-radius: 5px;
   padding: 25px;
@@ -111,37 +116,49 @@ body {
 }
 
 #company-choices {
+  margin-top: 15px;
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: 80%;
+
 }
 
 #options, #choices {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 40vw;
 }
+
 
 ul {
   list-style-type: none;
-  padding: 3px;
-  width: 150px;
+
 }
 
-#choices ol {
+ol {
   list-style-position: inside;
-  background-color: #e5e5e5 !important;
   border-radius: 5px;
-  width: 150px;
-  min-height: 50px;
+  min-height: 30px;
+}
+
+ul, ol {
+  width: 32vw;
   padding: 3px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 li {
-  margin: 8px;
+  margin: 6px;
   background-color: whitesmoke;
   padding: 3px 10px 3px 10px;
   cursor: grab;
   border: 1px #a8a8a8 solid;
   border-radius: 5px;
+  width: 130px;
 }
