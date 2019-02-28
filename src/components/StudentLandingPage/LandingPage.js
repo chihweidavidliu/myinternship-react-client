@@ -67,9 +67,9 @@ class LandingPage extends Component {
       return;
     }
     if (this.state.currentForm === "signUp") {
-      return <ToggleForm message="Click to sign-in" onClick={this.toggleForm} />;
+      return <ToggleForm message="Click to sign-in" prompt="Already registered?" onClick={this.toggleForm} />;
     }
-    return <ToggleForm message="Click to sign-up" onClick={this.toggleForm} />;
+    return <ToggleForm message="Click to sign-up" prompt="Not registered?" onClick={this.toggleForm} />;
   }
 
   render() {

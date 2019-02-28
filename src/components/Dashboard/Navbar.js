@@ -6,12 +6,13 @@ import { withTranslation } from 'react-i18next';
 import LanguageSelector from "components/LanguageSelector";
 
 class Navbar extends Component {
-  renderWelcome() {
+  renderInfo(info) {
     const { t } = this.props;
     if(this.props.auth) {
-      return `${t("dashboard.welcome")} ${this.props.auth.name}`
+      return `${t(`studentForms.placeholders.${info}`)} : ${this.props.auth[`${info}`]}`
     }
   }
+
   render() {
     const { t } = this.props;
 
@@ -26,8 +27,15 @@ class Navbar extends Component {
           <LanguageSelector />
         </Menu.Item>
         <Menu.Item>
-          <p>{this.renderWelcome()}</p>
+          <p>{this.props.auth.name}</p>
         </Menu.Item>
+        <Menu.Item>
+          <p>{this.renderInfo("studentid")}</p>
+        </Menu.Item>
+        <Menu.Item>
+          <p>{this.renderInfo("department")}</p>
+        </Menu.Item>
+
         <Menu.Item position="right">
           <a href="/auth/logout">{t("dashboard.signout")}</a>
         </Menu.Item>
