@@ -52,7 +52,7 @@ class SignUpForm extends Component {
             component={this.renderInput}
           />
         </Form.Field>
-        <Button type="submit">{t("studentForms.placeholders.signin")}</Button>
+        <Button color="blue" type="submit">{t("studentForms.placeholders.signin")}</Button>
       </Form>
     );
   }

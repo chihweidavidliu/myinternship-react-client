@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
+import { withTranslation } from "react-i18next";
 
 import history from "history.js";
 import * as actions from "actions";
 import LanguageSelector from "components/LanguageSelector";
 import SignUpForm from "components/StudentLandingPage/SignUpForm";
 import SigninForm from "components/StudentLandingPage/SigninForm";
+import ToggleForm from "components/StudentLandingPage/ToggleForm";
 
 class LandingPage extends Component {
-  state = { signUp: true };
+  state = { signUp: true, currentForm: "signUp" };
 
   componentDidMount() {
+    if (this.state.signUp === false) {
+      this.setState({ currentForm: "signIn" });
+    }
     // need some action creator that checks if signUp is available
   }
 
@@ -22,19 +27,49 @@ class LandingPage extends Component {
     }
   };
 
+  toggleForm = () => {
+    if (this.state.signUp === false) {
+      return;
+    }
+    if (this.state.currentForm === "signUp") {
+      return this.setState({ currentForm: "signIn" });
+    }
+    return this.setState({ currentForm: "signUp" });
+  };
+
   renderForm() {
-    if (this.state.signUp === true) {
+    if (this.state.signUp === false) {
+      return <SigninForm handleSignin={this.handleSignin} />;
+    }
+    if (this.state.currentForm === "signUp") {
       return <SignUpForm studentSignup={this.props.studentSignup} auth={this.props.auth} />;
-    } else {
+    } else if (this.state.currentForm === "signIn") {
       return <SigninForm handleSignin={this.handleSignin} />;
     }
   }
 
   renderError() {
-    const { authMessage } = this.props;
+    const { authMessage, t } = this.props;
     if (authMessage) {
-      return <Message error header="Error" content={authMessage} />;
+      return (
+        <Message
+          style={{ marginBottom: "15px" }}
+          error
+          header={t("studentForms.formErrors.errorHeader")}
+          content={authMessage}
+        />
+      );
     }
+  }
+
+  renderToggleButton() {
+    if (this.state.signUp === false) {
+      return;
+    }
+    if (this.state.currentForm === "signUp") {
+      return <ToggleForm message="Click to sign-in" onClick={this.toggleForm} />;
+    }
+    return <ToggleForm message="Click to sign-up" onClick={this.toggleForm} />;
   }
 
   render() {
@@ -43,8 +78,9 @@ class LandingPage extends Component {
         <LanguageSelector position="language-selector-top" />
         <div className="box">
           <h1>My Internship</h1>
-          {this.renderForm()}
           <div className="error-box">{this.renderError()}</div>
+          {this.renderForm()}
+          {this.renderToggleButton()}
         </div>
       </div>
     );
@@ -57,7 +93,9 @@ const mapStatetoProps = (state) => {
     authMessage: state.authMessage
   };
 };
-export default connect(
+const wrapped = connect(
   mapStatetoProps,
   actions
 )(LandingPage);
+
+export default withTranslation()(wrapped);

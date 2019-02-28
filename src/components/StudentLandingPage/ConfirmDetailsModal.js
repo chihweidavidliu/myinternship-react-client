@@ -116,7 +116,7 @@ class ConfirmDetailsModal extends Component {
     return (
       <Modal
         trigger={
-          <Button name="Sign up" onClick={this.handleTriggerClick}>
+          <Button name="Sign up" color="blue" onClick={this.handleTriggerClick}>
             {t("studentForms.placeholders.signup")}
           </Button>
         }

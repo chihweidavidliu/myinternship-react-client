@@ -12,10 +12,11 @@
     "formErrors": {
       "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s", "duplicateId": "此學號已完成報名。"},
       "name": { "missing": "請輸入姓名" },
-      "password": { "missing": "請輸入密碼", "tooShort": "Password must be at least 6 characters long" },
+      "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },
       "department": { "missing": "請選擇系別" },
-      "signupFailure": "There was a problem signing you up. Please try again later or contact the administrator.",
-      "signinFailure": "There was a problem signing you in. Please check your credentials or contact the administrator."
+      "errorHeader": "錯誤",
+      "signupFailure": "登入產生錯誤,請稍後再試,或與系統管理員聯絡。",
+      "signinFailure": "登入產生錯誤,請檢查使用者名稱或密碼。"
     },
     "departments": {
       "Business": "企管系",
@@ -38,8 +39,8 @@
       "password": "請自訂密碼"
     },
     "formErrors": {
-      "username": { "missing": "A username is required" },
-      "password": { "missing": "請輸入密碼", "tooShort": "Password must be at least 6 characters long" }
+      "username": { "missing": "必須輸入系統管理員名稱" },
+      "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" }
     }
   },
   "dashboard": {

@@ -50,6 +50,11 @@ body {
   margin-top: 20px;
 }
 
+.toggleForm {
+  margin-bottom: 15px !important;
+  margin-top: 20px;
+}
+
 /* Student Dashboard */
 
 @media only screen and (max-width: 768px) {
