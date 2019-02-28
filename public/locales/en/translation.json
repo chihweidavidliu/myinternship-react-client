@@ -45,6 +45,7 @@
   },
   "dashboard": {
     "welcome": "Welcome",
-    "signout": "Signout"
+    "signout": "Signout",
+    "header": "Internship Choices"
   }
 }

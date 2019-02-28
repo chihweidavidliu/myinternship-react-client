@@ -6,6 +6,7 @@ body {
   height: 100vh;
   width: 100vw;
   color: white;
+  overflow: hidden;
 }
 
 
@@ -62,19 +63,28 @@ body {
     width: 90vw !important;
     height: 80vh !important;
   }
+
+  .app-container {
+    height: 140vh !important;
+  }
+
+  @media only screen and (max-height: 414px) {
+    .app-container {
+      height: 180vh !important;
+    }
+  }
+
 }
 
 .dashboard-container {
   height: 100vh;
   width: 100vw;
-  min-width: 372px;
 }
 
 .navbar {
   background-color: none !important;
   background: none !important;
   border-radius: 0 !important;
-  height: 8vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
 }
 
@@ -91,5 +101,8 @@ body {
   width: 70vw;
   background-color: whitesmoke;
   border-radius: 5px;
+  padding: 25px;
+  color: #424242;
+  text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

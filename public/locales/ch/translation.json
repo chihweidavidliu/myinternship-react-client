@@ -45,6 +45,7 @@
   },
   "dashboard": {
     "welcome": "歡迎",
-    "signout": "退出"
+    "signout": "退出",
+    "header": "學生實習志願"
   }
 }

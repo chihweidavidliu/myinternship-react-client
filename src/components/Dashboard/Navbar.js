@@ -17,7 +17,7 @@ class Navbar extends Component {
     const { t } = this.props;
 
     return (
-      <Menu fluid borderless inverted className="navbar">
+      <Menu fluid borderless stackable inverted className="navbar">
         <Menu.Item>
           <Link to="/dashboard">
             <h3>MyInternship</h3>
