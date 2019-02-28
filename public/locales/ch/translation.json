@@ -50,6 +50,6 @@
     "choices": "志願",
     "choicesPrompt": "最多選取10個志願。",
     "options": "公司名稱",
-    "optionsPrompt": "請將欲選取之公司名稱拖曳到左邊之長方格內。"
+    "optionsPrompt": "請將欲選取之公司名稱拖曳到左邊之長方格內。" 
   }
 }

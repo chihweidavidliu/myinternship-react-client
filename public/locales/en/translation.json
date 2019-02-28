@@ -50,6 +50,6 @@
     "choices": "Your Choices",
     "choicesPrompt": "Choose up to 10",
     "options": "Companies",
-    "optionsPrompt": "Drag choices to the left"
+    "optionsPrompt": "Drag choices to the 'Your Choices' section"
   }
 }

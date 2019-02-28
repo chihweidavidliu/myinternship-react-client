@@ -66,11 +66,25 @@ body {
 @media only screen and (max-width: 768px) {
   .main-box {
     width: 90vw !important;
-    height: 80vh !important;
+    height: 100vh !important;
   }
 
   .app-container {
-    height: 140vh !important;
+    height: 160vh !important;
+  }
+
+  .dashboard-flex-box {
+    height: 110vh !important;
+  }
+
+  #company-choices {
+    flex-direction: column !important;
+    width: 90% !important;
+  }
+
+  ul, ol {
+    width: 80vw !important;
+    height: 250vh !important;
   }
 
   @media only screen and (max-height: 414px) {
@@ -139,7 +153,7 @@ ul {
 ol {
   list-style-position: inside;
   border-radius: 5px;
-  min-height: 30px;
+  min-height: 50px;
 }
 
 ul, ol {
