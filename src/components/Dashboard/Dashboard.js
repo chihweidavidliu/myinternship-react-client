@@ -27,6 +27,41 @@ class Dashboard extends Component {
       );
     }
   }
+  renderChoices() {
+    if(this.props.companies) {
+      const { t } = this.props;
+      return (
+        <div id="company-choices">
+          <div id="choices">
+            <h2>{t("dashboard.choices")}</h2>
+            <p>{t("dashboard.choicesPrompt")}</p>
+            <SharedList
+              items={this.props.auth.choices}
+              onChange={(order, sortable, evt) => {
+                // action creator to submit choices
+                this.props.updateStudentChoices(order);
+
+              }}
+              listType="ol"
+              type="choices"
+            />
+          </div>
+          <div id="options">
+            <h2>{t("dashboard.options")}</h2>
+            <p>{t("dashboard.optionsPrompt")}</p>
+            <SharedList
+              items={this.props.companies}
+              onChange={(order, sortable, evt) => {
+                this.setState({ options: order });
+              }}
+              listType="ul"
+              type="options"
+            />
+          </div>
+        </div>
+      )
+    }
+  }
 
   render() {
     const { t } = this.props;
@@ -38,34 +73,7 @@ class Dashboard extends Component {
           <div className="main-box">
             <h1>{t("dashboard.header")}</h1>
             {this.renderError()}
-            <div id="company-choices">
-              <div id="choices">
-                <h2>{t("dashboard.choices")}</h2>
-                <p>{t("dashboard.choicesPrompt")}</p>
-                <SharedList
-                  items={this.props.auth.choices}
-                  onChange={(order, sortable, evt) => {
-                    // action creator to submit choices
-                    this.props.updateStudentChoices(order);
-
-                  }}
-                  listType="ol"
-                  type="choices"
-                />
-              </div>
-              <div id="options">
-                <h2>{t("dashboard.options")}</h2>
-                <p>{t("dashboard.optionsPrompt")}</p>
-                <SharedList
-                  items={this.props.companies}
-                  onChange={(order, sortable, evt) => {
-                    this.setState({ options: order });
-                  }}
-                  listType="ul"
-                  type="options"
-                />
-              </div>
-            </div>
+            {this.renderChoices()}
           </div>
         </div>
       </div>

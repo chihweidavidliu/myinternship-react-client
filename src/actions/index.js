@@ -67,10 +67,11 @@ export const fetchCompanies = () => async (dispatch) => {
   } catch (err) {
     if (err.response.data === "choices disabled by admin") {
       // value of false in state tells us that admin has explicitly disabled choices
+      dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.choicesDisabled") });
       return dispatch({ type: FETCH_COMPANIES, payload: false });
     }
     dispatch({ type: FETCH_COMPANIES, payload: null });
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: "Error fetching companies" });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.failedCompanyFetch") });
   }
 };
 
@@ -79,7 +80,7 @@ export const updateStudentChoices = (choices) => async (dispatch) => {
     const response = await axios.patch("/api/updateStudent", { choices: choices });
     dispatch({ type: UPDATE_STUDENT, payload: response.data });
   } catch (err) {
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: "Error updating student" });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.failedStudentUpdate") });
   }
 };
 
