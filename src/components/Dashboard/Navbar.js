@@ -9,6 +9,9 @@ class Navbar extends Component {
   renderInfo(info) {
     const { t } = this.props;
     if(this.props.auth) {
+      if(info === "department") {
+        return `${t(`studentForms.placeholders.${info}`)} : ${t(this.props.auth[`${info}`])}`
+      }
       return `${t(`studentForms.placeholders.${info}`)} : ${this.props.auth[`${info}`]}`
     }
   }

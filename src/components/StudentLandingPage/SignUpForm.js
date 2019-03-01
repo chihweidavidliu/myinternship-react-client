@@ -29,11 +29,11 @@ class SignUpForm extends Component {
   renderSelect = (formProps) => {
     const { t } = this.props;
     const departments = [
-      { key: "1", text: t("studentForms.departments.Business"), value: t("studentForms.departments.Business") },
-      { key: "2", text: t("studentForms.departments.Trade"), value: t("studentForms.departments.Trade") },
-      { key: "3", text: t("studentForms.departments.Finance"), value: t("studentForms.departments.Finance") },
-      { key: "4", text: t("studentForms.departments.Management"), value: t("studentForms.departments.Management") },
-      { key: "5", text: t("studentForms.departments.Systems"), value: t("studentForms.departments.Systems") }
+      { key: "1", text: t("studentForms.departments.Business"), value: "studentForms.departments.Business" },
+      { key: "2", text: t("studentForms.departments.Trade"), value: "studentForms.departments.Trade" },
+      { key: "3", text: t("studentForms.departments.Finance"), value: "studentForms.departments.Finance" },
+      { key: "4", text: t("studentForms.departments.Management"), value: "studentForms.departments.Management" },
+      { key: "5", text: t("studentForms.departments.Systems"), value: "studentForms.departments.Systems" }
     ];
 
     return (

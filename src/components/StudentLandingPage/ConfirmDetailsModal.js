@@ -79,7 +79,7 @@ class ConfirmDetailsModal extends Component {
             <strong>{t("studentForms.placeholders.password")} :</strong> {this.props.signUpForm.values.password}
           </p>
           <p>
-            <strong>{t("studentForms.placeholders.department")} :</strong> {this.props.signUpForm.values.department}
+            <strong>{t("studentForms.placeholders.department")} :</strong> {t(this.props.signUpForm.values.department)}
           </p>
         </div>
       );
