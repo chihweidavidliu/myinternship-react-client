@@ -3,6 +3,7 @@ import { submit } from "redux-form";
 import i18n from "i18n";
 
 import {
+  REMOVE_ERROR_MESSAGE,
   UPDATE_STUDENT,
   FETCH_COMPANIES,
   ADD_ERROR_MESSAGE,
@@ -42,6 +43,13 @@ export const addErrorMesssage = (message) => {
     payload: message
   };
 };
+
+export const removeErrorMessage = () => {
+  return {
+    type: REMOVE_ERROR_MESSAGE,
+    payload: null
+  }
+}
 
 export const fetchUser = () => async (dispatch, getState) => {
   try {

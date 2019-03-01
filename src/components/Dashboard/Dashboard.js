@@ -9,7 +9,8 @@ import Navbar from "./Navbar";
 import SharedList from "./SharedList";
 
 class Dashboard extends Component {
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.removeErrorMessage();
     this.props.fetchCompanies();
   }
 
