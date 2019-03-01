@@ -49,7 +49,7 @@
     "signout": "退出",
     "header": "學生實習志願",
     "choices": "志願",
-    "choicesPrompt": "最多選取10個志願。",
+    "choicesPrompt": "Choices are saved automatically.",
     "options": "公司名稱",
     "optionsPrompt": "請將欲選取之公司名稱拖曳到左邊之長方格內。"
   }

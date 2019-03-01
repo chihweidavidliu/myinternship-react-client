@@ -49,7 +49,7 @@
     "signout": "Signout",
     "header": "Internship Choices",
     "choices": "Your Choices",
-    "choicesPrompt": "Choose up to 10",
+    "choicesPrompt": "Choices are saved automatically",
     "options": "Companies",
     "optionsPrompt": "Drag choices to the 'Your Choices' section"
   }

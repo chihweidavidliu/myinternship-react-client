@@ -3,6 +3,10 @@
    height: 3px !important;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0 auto;
 }

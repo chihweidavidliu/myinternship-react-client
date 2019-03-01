@@ -1,5 +1,5 @@
 import {
-  ADD_ERROR_MESSAGE,
+  UPDATE_STUDENT,
   STUDENT_SIGNUP,
   STUDENT_SIGNIN,
   FETCH_USER
@@ -13,8 +13,8 @@ export default (state = null, action) => {
       return action.payload;
     case FETCH_USER:
       return action.payload;
-    case ADD_ERROR_MESSAGE:
-      return false;
+    case UPDATE_STUDENT:
+      return action.payload;
     default:
       return state;
   }
