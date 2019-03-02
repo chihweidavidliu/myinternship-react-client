@@ -3,6 +3,7 @@ import { submit } from "redux-form";
 import i18n from "i18n";
 
 import {
+  UPDATE_ADMIN,
   REMOVE_ERROR_MESSAGE,
   UPDATE_STUDENT,
   FETCH_COMPANIES,
@@ -48,8 +49,8 @@ export const removeErrorMessage = () => {
   return {
     type: REMOVE_ERROR_MESSAGE,
     payload: null
-  }
-}
+  };
+};
 
 export const fetchUser = () => async (dispatch, getState) => {
   try {
@@ -81,6 +82,15 @@ export const updateStudentChoices = (choices) => async (dispatch) => {
     dispatch({ type: UPDATE_STUDENT, payload: response.data });
   } catch (err) {
     dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.failedStudentUpdate") });
+  }
+};
+
+export const updateAdmin = (values) => async (dispatch) => {
+  try {
+    const response = await axios.patch("/api/updateAdmin", values);
+    dispatch({ type: UPDATE_ADMIN, payload: response.data });
+  } catch (err) {
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminDashboard.errors.updateFailed") });
   }
 };
 

@@ -57,5 +57,9 @@
       "failedStudentUpdate": "Error updating choices",
       "choicesDisabled": "The administrator has not yet activated internship choices. Please sign-in again later."
     }
-  }
+  },
+  "adminDashboard": {
+    "errors": {
+      "updateFailed": "Update failed"
+    }
 }
