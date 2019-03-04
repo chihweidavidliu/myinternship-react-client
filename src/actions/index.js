@@ -3,6 +3,7 @@ import { submit } from "redux-form";
 import i18n from "i18n";
 
 import {
+  CHECK_NUMBER_OF_ADMINS,
   CHECK_SIGNUP_AUTH,
   ADMIN_SIGNIN,
   ADMIN_SIGNUP,
@@ -127,6 +128,15 @@ export const updateAdmin = (values) => async (dispatch) => {
     dispatch({ type: UPDATE_ADMIN, payload: response.data });
   } catch (err) {
     dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminDashboard.errors.updateFailed") });
+  }
+};
+
+export const checkNumberOfAdmins = () => async (dispatch) => {
+  try {
+    const response = await axios.get("/api/numberOfAdmins");
+    dispatch({ type: CHECK_NUMBER_OF_ADMINS, payload: response.data });
+  } catch (err) {
+    dispatch({ type: CHECK_NUMBER_OF_ADMINS, payload: null });
   }
 };
 
