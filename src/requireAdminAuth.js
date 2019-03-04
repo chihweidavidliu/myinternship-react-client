@@ -7,9 +7,9 @@ export default (ChildComponent) => {
   class ComposedComponent extends Component {
     checkAuth() {
       if (!this.props.auth) {
-        this.props.history.push("/");
+        this.props.history.push("/admin");
       } else if (this.props.auth.auth !== "admin") {
-        this.props.history.push("/");
+        this.props.history.push("/admin");
       }
     }
 

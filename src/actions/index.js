@@ -116,6 +116,8 @@ export const adminSignup = (formData) => async (dispatch) => {
     if (err.response.data.message === "admin already exists") {
       dispatch({ type: ADMIN_SIGNUP, payload: false });
       return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.username.adminExists") });
+    } else if (err.response.data.message === "incorrect adminSecret") {
+      return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.wrongAdminSecret") });
     }
     dispatch({ type: ADMIN_SIGNUP, payload: false });
     dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.signupFailure") });

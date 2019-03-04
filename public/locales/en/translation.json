@@ -37,11 +37,14 @@
   "adminForms": {
     "placeholders": {
       "username": "Username",
-      "password": "Password"
+      "password": "Password",
+      "adminSecret": "Admin secret"
     },
     "formErrors": {
+      "adminSecret": { "missing": "Admin secret is required" },
       "username": { "missing": "A username is required", "adminExists": "Admin has already been registered. There can only be one admin." },
       "password": { "missing": "A password is required", "tooShort": "Password must be at least 6 characters long" },
+      "wrongAdminSecret": "The Admin Secret you entered was incorrect.",
       "signupFailure": "There was a problem signing you up.",
       "signinFailure": "There was a problem signing you in. Please check your credentials or contact the server administrator."
     }

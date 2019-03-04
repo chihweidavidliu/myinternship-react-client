@@ -37,11 +37,14 @@
   "adminForms": {
     "placeholders": {
       "username": "用戶名",
-      "password": "請自訂密碼"
+      "password": "請自訂密碼",
+      "adminSecret": "Admin secret"
     },
     "formErrors": {
+      "adminSecret": { "missing": "Admin secret is required" },
       "username": { "missing": "必須輸入系統管理員名稱", "adminExists": "Admin has already been registered. There can only be one admin." },
       "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },
+      "wrongAdminSecret": "The Admin Secret you entered was incorrect.",
       "signupFailure": "There was a problem signing you up.",
       "signinFailure": "There was a problem signing you in. Please check your credentials or contact the server administrator."
     }

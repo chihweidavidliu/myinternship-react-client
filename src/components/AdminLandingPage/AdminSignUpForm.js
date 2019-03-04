@@ -31,6 +31,14 @@ class AdminSignUpForm extends Component {
     return (
       <Form onSubmit={handleSubmit} error>
         <Form.Field>
+          <Field
+            name="adminSecret"
+            type="text"
+            placeholder={t("adminForms.placeholders.adminSecret")}
+            component={this.renderInput}
+          />
+        </Form.Field>
+        <Form.Field>
           <Field name="username" placeholder={t("adminForms.placeholders.username")} component={this.renderInput} />
         </Form.Field>
         <Form.Field>
@@ -46,6 +54,10 @@ class AdminSignUpForm extends Component {
 const validate = (formValues, props) => {
   const { t } = props;
   const errors = {};
+
+  if (! formValues.adminSecret) {
+    errors.adminSecret = t("adminForms.formErrors.adminSecret.missing");
+  }
 
   if (!formValues.username) {
     errors.username = t("adminForms.formErrors.username.missing");

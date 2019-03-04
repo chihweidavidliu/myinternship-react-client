@@ -20,10 +20,10 @@ class ConfirmationModal extends Component {
     // dispatches custom action creator that dispatches redux-form submit method with the relevant form name
     // the submit method will then call the external submit function 'submitSignup' to call the signup action creator with the form values
     let formToSubmit;
-    if(this.props.for === "student") {
+    if (this.props.for === "student") {
       formToSubmit = "studentSignup";
     } else {
-      formToSubmit ="adminSignup";
+      formToSubmit = "adminSignup";
     }
     await this.props.submitReduxForm(formToSubmit);
   };
@@ -34,12 +34,14 @@ class ConfirmationModal extends Component {
     const errorMessage = [];
 
     if (signUpForm && signUpForm.values) {
-
-      if(this.props.for === "student") {
+      if (this.props.for === "student") {
         if (!signUpForm.values.studentid) {
           errorMessage.push(t("studentForms.formErrors.studentid.missing"));
-        } else if(signUpForm.values.studentid.split("")[0] === "s" || signUpForm.values.studentid.split("")[0] === "S") {
-          errorMessage.push(t("studentForms.formErrors.studentid.initialS"))
+        } else if (
+          signUpForm.values.studentid.split("")[0] === "s" ||
+          signUpForm.values.studentid.split("")[0] === "S"
+        ) {
+          errorMessage.push(t("studentForms.formErrors.studentid.initialS"));
         }
 
         if (!signUpForm.values.name) {
@@ -49,11 +51,13 @@ class ConfirmationModal extends Component {
         if (!signUpForm.values.department) {
           errorMessage.push(t("studentForms.formErrors.department.missing"));
         }
-
       } else {
         // admin case
-        if(!signUpForm.values.username) {
-          errorMessage.push(t("adminForms.formErrors.username.missing"))
+        if (!signUpForm.values.username) {
+          errorMessage.push(t("adminForms.formErrors.username.missing"));
+        }
+        if (!signUpForm.values.adminSecret) {
+          errorMessage.push(t("adminForms.formErrors.adminSecret.missing"));
         }
       }
       // password needed for both cases
@@ -83,7 +87,7 @@ class ConfirmationModal extends Component {
         });
       }
 
-      if(this.props.for === "student") {
+      if (this.props.for === "student") {
         return (
           <div>
             <p>
@@ -96,7 +100,8 @@ class ConfirmationModal extends Component {
               <strong>{t("studentForms.placeholders.password")} :</strong> {this.props.signUpForm.values.password}
             </p>
             <p>
-              <strong>{t("studentForms.placeholders.department")} :</strong> {t(this.props.signUpForm.values.department)}
+              <strong>{t("studentForms.placeholders.department")} :</strong>{" "}
+              {t(this.props.signUpForm.values.department)}
             </p>
           </div>
         );
@@ -105,13 +110,16 @@ class ConfirmationModal extends Component {
       return (
         <div>
           <p>
+            <strong>{t("adminForms.placeholders.adminSecret")} :</strong> {this.props.signUpForm.values.adminSecret}
+          </p>
+          <p>
             <strong>{t("adminForms.placeholders.username")} :</strong> {this.props.signUpForm.values.username}
           </p>
           <p>
             <strong>{t("adminForms.placeholders.password")} :</strong> {this.props.signUpForm.values.password}
           </p>
         </div>
-      )
+      );
     }
   }
 
@@ -173,7 +181,7 @@ class ConfirmationModal extends Component {
 const mapStateToProps = (state, ownProps) => {
   // determine which form to fetch from redux store
   let signUpForm;
-  if(ownProps.for === "student") {
+  if (ownProps.for === "student") {
     signUpForm = state.form.studentSignup;
   } else {
     signUpForm = state.form.adminSignup;
