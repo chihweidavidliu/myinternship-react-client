@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
+import { withTranslation } from "react-i18next";
 
 import history from "history.js";
 import * as actions from "actions";
@@ -20,9 +21,9 @@ class AdminLandingPage extends Component {
 
   renderForm() {
     if(this.state.allowSignup === true ) {
+      // pass down the adminSignup action creator to signup form
       return <AdminSignUpForm adminSignup={this.props.adminSignup} />;
     }
-    // need to pass onSubmit function to signin form
     return <AdminSignInForm handleSignin={this.handleSignin}/>
   }
 
@@ -61,4 +62,5 @@ const mapStatetoProps = (state) => {
   };
 };
 
-export default connect(mapStatetoProps, actions)(AdminLandingPage);
+const wrapped = connect(mapStatetoProps, actions)(AdminLandingPage);
+export default withTranslation()(wrapped);

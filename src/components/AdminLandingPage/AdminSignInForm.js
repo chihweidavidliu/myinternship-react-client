@@ -28,7 +28,7 @@ class AdminSignInForm extends Component {
   };
 
   onSubmit = (formValues) => {
-    // handleForm passed down from LandingPage
+    // handleSignin passed down from LandingPage
     this.props.handleSignin(formValues);
   };
 
