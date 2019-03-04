@@ -6,7 +6,7 @@ import { withTranslation } from "react-i18next";
 // custom submit function for signUp form to be passed to redux form constructor and triggered by modal confirm
 import submitSignup from "./submitSignup";
 
-import ConfirmDetailsModal from "./ConfirmDetailsModal";
+import ConfirmationModal from "components/ConfirmationModal";
 
 class SignUpForm extends Component {
   renderError = (meta) => {
@@ -70,7 +70,7 @@ class SignUpForm extends Component {
             component={this.renderSelect}
           />
         </Form.Field>
-        <ConfirmDetailsModal auth={this.props.auth} />
+        <ConfirmationModal auth={this.props.auth} for="student" />
       </Form>
     );
   }

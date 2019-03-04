@@ -40,8 +40,9 @@
       "password": "Password"
     },
     "formErrors": {
-      "username": { "missing": "A username is required" },
-      "password": { "missing": "A password is requried", "tooShort": "Password must be at least 6 characters long" }
+      "username": { "missing": "A username is required", "adminExists": "Admin has already been registered. There can only be one admin." },
+      "password": { "missing": "A password is required", "tooShort": "Password must be at least 6 characters long" },
+      "signupFailure": "There was a problem signing you up."
     }
   },
   "dashboard": {

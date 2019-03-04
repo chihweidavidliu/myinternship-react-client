@@ -8,7 +8,7 @@ import * as actions from "actions";
 import "components/styles/App.css";
 import LandingPage from "components/StudentLandingPage/LandingPage";
 import Dashboard from "components/Dashboard/Dashboard";
-import AdminLandingPage from "components/AdminLandingPage";
+import AdminLandingPage from "components/AdminLandingPage/AdminLandingPage";
 import AdminSorter from "components/AdminDashboard/AdminSorter";
 import AdminStudentView from "components/AdminDashboard/AdminStudentView";
 import AdminCompanyView from "components/AdminDashboard/AdminCompanyView";

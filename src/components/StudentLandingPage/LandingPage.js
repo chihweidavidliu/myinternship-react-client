@@ -17,7 +17,6 @@ class LandingPage extends Component {
     if (this.state.signUp === false) {
       this.setState({ currentForm: "signIn" });
     }
-    // need some action creator that checks if signUp is available
   }
 
   handleSignin = async (formValues) => {

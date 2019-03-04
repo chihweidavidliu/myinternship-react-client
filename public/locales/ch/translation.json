@@ -40,8 +40,9 @@
       "password": "請自訂密碼"
     },
     "formErrors": {
-      "username": { "missing": "必須輸入系統管理員名稱" },
-      "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" }
+      "username": { "missing": "必須輸入系統管理員名稱", "adminExists": "Admin has already been registered. There can only be one admin." },
+      "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },
+      "signupFailure": "There was a problem signing you up."
     }
   },
   "dashboard": {
@@ -62,4 +63,5 @@
     "errors": {
       "updateFailed": "Update failed"
     }
+  }
 }
