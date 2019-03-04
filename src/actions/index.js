@@ -3,6 +3,7 @@ import { submit } from "redux-form";
 import i18n from "i18n";
 
 import {
+  CHECK_SIGNUP_AUTH,
   ADMIN_SIGNIN,
   ADMIN_SIGNUP,
   UPDATE_ADMIN,
@@ -60,6 +61,15 @@ export const fetchUser = () => async (dispatch, getState) => {
     dispatch({ type: FETCH_USER, payload: response.data });
   } catch (err) {
     dispatch({ type: FETCH_USER, payload: false });
+  }
+};
+
+export const checkSignupAuth = () => async (dispatch) => {
+  try {
+    const response = await axios.get("/api/signupAuth");
+    dispatch({ type: CHECK_SIGNUP_AUTH, payload: response.data });
+  } catch (err) {
+    dispatch({ type: CHECK_SIGNUP_AUTH, payload: true });
   }
 };
 

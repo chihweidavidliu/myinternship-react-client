@@ -9,3 +9,4 @@ export const FETCH_COMPANIES = "FETCH_COMPANIES";
 export const UPDATE_ADMIN = "UPDATE_ADMIN";
 export const ADMIN_SIGNUP = "ADMIN_SIGNUP";
 export const ADMIN_SIGNIN = "ADMIN_SIGNIN";
+export const CHECK_SIGNUP_AUTH = "CHECK_SIGNUP_AUTH";

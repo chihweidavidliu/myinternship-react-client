@@ -142,7 +142,6 @@ class ConfirmationModal extends Component {
   render() {
     const { t } = this.props;
     const { open } = this.state;
-    console.log(this.props)
     return (
       <Modal
         trigger={

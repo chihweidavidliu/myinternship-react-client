@@ -11,9 +11,12 @@ import SigninForm from "components/StudentLandingPage/SigninForm";
 import ToggleForm from "components/StudentLandingPage/ToggleForm";
 
 class LandingPage extends Component {
-  state = { signUp: true, currentForm: "signUp" };
+  state = { signUp: false, currentForm: "signUp" };
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.checkSignupAuth();
+    await this.setState({ signUp: this.props.signupAuth });
+
     if (this.state.signUp === false) {
       this.setState({ currentForm: "signIn" });
     }
@@ -93,7 +96,8 @@ class LandingPage extends Component {
 const mapStatetoProps = (state) => {
   return {
     auth: state.auth,
-    authMessage: state.authMessage
+    authMessage: state.authMessage,
+    signupAuth: state.signupAuth
   };
 };
 const wrapped = connect(

@@ -4,6 +4,7 @@ import languageReducer from "reducers/languageReducer";
 import authReducer from "reducers/authReducer";
 import authMessageReducer from "reducers/authMessageReducer";
 import companiesReducer from "reducers/companiesReducer";
+import signupAuthReducer from "reducers/signupAuthReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   form: formReducer,
   language: languageReducer,
   companies: companiesReducer,
+  signupAuth: signupAuthReducer
 });
