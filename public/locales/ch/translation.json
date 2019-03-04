@@ -42,7 +42,8 @@
     "formErrors": {
       "username": { "missing": "必須輸入系統管理員名稱", "adminExists": "Admin has already been registered. There can only be one admin." },
       "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },
-      "signupFailure": "There was a problem signing you up."
+      "signupFailure": "There was a problem signing you up.",
+      "signinFailure": "There was a problem signing you in. Please check your credentials or contact the server administrator."
     }
   },
   "dashboard": {

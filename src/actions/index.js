@@ -3,6 +3,7 @@ import { submit } from "redux-form";
 import i18n from "i18n";
 
 import {
+  ADMIN_SIGNIN,
   ADMIN_SIGNUP,
   UPDATE_ADMIN,
   REMOVE_ERROR_MESSAGE,
@@ -83,6 +84,16 @@ export const updateStudentChoices = (choices) => async (dispatch) => {
     dispatch({ type: UPDATE_STUDENT, payload: response.data });
   } catch (err) {
     dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.failedStudentUpdate") });
+  }
+};
+
+export const adminSignin = (formData) => async (dispatch) => {
+  try {
+    const response = await axios.post("/auth/admin/signin", formData);
+    dispatch({ type: ADMIN_SIGNIN, payload: response.data });
+  } catch (err) {
+    dispatch({ type: ADMIN_SIGNIN, payload: false });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.signinFailure") });
   }
 };
 

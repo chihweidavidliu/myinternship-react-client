@@ -1,4 +1,5 @@
 import {
+  ADMIN_SIGNIN,
   ADMIN_SIGNUP,
   UPDATE_STUDENT,
   STUDENT_SIGNUP,
@@ -15,6 +16,8 @@ export default (state = null, action) => {
     case FETCH_USER:
       return action.payload;
     case UPDATE_STUDENT:
+      return action.payload;
+    case ADMIN_SIGNIN:
       return action.payload;
     case ADMIN_SIGNUP:
       return action.payload;
