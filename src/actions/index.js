@@ -27,6 +27,14 @@ export const studentSignup = (formData) => async (dispatch) => {
       dispatch({ type: STUDENT_SIGNIN, payload: false });
       return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("studentForms.formErrors.studentid.duplicateId") });
     }
+
+    if (err.response.data.message === "incorrect institution code") {
+      dispatch({ type: STUDENT_SIGNIN, payload: false });
+      return dispatch({
+        type: ADD_ERROR_MESSAGE,
+        payload: i18n.t("studentForms.formErrors.institutionCode.incorrect")
+      });
+    }
     dispatch({ type: STUDENT_SIGNIN, payload: false });
     dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("studentForms.formErrors.signupFailure") });
   }

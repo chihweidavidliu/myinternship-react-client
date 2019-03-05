@@ -3,6 +3,7 @@
   "loading": "正在載入",
   "studentForms": {
     "placeholders": {
+      "institutionCode": "Institution code",
       "studentid": "請輸入學號",
       "name": "請輸入姓名",
       "password": "請自訂密碼",
@@ -11,6 +12,7 @@
       "signin": "登入"
     },
     "formErrors": {
+      "institutionCode": { "missing": "An institution code is required", "incorrect": "The institution code you supplied is incorrect." },
       "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s", "duplicateId": "此學號已完成報名。"},
       "name": { "missing": "請輸入姓名" },
       "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },

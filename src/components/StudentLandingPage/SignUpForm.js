@@ -55,6 +55,9 @@ class SignUpForm extends Component {
     return (
       <Form onSubmit={handleSubmit} error>
         <Form.Field>
+          <Field name="institutionCode" placeholder={t("studentForms.placeholders.institutionCode")} component={this.renderInput} />
+        </Form.Field>
+        <Form.Field>
           <Field name="studentid" placeholder={t("studentForms.placeholders.studentid")} component={this.renderInput} />
         </Form.Field>
         <Form.Field>
@@ -80,6 +83,10 @@ class SignUpForm extends Component {
 const validate = (formValues, props) => {
   const { t } = props;
   const errors = {};
+
+  if(!formValues.institutionCode) {
+    errors.institutionCode = t("studentForms.formErrors.institutionCode.missing");
+  }
 
   if (!formValues.studentid) {
     errors.studentid = t("studentForms.formErrors.studentid.missing");

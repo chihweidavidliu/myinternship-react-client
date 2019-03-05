@@ -35,6 +35,11 @@ class ConfirmationModal extends Component {
 
     if (signUpForm && signUpForm.values) {
       if (this.props.for === "student") {
+
+        if(!signUpForm.values.institutionCode) {
+          errorMessage.push(t("studentForms.formErrors.institutionCode.missing"));
+        }
+
         if (!signUpForm.values.studentid) {
           errorMessage.push(t("studentForms.formErrors.studentid.missing"));
         } else if (
@@ -53,6 +58,10 @@ class ConfirmationModal extends Component {
         }
       } else {
         // admin case
+        if (!signUpForm.values.institutionCode) {
+          errorMessage.push(t("adminForms.formErrors.institutionCode.missing"));
+        }
+
         if (!signUpForm.values.username) {
           errorMessage.push(t("adminForms.formErrors.username.missing"));
         }
@@ -90,6 +99,9 @@ class ConfirmationModal extends Component {
       if (this.props.for === "student") {
         return (
           <div>
+            <p>
+              <strong>{t("studentForms.placeholders.institutionCode")} :</strong> {this.props.signUpForm.values.institutionCode}
+            </p>
             <p>
               <strong>{t("studentForms.placeholders.studentid")} :</strong> {this.props.signUpForm.values.studentid}
             </p>

@@ -3,6 +3,7 @@
   "loading": "Loading",
   "studentForms": {
     "placeholders": {
+      "institutionCode": "Institution code",
       "studentid": "Studentid",
       "name": "Name",
       "password": "Password",
@@ -11,6 +12,7 @@
       "signin": "Sign in"
     },
     "formErrors": {
+      "institutionCode": { "missing": "An institution code is required", "incorrect": "The institution code you supplied is incorrect." },
       "studentid": { "missing": "A studentid is required", "initialS": "Studentid should not include initial s", "duplicateId": "This studentid has already been registered." },
       "name": { "missing": "A name is required" },
       "password": { "missing": "A password is required", "tooShort": "Password must be at least 6 characters long" },
