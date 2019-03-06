@@ -8,7 +8,9 @@ import requireAdminAuth from "requireAdminAuth";
 import StudentTableRow from "./StudentTableRow";
 
 class AdminStudentView extends Component {
-  componentDidMount() {
+  async componentDidMount() {
+    // clear error message
+    await this.props.removeErrorMessage();
     // action creator that fetches all Students
     this.props.fetchStudents();
   }
