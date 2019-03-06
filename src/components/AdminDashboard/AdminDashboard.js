@@ -6,6 +6,7 @@ import AdminNavbar from "./AdminNavbar";
 import AdminStudentView from "components/AdminDashboard/AdminStudentView";
 import AdminCompanyView from "components/AdminDashboard/AdminCompanyView";
 import AdminSorter from "components/AdminDashboard/AdminSorter";
+import AdminSettings from "./AdminSettings";
 
 class AdminDashboard extends Component {
   render() {
@@ -14,9 +15,10 @@ class AdminDashboard extends Component {
         <AdminNavbar />
         <div className="dashboard-flex-box">
           <div className="main-box">
+            <Route path="/admin/dashboard" exact component={AdminStudentView} />
             <Route path="/admin/dashboard/sorter" exact component={AdminSorter} />
-            <Route path="/admin/dashboard/students" exact component={AdminStudentView} />
             <Route path="/admin/dashboard/companies" exact component={AdminCompanyView} />
+            <Route path="/admin/dashboard/settings" exact component={AdminSettings} />
           </div>
         </div>
       </div>

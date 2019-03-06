@@ -20,7 +20,7 @@ class AdminNavbar extends Component {
           <LanguageSelector />
         </Menu.Item>
         <Menu.Item>
-          <Link to="/admin/dashboard/students">
+          <Link to="/admin/dashboard">
             <p>{t("adminDashboard.students")}</p>
           </Link>
         </Menu.Item>
@@ -32,6 +32,11 @@ class AdminNavbar extends Component {
         <Menu.Item>
           <Link to="/admin/dashboard/sorter">
             <p>{t("adminDashboard.sorter")}</p>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to="/admin/dashboard/settings">
+            <p>{t("adminDashboard.settings")}</p>
           </Link>
         </Menu.Item>
         <Menu.Item position="right">
