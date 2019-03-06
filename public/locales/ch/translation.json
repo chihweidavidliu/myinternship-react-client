@@ -56,7 +56,7 @@
     "signout": "退出",
     "header": "學生實習志願",
     "choices": "志願",
-    "choicesPrompt": "Choices are saved automatically.",
+    "choicesPrompt": "Choose up to 10 companies. Choices are saved automatically.",
     "options": "公司名稱",
     "optionsPrompt": "請將欲選取之公司名稱拖曳到左邊之長方格內。",
     "errors": {
@@ -71,7 +71,7 @@
       "fetchStudentsFailed": "Unable to fetch students"
     },
     "companies":  { "navbarHeader": "Companies", "header": "Company Choices" },
-    "students": { "navbarHeader": "Students", "header": "Student Choices" },
+    "students": { "navbarHeader": "Students", "header": "Student Choices", "choice": "Choice" },
     "sorter":  { "navbarHeader": "Sorter", "header": "Sorter" },
     "settings": { "navbarHeader": "Settings", "header": "Settings" }
   }

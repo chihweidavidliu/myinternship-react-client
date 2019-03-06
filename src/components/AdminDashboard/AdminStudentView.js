@@ -30,8 +30,9 @@ class AdminStudentView extends Component {
   }
 
   getLongestChoicesArray() {
+    const { students } = this.props;
     let longestArray = [];
-    this.props.students.forEach((student) => {
+    students.forEach((student) => {
       if (student.choices.length > longestArray.length) {
         longestArray = student.choices;
       }
@@ -40,22 +41,23 @@ class AdminStudentView extends Component {
   }
 
   renderTableHeaders() {
-    if (this.props.students) {
+    const { t, students } = this.props;
+    if (students) {
       // find longest student choices array
       const longestArray = this.getLongestChoicesArray();
 
       return longestArray.map((choice, index) => {
-        return <Table.HeaderCell key={index}>{`Choice ${index + 1}`}</Table.HeaderCell>;
+        return <Table.HeaderCell key={index}>{`${t("adminDashboard.students.choice")} ${index + 1}`}</Table.HeaderCell>;
       });
     }
   }
 
   renderTableRows() {
-    const { t } = this.props;
+    const { t, students } = this.props;
     const longestArray = this.getLongestChoicesArray();
 
-    if (this.props.students) {
-      return this.props.students.map((student, index) => {
+    if (students) {
+      return students.map((student, index) => {
         return <StudentTableRow key={index} student={student} t={t} longestChoicesArray={longestArray} />;
       });
     }
