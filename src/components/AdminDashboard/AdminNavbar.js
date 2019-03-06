@@ -21,22 +21,22 @@ class AdminNavbar extends Component {
         </Menu.Item>
         <Menu.Item>
           <Link to="/admin/dashboard">
-            <p>{t("adminDashboard.students")}</p>
+            <p>{t("adminDashboard.students.navbarHeader")}</p>
           </Link>
         </Menu.Item>
         <Menu.Item>
           <Link to="/admin/dashboard/companies">
-            <p>{t("adminDashboard.companies")}</p>
+            <p>{t("adminDashboard.companies.navbarHeader")}</p>
           </Link>
         </Menu.Item>
         <Menu.Item>
           <Link to="/admin/dashboard/sorter">
-            <p>{t("adminDashboard.sorter")}</p>
+            <p>{t("adminDashboard.sorter.navbarHeader")}</p>
           </Link>
         </Menu.Item>
         <Menu.Item>
           <Link to="/admin/dashboard/settings">
-            <p>{t("adminDashboard.settings")}</p>
+            <p>{t("adminDashboard.settings.navbarHeader")}</p>
           </Link>
         </Menu.Item>
         <Menu.Item position="right">

@@ -180,3 +180,12 @@ li {
   border-radius: 5px;
   width: 130px;
 }
+
+/* Admin Dashboard */
+
+.table-container {
+  padding: 3px;
+  height: 58vh;
+  width: 70vw;
+  overflow-y: auto;
+}

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 
 import requireAdminAuth from "requireAdminAuth";
 import AdminNavbar from "./AdminNavbar";
@@ -26,4 +27,5 @@ class AdminDashboard extends Component {
   }
 }
 
-export default requireAdminAuth(AdminDashboard);
+const wrapped = requireAdminAuth(AdminDashboard);
+export default withTranslation()(wrapped);
