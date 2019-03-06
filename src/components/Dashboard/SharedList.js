@@ -16,14 +16,13 @@ const SharedList = ({ items, listType, onChange, auth, type }) => {
             </li>
           );
         }
-      } else {
-        // if dealing with student choices, render everything
-        return (
-          <li key={uniqueId()} data-id={val}>
-            {val}
-          </li>
-        );
       }
+      // if dealing with student choices, render everything
+      return (
+        <li key={uniqueId()} data-id={val}>
+          {val}
+        </li>
+      );
     });
   }
   return (

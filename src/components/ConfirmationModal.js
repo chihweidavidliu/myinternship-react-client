@@ -58,8 +58,8 @@ class ConfirmationModal extends Component {
         }
       } else {
         // admin case
-        if (!signUpForm.values.institutionCode) {
-          errorMessage.push(t("adminForms.formErrors.institutionCode.missing"));
+        if (!signUpForm.values.adminSecret) {
+          errorMessage.push(t("adminForms.formErrors.adminSecret.missing"));
         }
 
         if (!signUpForm.values.username) {
