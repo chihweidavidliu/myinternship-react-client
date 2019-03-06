@@ -27,5 +27,6 @@ class AdminDashboard extends Component {
   }
 }
 
+
 const wrapped = requireAdminAuth(AdminDashboard);
 export default withTranslation()(wrapped);

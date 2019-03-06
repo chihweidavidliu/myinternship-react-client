@@ -67,7 +67,8 @@
   },
   "adminDashboard": {
     "errors": {
-      "updateFailed": "Update failed"
+      "updateFailed": "Update failed",
+      "fetchStudentsFailed": "Unable to fetch students"
     },
     "companies":  { "navbarHeader": "Companies", "header": "Company Choices" },
     "students": { "navbarHeader": "Students", "header": "Student Choices" },

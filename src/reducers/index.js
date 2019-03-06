@@ -6,6 +6,7 @@ import authMessageReducer from "reducers/authMessageReducer";
 import companiesReducer from "reducers/companiesReducer";
 import signupAuthReducer from "reducers/signupAuthReducer";
 import numberOfAdminsReducer from "reducers/numberOfAdminsReducer";
+import studentChoicesReducer from "reducers/studentChoicesReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   language: languageReducer,
   companies: companiesReducer,
   signupAuth: signupAuthReducer,
-  numberOfAdmins: numberOfAdminsReducer
+  numberOfAdmins: numberOfAdminsReducer,
+  students: studentChoicesReducer
 });

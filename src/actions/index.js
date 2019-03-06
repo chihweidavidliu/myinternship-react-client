@@ -3,6 +3,7 @@ import { submit } from "redux-form";
 import i18n from "i18n";
 
 import {
+  FETCH_STUDENTS,
   CHECK_NUMBER_OF_ADMINS,
   CHECK_SIGNUP_AUTH,
   ADMIN_SIGNIN,
@@ -147,6 +148,15 @@ export const checkNumberOfAdmins = () => async (dispatch) => {
     dispatch({ type: CHECK_NUMBER_OF_ADMINS, payload: response.data });
   } catch (err) {
     dispatch({ type: CHECK_NUMBER_OF_ADMINS, payload: null });
+  }
+};
+
+export const fetchStudents = () => async (dispatch) => {
+  try {
+    const response = await axios.get("/api/studentChoices");
+    dispatch({ type: FETCH_STUDENTS, payload: response.data.students });
+  } catch(err) {
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminDashboard.errors.fetchStudentsFailed") })
   }
 };
 
