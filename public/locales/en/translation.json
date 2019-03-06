@@ -68,6 +68,9 @@
   "adminDashboard": {
     "errors": {
       "updateFailed": "Update failed"
-    }
+    },
+    "companies": "Companies",
+    "students": "Students",
+    "sorter": "Sorter"
   }
 }

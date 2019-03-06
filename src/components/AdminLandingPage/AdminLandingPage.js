@@ -23,7 +23,7 @@ class AdminLandingPage extends Component {
   handleSignin = async (formValues) => {
     await this.props.adminSignin(formValues);
     if (this.props.auth) {
-      history.push("/admin/students");
+      history.push("/admin/dashboard");
     }
   };
 
