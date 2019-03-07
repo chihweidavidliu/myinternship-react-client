@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import * as actions from "actions";
 import requireAdminAuth from "requireAdminAuth";
-import StudentTableRow from "./StudentTableRow";
+import TableRow from "./TableRow";
 
 class AdminStudentView extends Component {
   async componentDidMount() {
@@ -58,7 +58,7 @@ class AdminStudentView extends Component {
 
     if (students) {
       return students.map((student, index) => {
-        return <StudentTableRow key={index} student={student} t={t} longestChoicesArray={longestArray} />;
+        return <TableRow key={index} for="student" target={student} t={t} longestChoicesArray={longestArray} />;
       });
     }
   }

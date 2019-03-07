@@ -120,7 +120,7 @@ body {
 }
 
 .main-box {
-  height: 75vh;
+  height: 77vh;
   width: 85vw;
   background-color: whitesmoke;
   border-radius: 5px;
@@ -188,4 +188,19 @@ li {
   height: 58vh;
   width: 74vw;
   overflow-y: auto;
+}
+
+.actions-bar {
+  margin-bottom: 10px;
+}
+
+.deleteButton {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+
+.deleteButton:hover {
+  transform: scale(1.2);
+  color: #994343;
 }
