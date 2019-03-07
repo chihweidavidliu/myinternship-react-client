@@ -64,11 +64,12 @@ class AdminStudentView extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { t, auth } = this.props;
 
     return (
       <div>
         <h2>{t("adminDashboard.students.header")}</h2>
+        <p>{auth.allowStudentChoices ? t("adminDashboard.students.choicesEnabled") : t("adminDashboard.students.choicesDisabled")}</p>
         {this.renderError()}
         <div className="table-container">
           <Table size="small" celled striped>

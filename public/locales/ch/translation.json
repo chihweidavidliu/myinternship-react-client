@@ -71,7 +71,7 @@
       "fetchStudentsFailed": "Unable to fetch students"
     },
     "companies":  { "navbarHeader": "Companies", "header": "Company Choices" },
-    "students": { "navbarHeader": "Students", "header": "Student Choices", "choice": "Choice" },
+    "students": { "navbarHeader": "Students", "header": "Student Choices", "choicesEnabled": "Student choices are enabled.", "choicesDisabled": "Student choices are disabled. Go to settings to enable.", "choice": "Choice" },
     "sorter":  { "navbarHeader": "Sorter", "header": "Sorter" },
     "settings": { "navbarHeader": "Settings", "header": "Settings" }
   }
