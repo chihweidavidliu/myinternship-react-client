@@ -10,20 +10,18 @@ class AdminCompanyView extends Component {
   state = { companies: [] };
 
   addChoice = () => {
-    const longestArray = this.getLongestChoicesArray();
-
-    const updatedCompanies = this.state.companies.map((company) => {
-      if (company.choices.length === longestArray.length) {
-        company.choices.push("");
-        return company;
-      }
-      return company;
+    const updatedCompanies = [...this.state.companies];
+    updatedCompanies.forEach((company) => {
+      return company.choices.push("");
     });
-
     this.setState({ companies: updatedCompanies });
   };
 
-  removeChoice = () => {};
+  removeChoice = () => {
+    const updatedCompanies = [...this.state.companies];
+    updatedCompanies.forEach((company) => company.choices.pop());
+    this.setState({ companies: updatedCompanies });
+  };
 
   handleDelete = (companyToDelete) => {
     const filtered = this.state.companies.filter((company) => company.name !== companyToDelete);
@@ -31,20 +29,30 @@ class AdminCompanyView extends Component {
   };
 
   // handle update cell text content on cell blur - pass this down to each row and to each editable cell
-  handleCellBlur = (companyName, categoryToEdit, newText, choiceIndex) => {
+  handleCellUpdate = (companyName, categoryToEdit, newText, choiceIndex) => {
     const updated = this.state.companies.map((company) => {
       if (company.name === companyName) {
         // if dealing with a choice being edited, use the index of the cell within choices array to identify which cell to edit
         if (categoryToEdit === "choices") {
-          // if the user is trying to edit a cell which currently does not have a value, push it to the choices array (to avoid gaps)
-          if (!company[categoryToEdit][choiceIndex]) {
-            company[categoryToEdit].push(newText);
+          // filter out empty values in choices to identify if we are editing a currently populated cell or not
+          const filtered = company.choices.filter((choice) => choice !== "");
+          if (!filtered[choiceIndex]) {
+            // if the cell is not currently populated, add it to the end of the valid values by splicing it in
+            company.choices.splice(filtered.length, 1, newText);
             return company;
           }
           // if the user is editing a currently populated cell, replace that cell specifically
-          company[categoryToEdit][choiceIndex] = newText;
+          if (newText.trim() === "") {
+            // if the new value is an empty string, shift every choice along to the left and add empty cell at the end
+            company.choices.splice(choiceIndex, 1);
+            company.choices.push("");
+            return company;
+          }
+          // if the new value is a valid different value, replace the old value
+          company.choices[choiceIndex] = newText;
           return company;
         }
+
         // if dealing with name or numberAccepted, no need for an index value to update the cell
         company[categoryToEdit] = newText;
         return company;
@@ -55,9 +63,22 @@ class AdminCompanyView extends Component {
     this.setState({ companies: updated });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     if (this.props.auth) {
-      this.setState({ companies: this.props.auth.companyChoices });
+      await this.setState({ companies: this.props.auth.companyChoices });
+      const longestArray = this.getLongestChoicesArray();
+      // pad out each choices array with empty strings to fill up each cell of the table
+      const paddedCompanies = this.state.companies.map((company) => {
+        if (company.choices.length < longestArray.length) {
+          while (company.choices.length < longestArray.length) {
+            company.choices.push("");
+          }
+          return company;
+        }
+        return company;
+      });
+
+      this.setState({ companies: paddedCompanies });
     }
   }
 
@@ -100,10 +121,8 @@ class AdminCompanyView extends Component {
   }
 
   renderTableRows() {
-    const longestArray = this.getLongestChoicesArray();
-    // render tablerow for each company passing in the company as the row 'target' and the longest choices array
-    // to ascertain how many columns are needed
-    // pass down handleDelete and handleCellBlue to handle table edit functionality for child components
+    // render tablerow for each company passing in the company as the row 'target'
+    // pass down handleDelete and handleCellUpdate to handle table edit functionality for child components
     return this.state.companies.map((company, index) => {
       return (
         <TableRow
@@ -111,16 +130,14 @@ class AdminCompanyView extends Component {
           for="company"
           target={company}
           t={this.props.t}
-          longestChoicesArray={longestArray}
           handleDelete={this.handleDelete}
-          handleCellBlur={this.handleCellBlur}
+          handleCellUpdate={this.handleCellUpdate}
         />
       );
     });
   }
 
   render() {
-    console.log(this.state.companies);
     const { t } = this.props;
     return (
       <div>

@@ -15,7 +15,7 @@ class EditableTableCell extends Component {
       <Table.Cell
         contentEditable={true}
         suppressContentEditableWarning={true}
-        onBlur={(e) => this.props.handleCellBlur(this.props.target.name, this.props.category, e.target.innerText, this.props.index)}
+        onBlur={(e) => this.props.handleCellUpdate(this.props.target.name, this.props.category, e.target.innerText, this.props.index)}
         onKeyPress={this.handleKeyPress}
       >
         {this.props.content}

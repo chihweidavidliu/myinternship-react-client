@@ -24,7 +24,7 @@ class TableRow extends Component {
           category="choices"
           index={index}
           content={choice}
-          handleCellBlur={this.props.handleCellBlur}
+          handleCellUpdate={this.props.handleCellUpdate}
         />
       );
     });
@@ -33,28 +33,13 @@ class TableRow extends Component {
   }
 
   renderEmptyCells() {
+    // only needed for students as company rows automatically filled with empty string values in CompanyView state (to facilitate table editing)
     const { target, longestChoicesArray } = this.props;
     if (target.choices.length < longestChoicesArray.length) {
       // create array of the same length as the required number of empty cells
       const array = longestChoicesArray.slice(0, longestChoicesArray.length - target.choices.length);
-      if (this.props.for === "student") {
-        // map over the array to insert empty cells
-        return array.map((item, index) => <Table.Cell key={index} />);
-      }
-
-      return array.map((item, index) => {
-        // make only the empty cell adjacent to the last value editable
-          return (
-            <EditableTableCell
-              key={index}
-              target={target}
-              category="choices"
-              index={index + target.choices.length}
-              content={""}
-              handleCellBlur={this.props.handleCellBlur}
-            />
-          )
-      });
+      // map over the array to insert empty cells
+      return array.map((item, index) => <Table.Cell key={index} />);
     }
   }
 
@@ -67,7 +52,6 @@ class TableRow extends Component {
           <Table.Cell>{target.studentid}</Table.Cell>
           <Table.Cell>{t(target.department)}</Table.Cell>
           {this.renderChoices()}
-          {this.renderEmptyCells()}
         </Table.Row>
       );
     }
@@ -86,16 +70,15 @@ class TableRow extends Component {
           target={target}
           category="name"
           content={target.name}
-          handleCellBlur={this.props.handleCellBlur}
+          handleCellUpdate={this.props.handleCellUpdate}
         />
         <EditableTableCell
           target={target}
           category="numberAccepted"
           content={target.numberAccepted}
-          handleCellBlur={this.props.handleCellBlur}
+          handleCellUpdate={this.props.handleCellUpdate}
         />
         {this.renderChoices()}
-        {this.renderEmptyCells()}
       </Table.Row>
     );
   }

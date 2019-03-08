@@ -8,11 +8,29 @@ import requireAdminAuth from "requireAdminAuth";
 import TableRow from "./TableRow";
 
 class AdminStudentView extends Component {
+  state = { students: [] };
+
   async componentDidMount() {
     // clear error message
     await this.props.removeErrorMessage();
     // action creator that fetches all Students
-    this.props.fetchStudents();
+    await this.props.fetchStudents();
+    // set students in state ready to be padded with empty strings for the table
+    await this.setState({ students: this.props.students });
+
+    const longestArray = this.getLongestChoicesArray();
+    // pad out each choices array with empty strings to fill up each cell of the table
+    const paddedStudents = this.state.students.map((student) => {
+      if (student.choices.length < longestArray.length) {
+        while (student.choices.length < longestArray.length) {
+          student.choices.push("");
+        }
+        return student;
+      }
+      return student;
+    });
+
+    this.setState({ students: paddedStudents });
   }
 
   renderError() {
@@ -30,7 +48,7 @@ class AdminStudentView extends Component {
   }
 
   getLongestChoicesArray() {
-    const { students } = this.props;
+    const { students } = this.state;
     let longestArray = [];
     students.forEach((student) => {
       if (student.choices.length > longestArray.length) {
@@ -41,7 +59,8 @@ class AdminStudentView extends Component {
   }
 
   renderTableHeaders() {
-    const { t, students } = this.props;
+    const { students } = this.state;
+    const { t } = this.props;
     if (students) {
       // find longest student choices array
       const longestArray = this.getLongestChoicesArray();
@@ -53,12 +72,11 @@ class AdminStudentView extends Component {
   }
 
   renderTableRows() {
-    const { t, students } = this.props;
-    const longestArray = this.getLongestChoicesArray();
-
+    const { students } = this.state;
+    const { t } = this.props;
     if (students) {
       return students.map((student, index) => {
-        return <TableRow key={index} for="student" target={student} t={t} longestChoicesArray={longestArray} />;
+        return <TableRow key={index} for="student" target={student} t={t} />;
       });
     }
   }
@@ -69,7 +87,11 @@ class AdminStudentView extends Component {
     return (
       <div>
         <h2>{t("adminDashboard.students.header")}</h2>
-        <p>{auth.allowStudentChoices ? t("adminDashboard.students.choicesEnabled") : t("adminDashboard.students.choicesDisabled")}</p>
+        <p>
+          {auth.allowStudentChoices
+            ? t("adminDashboard.students.choicesEnabled")
+            : t("adminDashboard.students.choicesDisabled")}
+        </p>
         {this.renderError()}
         <div className="table-container">
           <Table size="small" celled striped>
