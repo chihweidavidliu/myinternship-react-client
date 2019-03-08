@@ -9,6 +9,15 @@ import TableRow from "./TableRow";
 class AdminCompanyView extends Component {
   state = { companies: [] };
 
+  addRow = () => {
+    const updatedCompanies = this.state.companies.map(company => {
+      company.choices.push(null);
+      return company;
+    });
+
+    this.setState({ companies: updatedCompanies });
+  }
+
   handleDelete = (companyToDelete) => {
     const filtered = this.state.companies.filter((company) => company.name !== companyToDelete);
     this.setState({ companies: filtered });
@@ -19,8 +28,12 @@ class AdminCompanyView extends Component {
     const updated = this.state.companies.map((company) => {
       if (company.name === companyName) {
         // if dealing with a choice being edited, use the index of the cell within choices array to identify which cell to edit
-        if(categoryToEdit === "choices") {
-          company[categoryToEdit][choiceIndex] = newText;
+        if(categoryToEdit === "choices" ) {
+          // ignore empty strings submitted by clicking but not entering a value
+          if(newText !== "") {
+            company[categoryToEdit][choiceIndex] = newText;
+            return company;
+          }
           return company;
         }
         // if dealing with name or numberAccepted, no need for an index value to update the cell
@@ -98,7 +111,7 @@ class AdminCompanyView extends Component {
   }
 
   render() {
-    console.log(this.state.companies);
+    console.log(this.state.companies)
     const { t } = this.props;
     return (
       <div>
