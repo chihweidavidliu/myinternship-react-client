@@ -197,6 +197,7 @@ li {
 .deleteButton {
   cursor: pointer;
   transition: all 0.3s;
+  color: grey;
 }
 
 

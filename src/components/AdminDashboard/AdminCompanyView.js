@@ -7,17 +7,35 @@ import shortid from "shortid";
 import TableRow from "./TableRow";
 
 class AdminCompanyView extends Component {
-  state = { companies: [] }
+  state = { companies: [] };
 
   handleDelete = (companyToDelete) => {
-    const filtered = this.state.companies.filter(company => company.name !== companyToDelete);
+    const filtered = this.state.companies.filter((company) => company.name !== companyToDelete);
     this.setState({ companies: filtered });
-    // these changes will only be persisted if the changes are submitted and db is updated 
-  }
+  };
+
+  // handle update cell text content on cell blur - pass this down to each row and to each editable cell
+  handleCellBlur = (companyName, categoryToEdit, newText, choiceIndex) => {
+    const updated = this.state.companies.map((company) => {
+      if (company.name === companyName) {
+        // if dealing with a choice being edited, use the index of the cell within choices array to identify which cell to edit
+        if(categoryToEdit === "choices") {
+          company[categoryToEdit][choiceIndex] = newText;
+          return company;
+        }
+        // if dealing with name or numberAccepted, no need for an index value to update the cell
+        company[categoryToEdit] = newText;
+        return company;
+      }
+      return company;
+    });
+
+    this.setState({ companies: updated });
+  };
 
   componentDidMount() {
-    if(this.props.auth) {
-      this.setState({ companies: this.props.auth.companyChoices});
+    if (this.props.auth) {
+      this.setState({ companies: this.props.auth.companyChoices });
     }
   }
 
@@ -61,46 +79,66 @@ class AdminCompanyView extends Component {
 
   renderTableRows() {
     const longestArray = this.getLongestChoicesArray();
+    // render tablerow for each company passing in the company as the row 'target' and the longest choices array
+    // to ascertain how many columns are needed
+    // pass down handleDelete and handleCellBlue to handle table edit functionality for child components
     return this.state.companies.map((company, index) => {
       return (
-        <TableRow key={shortid.generate()} for="company" target={company} t={this.props.t} longestChoicesArray={longestArray} handleDelete={this.handleDelete} />
-      )
-    })
+        <TableRow
+          key={shortid.generate()}
+          for="company"
+          target={company}
+          t={this.props.t}
+          longestChoicesArray={longestArray}
+          handleDelete={this.handleDelete}
+          handleCellBlur={this.handleCellBlur}
+        />
+      );
+    });
   }
 
   render() {
+    console.log(this.state.companies);
     const { t } = this.props;
     return (
       <div>
         <h2>{t("adminDashboard.companies.navbarHeader")}</h2>
         {this.renderError()}
         <div className="actions-bar">
-          <Button basic size="small" onClick={this.addRow}>{t("adminDashboard.tableActions.addRow")}</Button>
-          <Button basic size="small">{t("adminDashboard.tableActions.removeRow")}</Button>
-          <Button basic size="small">{t("adminDashboard.tableActions.addChoice")}</Button>
-          <Button basic size="small">{t("adminDashboard.tableActions.removeChoice")}</Button>
-          <Button basic size="small">{t("adminDashboard.tableActions.submit")}</Button>
+          <Button basic size="small" onClick={this.addRow}>
+            {t("adminDashboard.tableActions.addRow")}
+          </Button>
+          <Button basic size="small">
+            {t("adminDashboard.tableActions.removeRow")}
+          </Button>
+          <Button basic size="small">
+            {t("adminDashboard.tableActions.addChoice")}
+          </Button>
+          <Button basic size="small">
+            {t("adminDashboard.tableActions.removeChoice")}
+          </Button>
+          <Button basic size="small">
+            {t("adminDashboard.tableActions.save")}
+          </Button>
         </div>
         <div className="table-container">
-        <Table size="small" celled striped>
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell></Table.HeaderCell>
-              <Table.HeaderCell>{t("adminDashboard.companies.company")}</Table.HeaderCell>
-              <Table.HeaderCell>{t("adminDashboard.companies.numberAccepted")}</Table.HeaderCell>
-              {this.renderTableHeaders()}
-            </Table.Row>
-          </Table.Header>
+          <Table size="small" celled striped>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell />
+                <Table.HeaderCell>{t("adminDashboard.companies.company")}</Table.HeaderCell>
+                <Table.HeaderCell>{t("adminDashboard.companies.numberAccepted")}</Table.HeaderCell>
+                {this.renderTableHeaders()}
+              </Table.Row>
+            </Table.Header>
 
-          <Table.Body>
-            {this.renderTableRows()}
-          </Table.Body>
-        </Table>
+            <Table.Body>{this.renderTableRows()}</Table.Body>
+          </Table>
         </div>
       </div>
-    )
+    );
   }
-};
+}
 
 const mapStateToProps = (state) => {
   return {
