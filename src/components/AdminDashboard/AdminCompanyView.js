@@ -23,6 +23,18 @@ class AdminCompanyView extends Component {
     this.setState({ companies: updatedCompanies });
   };
 
+  addRow = () => {
+    const companies = [...this.state.companies];
+    const emptyChoicesArr = [];
+    const longestArray = this.getLongestChoicesArray();
+    while (emptyChoicesArr.length < longestArray.length) {
+      emptyChoicesArr.push("");
+    }
+    companies.splice(0, 0, { name: "", numberAccepted: "", choices: emptyChoicesArr });
+
+    this.setState({ companies: companies });
+  };
+
   handleDelete = (companyToDelete) => {
     const filtered = this.state.companies.filter((company) => company.name !== companyToDelete);
     this.setState({ companies: filtered });
@@ -144,11 +156,8 @@ class AdminCompanyView extends Component {
         <h2>{t("adminDashboard.companies.navbarHeader")}</h2>
         {this.renderError()}
         <div className="actions-bar">
-          <Button basic size="small">
+          <Button basic size="small" onClick={this.addRow}>
             {t("adminDashboard.tableActions.addRow")}
-          </Button>
-          <Button basic size="small">
-            {t("adminDashboard.tableActions.removeRow")}
           </Button>
           <Button basic size="small" onClick={this.addChoice}>
             {t("adminDashboard.tableActions.addChoice")}
