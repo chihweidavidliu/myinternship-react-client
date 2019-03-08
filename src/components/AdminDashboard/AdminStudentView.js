@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import * as actions from "actions";
 import requireAdminAuth from "requireAdminAuth";
 import TableRow from "./TableRow";
+import addEmptyValues from "./addEmptyValues";
 
 class AdminStudentView extends Component {
   state = { students: [] };
@@ -20,16 +21,7 @@ class AdminStudentView extends Component {
 
     const longestArray = this.getLongestChoicesArray();
     // pad out each choices array with empty strings to fill up each cell of the table
-    const paddedStudents = this.state.students.map((student) => {
-      if (student.choices.length < longestArray.length) {
-        while (student.choices.length < longestArray.length) {
-          student.choices.push("");
-        }
-        return student;
-      }
-      return student;
-    });
-
+    const paddedStudents = addEmptyValues(this.state.students, longestArray);
     this.setState({ students: paddedStudents });
   }
 
@@ -85,7 +77,7 @@ class AdminStudentView extends Component {
     const { t, auth } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <h2>{t("adminDashboard.students.header")}</h2>
         <p>
           {auth.allowStudentChoices
@@ -107,7 +99,7 @@ class AdminStudentView extends Component {
             <Table.Body>{this.renderTableRows()}</Table.Body>
           </Table>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { Message, Table, Button } from "semantic-ui-react";
 import shortid from "shortid";
 
+import * as actions from "actions";
 import TableRow from "./TableRow";
+import addEmptyValues from "./addEmptyValues";
 
 class AdminCompanyView extends Component {
   state = { companies: [], unsavedChanges: false };
@@ -80,21 +82,31 @@ class AdminCompanyView extends Component {
     this.setState({ unsavedChanges: true });
   };
 
+  saveChanges = async () => {
+    // filter out empty strings in choices array
+    const updatedCompanies = this.state.companies.map(company => {
+      const filteredChoices =  company.choices.filter(choice => {
+        return choice !== ""
+      });
+      company.choices = filteredChoices;
+      return company;
+    });
+    //update db
+    await this.props.updateAdmin({ companyChoices: updatedCompanies });
+    this.setState({ unsavedChanges: false });
+
+    // add empty strings back in ready to update state with new companies array
+    const longestArray = this.getLongestChoicesArray();
+    const paddedCompanies = addEmptyValues(this.state.companies, longestArray);
+    this.setState({ companies: paddedCompanies });
+  }
+
   async componentDidMount() {
     if (this.props.auth) {
       await this.setState({ companies: this.props.auth.companyChoices });
       const longestArray = this.getLongestChoicesArray();
       // pad out each choices array with empty strings to fill up each cell of the table
-      const paddedCompanies = this.state.companies.map((company) => {
-        if (company.choices.length < longestArray.length) {
-          while (company.choices.length < longestArray.length) {
-            company.choices.push("");
-          }
-          return company;
-        }
-        return company;
-      });
-
+      const paddedCompanies = addEmptyValues(this.state.companies, longestArray);
       this.setState({ companies: paddedCompanies });
     }
   }
@@ -123,6 +135,7 @@ class AdminCompanyView extends Component {
     });
     return longestArray;
   }
+
 
   renderTableHeaders() {
     const { t } = this.props;
@@ -157,14 +170,19 @@ class AdminCompanyView extends Component {
   renderSavePrompt() {
     const { t } = this.props;
     if(this.state.unsavedChanges === true) {
-      return <p>{t("adminDashboard.companies.savePrompt")}</p>
+      return (
+        <Message
+          style={{ marginBottom: "15px", marginTop: "0px", width: "80%" }}
+          content={t("adminDashboard.companies.savePrompt")}
+        />
+      )
     }
   }
 
   render() {
     const { t } = this.props;
     return (
-      <div>
+      <React.Fragment>
         <h2>{t("adminDashboard.companies.navbarHeader")}</h2>
         {this.renderSavePrompt()}
         {this.renderError()}
@@ -178,7 +196,7 @@ class AdminCompanyView extends Component {
           <Button basic size="small" onClick={this.removeChoice}>
             {t("adminDashboard.tableActions.removeChoice")}
           </Button>
-          <Button basic size="small">
+          <Button basic size="small" onClick={this.saveChanges}>
             {t("adminDashboard.tableActions.save")}
           </Button>
         </div>
@@ -196,7 +214,7 @@ class AdminCompanyView extends Component {
             <Table.Body>{this.renderTableRows()}</Table.Body>
           </Table>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
@@ -208,5 +226,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-const wrapped = connect(mapStateToProps)(AdminCompanyView);
+const wrapped = connect(mapStateToProps, actions)(AdminCompanyView);
 export default withTranslation()(wrapped);
