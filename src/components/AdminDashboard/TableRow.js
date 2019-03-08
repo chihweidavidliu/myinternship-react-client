@@ -44,23 +44,17 @@ class TableRow extends Component {
 
       return array.map((item, index) => {
         // make only the empty cell adjacent to the last value editable
-        if(index === 0) {
           return (
             <EditableTableCell
               key={index}
               target={target}
               category="choices"
               index={index + target.choices.length}
-              content={null}
+              content={""}
               handleCellBlur={this.props.handleCellBlur}
             />
           )
-        } else {
-          return <Table.Cell key={index} />;
-        }
-
       });
-
     }
   }
 

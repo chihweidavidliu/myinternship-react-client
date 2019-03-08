@@ -9,14 +9,21 @@ import TableRow from "./TableRow";
 class AdminCompanyView extends Component {
   state = { companies: [] };
 
-  addRow = () => {
-    const updatedCompanies = this.state.companies.map(company => {
-      company.choices.push(null);
+  addChoice = () => {
+    const longestArray = this.getLongestChoicesArray();
+
+    const updatedCompanies = this.state.companies.map((company) => {
+      if (company.choices.length === longestArray.length) {
+        company.choices.push("");
+        return company;
+      }
       return company;
     });
 
     this.setState({ companies: updatedCompanies });
-  }
+  };
+
+  removeChoice = () => {};
 
   handleDelete = (companyToDelete) => {
     const filtered = this.state.companies.filter((company) => company.name !== companyToDelete);
@@ -28,12 +35,14 @@ class AdminCompanyView extends Component {
     const updated = this.state.companies.map((company) => {
       if (company.name === companyName) {
         // if dealing with a choice being edited, use the index of the cell within choices array to identify which cell to edit
-        if(categoryToEdit === "choices" ) {
-          // ignore empty strings submitted by clicking but not entering a value
-          if(newText !== "") {
-            company[categoryToEdit][choiceIndex] = newText;
+        if (categoryToEdit === "choices") {
+          // if the user is trying to edit a cell which currently does not have a value, push it to the choices array (to avoid gaps)
+          if (!company[categoryToEdit][choiceIndex]) {
+            company[categoryToEdit].push(newText);
             return company;
           }
+          // if the user is editing a currently populated cell, replace that cell specifically
+          company[categoryToEdit][choiceIndex] = newText;
           return company;
         }
         // if dealing with name or numberAccepted, no need for an index value to update the cell
@@ -111,23 +120,23 @@ class AdminCompanyView extends Component {
   }
 
   render() {
-    console.log(this.state.companies)
+    console.log(this.state.companies);
     const { t } = this.props;
     return (
       <div>
         <h2>{t("adminDashboard.companies.navbarHeader")}</h2>
         {this.renderError()}
         <div className="actions-bar">
-          <Button basic size="small" onClick={this.addRow}>
+          <Button basic size="small">
             {t("adminDashboard.tableActions.addRow")}
           </Button>
           <Button basic size="small">
             {t("adminDashboard.tableActions.removeRow")}
           </Button>
-          <Button basic size="small">
+          <Button basic size="small" onClick={this.addChoice}>
             {t("adminDashboard.tableActions.addChoice")}
           </Button>
-          <Button basic size="small">
+          <Button basic size="small" onClick={this.removeChoice}>
             {t("adminDashboard.tableActions.removeChoice")}
           </Button>
           <Button basic size="small">
