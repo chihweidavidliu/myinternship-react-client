@@ -7,7 +7,7 @@ import shortid from "shortid";
 import TableRow from "./TableRow";
 
 class AdminCompanyView extends Component {
-  state = { companies: [] };
+  state = { companies: [], unsavedChanges: false };
 
   addChoice = () => {
     const updatedCompanies = [...this.state.companies];
@@ -15,12 +15,14 @@ class AdminCompanyView extends Component {
       return company.choices.push("");
     });
     this.setState({ companies: updatedCompanies });
+    this.setState({ unsavedChanges: true });
   };
 
   removeChoice = () => {
     const updatedCompanies = [...this.state.companies];
     updatedCompanies.forEach((company) => company.choices.pop());
     this.setState({ companies: updatedCompanies });
+    this.setState({ unsavedChanges: true });
   };
 
   addRow = () => {
@@ -33,11 +35,13 @@ class AdminCompanyView extends Component {
     companies.splice(0, 0, { name: "", numberAccepted: "", choices: emptyChoicesArr });
 
     this.setState({ companies: companies });
+    this.setState({ unsavedChanges: true });
   };
 
   handleDelete = (companyToDelete) => {
     const filtered = this.state.companies.filter((company) => company.name !== companyToDelete);
     this.setState({ companies: filtered });
+    this.setState({ unsavedChanges: true });
   };
 
   // handle update cell text content on cell blur - pass this down to each row and to each editable cell
@@ -73,6 +77,7 @@ class AdminCompanyView extends Component {
     });
 
     this.setState({ companies: updated });
+    this.setState({ unsavedChanges: true });
   };
 
   async componentDidMount() {
@@ -149,11 +154,19 @@ class AdminCompanyView extends Component {
     });
   }
 
+  renderSavePrompt() {
+    const { t } = this.props;
+    if(this.state.unsavedChanges === true) {
+      return <p>{t("adminDashboard.companies.savePrompt")}</p>
+    }
+  }
+
   render() {
     const { t } = this.props;
     return (
       <div>
         <h2>{t("adminDashboard.companies.navbarHeader")}</h2>
+        {this.renderSavePrompt()}
         {this.renderError()}
         <div className="actions-bar">
           <Button basic size="small" onClick={this.addRow}>

@@ -70,7 +70,7 @@
       "updateFailed": "Update failed",
       "fetchStudentsFailed": "Unable to fetch students"
     },
-    "companies":  { "navbarHeader": "Companies", "header": "Company Choices", "company": "Company", "numberAccepted": "Number Accepted"},
+    "companies":  { "navbarHeader": "Companies", "header": "Company Choices", "company": "Company", "numberAccepted": "Number Accepted", "savePrompt": "You have unsaved changes. Remember to save!"},
     "students": { "navbarHeader": "Students", "header": "Student Choices", "choicesEnabled": "Student choices are enabled.", "choicesDisabled": "Student choices are disabled. Go to settings to enable.", "choice": "Choice" },
     "sorter":  { "navbarHeader": "Sorter", "header": "Sorter" },
     "settings": { "navbarHeader": "Settings", "header": "Settings" },
