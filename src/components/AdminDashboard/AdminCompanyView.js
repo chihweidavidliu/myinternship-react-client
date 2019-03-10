@@ -6,6 +6,7 @@ import shortid from "shortid";
 
 import * as actions from "actions";
 import TableRow from "./TableRow";
+import UploadCompaniesModal from "./UploadCompaniesModal";
 import addEmptyValues from "./addEmptyValues";
 
 class AdminCompanyView extends Component {
@@ -174,6 +175,7 @@ class AdminCompanyView extends Component {
         <Message
           style={{ marginBottom: "15px", marginTop: "0px", width: "80%" }}
           content={t("adminDashboard.companies.savePrompt")}
+          color="yellow"
         />
       )
     }
@@ -196,7 +198,8 @@ class AdminCompanyView extends Component {
           <Button basic size="small" onClick={this.removeChoice}>
             {t("adminDashboard.tableActions.removeChoice")}
           </Button>
-          <Button basic size="small" onClick={this.saveChanges}>
+          <UploadCompaniesModal />
+          <Button basic size="small" onClick={this.saveChanges} color={this.state.unsavedChanges ? "yellow" : null }>
             {t("adminDashboard.tableActions.save")}
           </Button>
         </div>

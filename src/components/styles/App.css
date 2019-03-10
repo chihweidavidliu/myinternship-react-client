@@ -205,3 +205,14 @@ li {
   transform: scale(1.2);
   color: #994343;
 }
+
+.upload-input {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  width: 100px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
