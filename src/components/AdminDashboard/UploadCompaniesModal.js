@@ -19,7 +19,7 @@ class UploadCompaniesModal extends Component {
     // update redux store
     this.props.updateAdmin({ companyChoices: companyChoices});
     // pass the new choices to company view for padding before rendering table
-    this.props.handleUploadRefresh(companyChoices);
+    this.props.formatUpdatedTable(companyChoices);
     this.close();
   };
 

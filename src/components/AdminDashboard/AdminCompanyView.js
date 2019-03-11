@@ -98,25 +98,21 @@ class AdminCompanyView extends Component {
     this.setState({ unsavedChanges: false });
 
     // add empty strings back in ready to update state with new companies array
-    const longestArray = this.getLongestChoicesArray();
-    const paddedCompanies = addEmptyValues(this.state.companies, longestArray);
-    this.setState({ companies: paddedCompanies });
+    this.formatUpdatedTable(this.state.companies);
   }
 
-  // takes newly uploaded company choices and pads them before setting them in state to render table
-  handleUploadRefresh = (companyChoices) => {
+  // takes newly updated company choices and pads them before setting them in state to render table
+  formatUpdatedTable = (companyChoices) => {
     const longestArray = this.getLongestChoicesArray();
     const paddedCompanies = addEmptyValues(companyChoices, longestArray);
-    this.setState({ companies: paddedCompanies })
+    this.setState({ companies: paddedCompanies });
   }
 
   async componentDidMount() {
     if (this.props.auth) {
       await this.setState({ companies: this.props.auth.companyChoices });
-      const longestArray = this.getLongestChoicesArray();
-      // pad out each choices array with empty strings to fill up each cell of the table
-      const paddedCompanies = addEmptyValues(this.state.companies, longestArray);
-      this.setState({ companies: paddedCompanies });
+      // pad out newly accessed companies array with empty strings
+      this.formatUpdatedTable(this.state.companies);
     }
   }
 
@@ -206,7 +202,7 @@ class AdminCompanyView extends Component {
           <Button basic size="small" onClick={this.removeChoice}>
             {t("adminDashboard.tableActions.removeChoice")}
           </Button>
-          <UploadCompaniesModal handleUploadRefresh={this.handleUploadRefresh}/>
+          <UploadCompaniesModal formatUpdatedTable={this.formatUpdatedTable}/>
           <Button basic size="small" onClick={this.saveChanges} color={this.state.unsavedChanges ? "yellow" : null }>
             {t("adminDashboard.tableActions.save")}
           </Button>
