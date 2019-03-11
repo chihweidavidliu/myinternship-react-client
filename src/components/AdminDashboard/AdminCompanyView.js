@@ -21,6 +21,7 @@ class AdminCompanyView extends Component {
     this.setState({ unsavedChanges: true });
   };
 
+
   removeChoice = () => {
     const updatedCompanies = [...this.state.companies];
     updatedCompanies.forEach((company) => company.choices.pop());
@@ -100,6 +101,13 @@ class AdminCompanyView extends Component {
     const longestArray = this.getLongestChoicesArray();
     const paddedCompanies = addEmptyValues(this.state.companies, longestArray);
     this.setState({ companies: paddedCompanies });
+  }
+
+  // takes newly uploaded company choices and pads them before setting them in state to render table
+  handleUploadRefresh = (companyChoices) => {
+    const longestArray = this.getLongestChoicesArray();
+    const paddedCompanies = addEmptyValues(companyChoices, longestArray);
+    this.setState({ companies: paddedCompanies })
   }
 
   async componentDidMount() {
@@ -198,7 +206,7 @@ class AdminCompanyView extends Component {
           <Button basic size="small" onClick={this.removeChoice}>
             {t("adminDashboard.tableActions.removeChoice")}
           </Button>
-          <UploadCompaniesModal />
+          <UploadCompaniesModal handleUploadRefresh={this.handleUploadRefresh}/>
           <Button basic size="small" onClick={this.saveChanges} color={this.state.unsavedChanges ? "yellow" : null }>
             {t("adminDashboard.tableActions.save")}
           </Button>
