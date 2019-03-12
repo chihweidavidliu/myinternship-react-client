@@ -72,7 +72,7 @@ class UploadCompaniesModal extends Component {
       <Modal
         trigger={
           <Button name="Sign up" basic size="small" onClick={this.show}>
-            Import Companies
+            {t("adminDashboard.companyUpload.header")}
           </Button>
         }
         open={open}
@@ -81,8 +81,8 @@ class UploadCompaniesModal extends Component {
       >
         <Modal.Content>
           <Modal.Description>
-            <Header>Import Companies</Header>
-            <p>Please upload an Excel (.xlsx) file with the following structure:</p>
+            <Header>{t("adminDashboard.companyUpload.header")}</Header>
+            <p>{t("adminDashboard.companyUpload.prompt")}</p>
             <ExampleSpreadsheet />
           </Modal.Description>
           <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -94,7 +94,7 @@ class UploadCompaniesModal extends Component {
                 <Icon name="cancel" /> {t("studentForms.signupModal.cancel")}
               </Button>
               <Button type="submit" className="modal-button" color="green" onClick={this.handleConfirm}>
-                <Icon name="checkmark" /> Submit
+                <Icon name="checkmark" /> {t("adminDashboard.companyUpload.submit")}
               </Button>
             </div>
           </Form>
