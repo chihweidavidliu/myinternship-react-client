@@ -7,6 +7,7 @@ import XLSX from "xlsx";
 
 import * as actions from "actions";
 import UploadCompaniesInput from "./UploadCompaniesInput";
+import ExampleSpreadsheet from "./ExampleSpreadsheet";
 
 class UploadCompaniesModal extends Component {
   state = { open: false };
@@ -81,7 +82,8 @@ class UploadCompaniesModal extends Component {
         <Modal.Content>
           <Modal.Description>
             <Header>Import Companies</Header>
-            <p>Please upload an Excel (.xlsx) file to import:</p>
+            <p>Please upload an Excel (.xlsx) file with the following structure:</p>
+            <ExampleSpreadsheet />
           </Modal.Description>
           <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             <Form.Field>
