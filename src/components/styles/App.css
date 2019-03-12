@@ -216,3 +216,14 @@ li {
   display: flex;
   justify-content: flex-end;
 }
+
+/* admin settings */
+
+.options-container {
+  margin-top: 20px;
+}
+.options-box {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}

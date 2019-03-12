@@ -62,7 +62,7 @@ class TableRow extends Component {
           <Icon
             className="deleteButton"
             name="close"
-            title={`Delete "${target.name}"`}
+            title={`${t("adminDashboard.companies.delete")} "${target.name}"`}
             onClick={() => this.props.handleDelete(target.name)}
           />
         </Table.Cell>

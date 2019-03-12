@@ -12,8 +12,11 @@
       "signin": "登入"
     },
     "formErrors": {
-      "institutionCode": { "missing": "An institution code is required", "incorrect": "The institution code you supplied is incorrect." },
-      "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s", "duplicateId": "此學號已完成報名。"},
+      "institutionCode": {
+        "missing": "An institution code is required",
+        "incorrect": "The institution code you supplied is incorrect."
+      },
+      "studentid": { "missing": "請輸入學號", "initialS": "學號不要加 s", "duplicateId": "此學號已完成報名。" },
       "name": { "missing": "請輸入姓名" },
       "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },
       "department": { "missing": "請選擇系別" },
@@ -44,7 +47,10 @@
     },
     "formErrors": {
       "adminSecret": { "missing": "Admin secret is required" },
-      "username": { "missing": "必須輸入系統管理員名稱", "adminExists": "Admin has already been registered. There can only be one admin." },
+      "username": {
+        "missing": "必須輸入系統管理員名稱",
+        "adminExists": "Admin has already been registered. There can only be one admin."
+      },
       "password": { "missing": "請輸入密碼", "tooShort": "密碼長度必須至少6個字元" },
       "wrongAdminSecret": "The Admin Secret you entered was incorrect.",
       "signupFailure": "There was a problem signing you up.",
@@ -70,11 +76,41 @@
       "updateFailed": "Update failed",
       "fetchStudentsFailed": "Unable to fetch students"
     },
-    "companies":  { "navbarHeader": "Companies", "header": "Company Choices", "company": "Company", "numberAccepted": "Number Accepted", "savePrompt": "You have unsaved changes. Remember to save!"},
-    "students": { "navbarHeader": "Students", "header": "Student Choices", "choicesEnabled": "Student choices are enabled.", "choicesDisabled": "Student choices are disabled. Go to settings to enable.", "choice": "Choice" },
-    "sorter":  { "navbarHeader": "Sorter", "header": "Sorter" },
-    "settings": { "navbarHeader": "Settings", "header": "Settings" },
-    "tableActions": { "addRow": "Add Row", "removeRow": "Remove Row", "addChoice": "Add Choice", "removeChoice": "Remove Choice", "save": "Save"},
-    "companyUpload": { "header": "Import Companies", "prompt": "Please upload an Excel (.xlsx) file with the following structure:", "submit": "Submit"}
+    "companies": {
+      "navbarHeader": "Companies",
+      "header": "Company Choices",
+      "company": "Company",
+      "numberAccepted": "Number Accepted",
+      "savePrompt": "You have unsaved changes. Remember to save!",
+      "delete": "Delete"
+    },
+    "students": {
+      "navbarHeader": "Students",
+      "header": "Student Choices",
+      "choicesEnabled": "Student choices are enabled.",
+      "choicesDisabled": "Student choices are disabled. Go to settings to enable.",
+      "choice": "Choice"
+    },
+    "sorter": { "navbarHeader": "Sorter", "header": "Sorter" },
+    "settings": {
+      "navbarHeader": "Settings",
+      "header": "Settings",
+      "allowStudentSignup": "Allow Student Signup",
+      "allowStudentChoices": "Allow Student Choices",
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "tableActions": {
+      "addRow": "Add Row",
+      "removeRow": "Remove Row",
+      "addChoice": "Add Choice",
+      "removeChoice": "Remove Choice",
+      "save": "Save"
+    },
+    "companyUpload": {
+      "header": "Import Companies",
+      "prompt": "Please upload an Excel (.xlsx) file with the following structure:",
+      "submit": "Submit"
+    }
   }
 }
