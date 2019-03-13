@@ -35,6 +35,7 @@ const SharedList = ({ items, listType, onChange, auth, type }) => {
       }}
       tag={listType}
       onChange={onChange}
+      className="sortable-list"
     >
       {items}
     </Sortable>
