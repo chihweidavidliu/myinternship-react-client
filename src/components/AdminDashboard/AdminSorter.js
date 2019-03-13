@@ -27,21 +27,21 @@ class AdminSorter extends Component {
   }
 
   startSort = async () => {
-    if(this.state.sortFinished === true) {
-      return
+    if (this.state.sortFinished === true) {
+      return;
     }
     // clear state on click
-    this.setState({ students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [] })
+    this.setState({ students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [] });
     console.log(this.state);
 
     // deep copy state
     const students = JSON.parse(JSON.stringify(this.state.students));
-    const companyChoices =  JSON.parse(JSON.stringify(this.state.companyChoices));
-    const tentativeAdmits =  JSON.parse(JSON.stringify(this.state.tentativeAdmits));
+    const companyChoices = JSON.parse(JSON.stringify(this.state.companyChoices));
+    const tentativeAdmits = JSON.parse(JSON.stringify(this.state.tentativeAdmits));
     let round = 1;
 
     while (students.some((student) => student.resolved === false)) {
-      console.log(this.logger)
+      console.log(this.logger);
       await this.logger("round", `Round ${round}`);
       console.log(`Round ${round}`);
       // loop through students
@@ -120,7 +120,7 @@ class AdminSorter extends Component {
           // if adding the student does not surpass the quota
           if (tentativeAdmits[currentStudentChoice].length <= numberAccepted) {
             this.logger("success", `${currentStudent} shortlisted by ${currentStudentChoice}`);
-            console.log(`${currentStudent} shortlisted by ${currentStudentChoice}`)
+            console.log(`${currentStudent} shortlisted by ${currentStudentChoice}`);
             // mark student as tentatively resolved
             students[i].resolved = "tentative";
             // move on to next student
@@ -139,7 +139,9 @@ class AdminSorter extends Component {
           if (tentativeAdmits[currentStudentChoice][lastPerson] === currentStudent) {
             this.logger("warning", `${currentStudent} is ranked lower than current admits.`);
             this.logger("warning", `${currentStudent} is eliminated from contention.`);
-            console.log(`${currentStudent} is ranked lower than current admits and has been eliminated from contention.`)
+            console.log(
+              `${currentStudent} is ranked lower than current admits and has been eliminated from contention.`
+            );
 
             // mark the choice as eliminated
             students[i]["choices"][j] = "eliminated";
@@ -190,18 +192,23 @@ class AdminSorter extends Component {
       round++;
     }
     // after all students are resolved, mark all students as resolved (as opposed to tentative)
-    students.forEach(student => {
+    students.forEach((student) => {
       student.resolved = true;
     });
 
     this.logger("round", "Sorting completed");
-    console.log("sorting completed")
-    console.log(tentativeAdmits)
+    console.log("sorting completed");
+    console.log(tentativeAdmits);
     console.log(students);
 
     // update state
-    await this.setState({ students: students, companyChoices: companyChoices, tentativeAdmits: tentativeAdmits, sortFinished: true });
-    console.log("newState", this.state)
+    await this.setState({
+      students: students,
+      companyChoices: companyChoices,
+      tentativeAdmits: tentativeAdmits,
+      sortFinished: true
+    });
+    console.log("newState", this.state);
   };
 
   logger = (type, text) => {
@@ -209,7 +216,7 @@ class AdminSorter extends Component {
     const newContents = [...this.state.consoleContents, item];
     // for some reason the logger is erasing previous values
     this.setState({ consoleContents: newContents });
-  }
+  };
 
   renderError() {
     const { authMessage, t } = this.props;
@@ -227,8 +234,32 @@ class AdminSorter extends Component {
 
   renderConsole() {
     return this.state.consoleContents.map((item, index) => {
-      return <li key={index} className={`console-${item.type}`}>{item.text}</li>;
+      return (
+        <li key={index} className={`console-${item.type}`}>
+          {item.text}
+        </li>
+      );
     });
+  }
+
+  renderActions() {
+    if (this.state.sortFinished === true) {
+      return (
+        <React.Fragment>
+          <Button basic size="small" onClick={this.startSort}>
+            Start Sort
+          </Button>
+          <Button basic size="small">
+            Save Output
+          </Button>
+        </React.Fragment>
+      );
+    }
+    return (
+      <Button basic size="small" onClick={this.startSort}>
+        Start Sort
+      </Button>
+    );
   }
 
   render() {
@@ -237,27 +268,17 @@ class AdminSorter extends Component {
       <Fragment>
         <h2>{t("adminDashboard.sorter.header")}</h2>
         {this.renderError()}
-        <div className="actions-bar">
-          <Button basic size="small" onClick={this.startSort}>
-            Start Sort
-          </Button>
-          <Button basic size="small">
-            Save Output
-          </Button>
-        </div>
+        <div className="actions-bar">{this.renderActions()}</div>
         <div className="sorter-container">
           <div className="sorter-box">
             <h3>Console</h3>
             <div id="console" className="sorter-display">
-              <ul>
-                {this.renderConsole()}
-              </ul>
+              <ul>{this.renderConsole()}</ul>
             </div>
           </div>
           <div className="sorter-box">
             <h3>Output</h3>
-            <div id="output" className="sorter-display">
-            </div>
+            <div id="output" className="sorter-display" />
           </div>
         </div>
       </Fragment>
