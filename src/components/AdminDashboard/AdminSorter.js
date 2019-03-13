@@ -67,12 +67,8 @@ class AdminSorter extends Component {
             companyChoices[company].choices = filtered;
           }
 
-
-          if(round === 1) {
-            this.logger(
-              "warning",
-              `${currentStudent} has not made any choices and has been removed from contention.`
-            );
+          if (round === 1) {
+            this.logger("warning", `${currentStudent} has not made any choices and has been removed from contention.`);
             return console.log(`${currentStudent} has not made any choices and has been removed from contention.`);
           }
 
@@ -165,23 +161,30 @@ class AdminSorter extends Component {
           }
 
           // if last person in the array is not the current student
-          this.logger("success", `${currentStudent} shortlisted by ${currentStudentChoice}</span>`);
-          console.log(`${currentStudent} shortlisted by ${currentStudentChoice}</span>`);
+          this.logger("success", `${currentStudent} shortlisted by ${currentStudentChoice}`);
+          console.log(`${currentStudent} shortlisted by ${currentStudentChoice}`);
 
           // mark current student resolved status as tentative
           students[i]["resolved"] = "tentative";
 
-          // remove the displaced student's highest choice from students array
-          const index = students.findIndex(
-            (student) => student.name === tentativeAdmits[currentStudentChoice][lastPerson]
+          // log to console the name of the displaced person
+          console.log(`${tentativeAdmits[currentStudentChoice][lastPerson]} has been removed from ${currentStudentChoice}'s list.`);
+          this.logger(
+            "warning",
+            `${tentativeAdmits[currentStudentChoice][lastPerson]} has been removed from ${currentStudentChoice}'s list.`
           );
-          if (Array.isArray(students[index]["choices"])) {
-            students[index]["choices"].shift();
-          }
-          // switch displaced student's resolved status back to false
-          students[index]["resolved"] = false;
+
+          // remove the company name from the displaced student's choices array and mark the student as unresolved
+          students.forEach(student => {
+            if(student.name === tentativeAdmits[currentStudentChoice][lastPerson]) {
+              student.choices = [...student.choices].filter(choice => choice !== currentStudentChoice);
+              student.resolved = false;
+            }
+          });
+
           // remove displaced person from tentative admits array
           tentativeAdmits[currentStudentChoice].pop();
+
           // move on to next student
           break;
         }
@@ -203,14 +206,14 @@ class AdminSorter extends Component {
       console.log(tentativeAdmits);
 
       this.logger("header", "Tentative Admits after this round:");
-      for(let company in tentativeAdmits) {
+      for (let company in tentativeAdmits) {
         let list = "";
         let rank = 1;
-         tentativeAdmits[company].forEach(admit => {
-            list += `${rank}. ${admit} `;
-             rank++;
-         })
-         this.logger("tentativeAdmits", { company: company, list: list });
+        tentativeAdmits[company].forEach((admit) => {
+          list += `${rank}. ${admit} `;
+          rank++;
+        });
+        this.logger("tentativeAdmits", { company: company, list: list });
       }
 
       round++;
@@ -258,12 +261,12 @@ class AdminSorter extends Component {
 
   renderConsole() {
     return this.state.consoleContents.map((item, index) => {
-      if(item.type === "tentativeAdmits") {
+      if (item.type === "tentativeAdmits") {
         return (
           <li key={index} className={`console-${item.type}`}>
             <u>{item.text.company}</u>: {item.text.list}
           </li>
-        )
+        );
       }
       return (
         <li key={index} className={`console-${item.type}`}>
@@ -295,7 +298,7 @@ class AdminSorter extends Component {
 
   renderOutput() {
     const { students, tentativeAdmits } = this.state;
-    if(this.state.sortFinished === true) {
+    if (this.state.sortFinished === true) {
       // return tentative admits and student choices
       return (
         <React.Fragment>
@@ -304,7 +307,7 @@ class AdminSorter extends Component {
           <h3>Final Company Outcomes</h3>
           <CompanyOutputTable companyChoices={tentativeAdmits} />
         </React.Fragment>
-      )
+      );
     }
   }
 
@@ -325,7 +328,7 @@ class AdminSorter extends Component {
           <div className="sorter-box">
             <h3>Output</h3>
             <div id="output" className="sorter-display">
-            {this.renderOutput()}
+              {this.renderOutput()}
             </div>
           </div>
         </div>
