@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Message, Button } from "semantic-ui-react";
+import { Message, Button, Table } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
@@ -30,8 +30,7 @@ class AdminSorter extends Component {
     if (this.state.sortFinished === true) {
       return;
     }
-    // clear state on click
-    this.setState({ students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [] });
+
     console.log(this.state);
 
     // deep copy state
@@ -189,6 +188,17 @@ class AdminSorter extends Component {
       console.log(`Tentative Admits after this round:`);
       console.log(tentativeAdmits);
 
+      this.logger("header", "Tentative Admits after this round:");
+      for(let company in tentativeAdmits) {
+        let list = "";
+        let rank = 1;
+         tentativeAdmits[company].forEach(admit => {
+            list += `${rank}. ${admit} `;
+             rank++;
+         })
+         this.logger("tentativeAdmits", { company: company, list: list });
+      }
+
       round++;
     }
     // after all students are resolved, mark all students as resolved (as opposed to tentative)
@@ -234,6 +244,13 @@ class AdminSorter extends Component {
 
   renderConsole() {
     return this.state.consoleContents.map((item, index) => {
+      if(item.type === "tentativeAdmits") {
+        return (
+          <li key={index} className={`console-${item.type}`}>
+            <u>{item.text.company}</u>: {item.text.list}
+          </li>
+        )
+      }
       return (
         <li key={index} className={`console-${item.type}`}>
           {item.text}
