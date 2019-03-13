@@ -35,6 +35,7 @@ class CompanyOutputTable extends Component {
   renderHeaders() {
     // get longest array of choices to work out how many choice headers are needed
     const longestArray = this.getLongestChoicesArray();
+    console.log(longestArray)
     return longestArray.map((item, index) => {
       return <Table.HeaderCell key={index}>{`Choice ${index + 1}`}</Table.HeaderCell>;
     });
@@ -44,7 +45,7 @@ class CompanyOutputTable extends Component {
     const { companyChoices } = this.props;
     let longestArray = [];
     for (let company in companyChoices) {
-      if (companyChoices[company].length > longestArray) {
+      if (companyChoices[company].length > longestArray.length) {
         longestArray = companyChoices[company];
       }
     }

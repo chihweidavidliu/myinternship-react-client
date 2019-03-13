@@ -47,13 +47,15 @@ class AdminSorter extends Component {
       console.log(`Round ${round}`);
       // loop through students
       for (let i = 0; i < students.length; i++) {
-        const currentStudent = students[i].name;
-        this.logger("header", `Current Student: ${currentStudent}`);
-        console.log(`CURRENT STUDENT: ${currentStudent}`);
         // skip students who have been resolved tentatively or definitively
         if (students[i].resolved === true || students[i].resolved === "tentative") {
           continue;
-        } else if (students[i].choices.length === 0) {
+        }
+        const currentStudent = students[i].name;
+        this.logger("header", `Current Student: ${currentStudent}`);
+        console.log(`CURRENT STUDENT: ${currentStudent}`);
+
+        if (students[i].choices.length === 0) {
           students[i].choices = ["Eliminated"];
           students[i].resolved = true;
 
@@ -65,11 +67,21 @@ class AdminSorter extends Component {
             companyChoices[company].choices = filtered;
           }
 
+
+          if(round === 1) {
+            this.logger(
+              "warning",
+              `${currentStudent} has not made any choices and has been removed from contention.`
+            );
+            return console.log(`${currentStudent} has not made any choices and has been removed from contention.`);
+          }
+
           this.logger(
             "warning",
-            `${currentStudent} has no (remaining) choices and has been eliminated from contention.`
+            `${currentStudent} has been eliminated by all choices and has been removed from contention.`
           );
-          console.log(`${currentStudent} has no (remaining) choices and has been eliminated from contention.`);
+          console.log(`${currentStudent} has been eliminated by all choices and has been removed from contention.`);
+
           continue;
         }
 
