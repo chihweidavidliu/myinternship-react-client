@@ -6,7 +6,7 @@ import { withTranslation } from "react-i18next";
 import * as actions from "actions";
 
 class AdminSorter extends Component {
-  state = { students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [] };
+  state = { students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [], sortFinished: false };
 
   async componentDidMount() {
     await this.props.fetchStudents();
@@ -27,10 +27,17 @@ class AdminSorter extends Component {
   }
 
   startSort = async () => {
+    if(this.state.sortFinished === true) {
+      return
+    }
+    // clear state on click
+    this.setState({ students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [] })
     console.log(this.state);
-    const students = [...this.state.students];
-    const companyChoices = { ...this.state.companyChoices };
-    const tentativeAdmits = { ...this.state.tentativeAdmits };
+
+    // deep copy state
+    const students = JSON.parse(JSON.stringify(this.state.students));
+    const companyChoices =  JSON.parse(JSON.stringify(this.state.companyChoices));
+    const tentativeAdmits =  JSON.parse(JSON.stringify(this.state.tentativeAdmits));
     let round = 1;
 
     while (students.some((student) => student.resolved === false)) {
@@ -46,7 +53,7 @@ class AdminSorter extends Component {
         if (students[i].resolved === true || students[i].resolved === "tentative") {
           continue;
         } else if (students[i].choices.length === 0) {
-          students[i].choices = "Eliminated";
+          students[i].choices = ["Eliminated"];
           students[i].resolved = true;
 
           // remove instances of the student from companyChoices;
@@ -191,13 +198,15 @@ class AdminSorter extends Component {
     console.log("sorting completed")
     console.log(tentativeAdmits)
     console.log(students);
-    console.log("state after sorting", this.state)
+
+    // update state
+    await this.setState({ students: students, companyChoices: companyChoices, tentativeAdmits: tentativeAdmits, sortFinished: true });
+    console.log("newState", this.state)
   };
 
   logger = (type, text) => {
     const item = { type: type, text: text };
-    const newContents = [...this.state.consoleContents];
-    newContents.push(item);
+    const newContents = [...this.state.consoleContents, item];
     // for some reason the logger is erasing previous values
     this.setState({ consoleContents: newContents });
   }
