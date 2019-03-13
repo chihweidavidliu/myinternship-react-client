@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { Message, Button, Table } from "semantic-ui-react";
+import { Message, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
+import CompanyOutputTable from "./CompanyOutputTable";
+import StudentOutputTable from "./StudentOutputTable";
 import * as actions from "actions";
 
 class AdminSorter extends Component {
@@ -279,6 +281,21 @@ class AdminSorter extends Component {
     );
   }
 
+  renderOutput() {
+    const { students, tentativeAdmits } = this.state;
+    if(this.state.sortFinished === true) {
+      // return tentative admits and student choices
+      return (
+        <React.Fragment>
+          <h3>Final Student Outcomes</h3>
+          <StudentOutputTable students={students} />
+          <h3>Final Company Outcomes</h3>
+          <CompanyOutputTable companyChoices={tentativeAdmits} />
+        </React.Fragment>
+      )
+    }
+  }
+
   render() {
     const { t } = this.props;
     return (
@@ -295,7 +312,9 @@ class AdminSorter extends Component {
           </div>
           <div className="sorter-box">
             <h3>Output</h3>
-            <div id="output" className="sorter-display" />
+            <div id="output" className="sorter-display">
+            {this.renderOutput()}
+            </div>
           </div>
         </div>
       </Fragment>

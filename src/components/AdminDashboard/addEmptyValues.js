@@ -2,10 +2,11 @@
 export default (targetArray, longestArray) => {
   return targetArray.map((item) => {
     if (item.choices.length < longestArray.length) {
-      while (item.choices.length < longestArray.length) {
-        item.choices.push("");
+      let padding = [];
+      while (padding.length < longestArray.length - item.choices.length) {
+        padding.push("");
       }
-      return item;
+      return { ...item, choices: [...item.choices, ...padding] };
     }
     return item;
   });

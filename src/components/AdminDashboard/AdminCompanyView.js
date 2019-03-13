@@ -13,7 +13,7 @@ class AdminCompanyView extends Component {
   state = { companies: [], unsavedChanges: false };
 
   addChoice = () => {
-    const updatedCompanies = [...this.state.companies];
+    const updatedCompanies = JSON.parse(JSON.stringify(this.state.companies));
     updatedCompanies.forEach((company) => {
       return company.choices.push("");
     });
@@ -23,14 +23,14 @@ class AdminCompanyView extends Component {
 
 
   removeChoice = () => {
-    const updatedCompanies = [...this.state.companies];
+    const updatedCompanies = JSON.parse(JSON.stringify(this.state.companies));
     updatedCompanies.forEach((company) => company.choices.pop());
     this.setState({ companies: updatedCompanies });
     this.setState({ unsavedChanges: true });
   };
 
   addRow = () => {
-    const companies = [...this.state.companies];
+    const companies = JSON.parse(JSON.stringify(this.state.companies));
     const emptyChoicesArr = [];
     const longestArray = this.getLongestChoicesArray();
     while (emptyChoicesArr.length < longestArray.length) {
@@ -50,7 +50,9 @@ class AdminCompanyView extends Component {
 
   // handle update cell text content on cell blur - pass this down to each row and to each editable cell
   handleCellUpdate = (companyName, categoryToEdit, newText, choiceIndex) => {
-    const updated = this.state.companies.map((company) => {
+    // make deep copy of companies
+    const companies = JSON.parse(JSON.stringify(this.state.companies));;
+    const updated = companies.map((company) => {
       if (company.name === companyName) {
         // if dealing with a choice being edited, use the index of the cell within choices array to identify which cell to edit
         if (categoryToEdit === "choices") {
@@ -87,11 +89,11 @@ class AdminCompanyView extends Component {
   saveChanges = async () => {
     // filter out empty strings in choices array
     const updatedCompanies = this.state.companies.map(company => {
-      const filteredChoices =  company.choices.filter(choice => {
+      const filteredChoices = company.choices.filter(choice => {
         return choice !== ""
       });
-      company.choices = filteredChoices;
-      return company;
+      // replace each company's choices array with the filtered one (non-mutating)
+      return {...company, choices: filteredChoices };
     });
     //update db
     await this.props.updateAdmin({ companyChoices: updatedCompanies });
