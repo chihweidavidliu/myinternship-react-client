@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { reduxForm, Field } from "redux-form";
 import XLSX from "xlsx";
+import shortid from "shortid";
 
 import * as actions from "actions";
 import UploadCompaniesInput from "./UploadCompaniesInput";
@@ -18,9 +19,9 @@ class UploadCompaniesModal extends Component {
   onSubmit = async (formValues) => {
     const companyChoices = await this.parseSpreadSheet(formValues.companyUpload);
     // update redux store
-    this.props.updateAdmin({ companyChoices: companyChoices});
-    // pass the new choices to company view for padding before rendering table
-    this.props.formatUpdatedTable(companyChoices);
+    await this.props.updateAdmin({ companyChoices: companyChoices});
+    // reset companies
+    this.props.duplicateCompanies(this.props.auth.companyChoices);
     this.close();
   };
 
@@ -47,7 +48,7 @@ class UploadCompaniesModal extends Component {
                 for (let i = 2; i < row.length; i++) {
                   choices.push(row[i]);
                 }
-                return { name: row[0], numberAccepted: row[1], choices: choices };
+                return { _id: shortid.generate(), name: row[0], numberAccepted: row[1], choices: choices };
               }
               return null;
             })

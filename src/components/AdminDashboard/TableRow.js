@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Table, Icon } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 import EditableTableCell from "./EditableTableCell";
+import * as actions from "actions";
 
 class TableRow extends Component {
+  // render methods
   renderChoices() {
     // target is the object item within the array of data that contains data about the member of the group
     // e.g. for a student - { name: "David", studentid: "12345", choices: []}
@@ -18,7 +21,6 @@ class TableRow extends Component {
             category="choices"
             index={index}
             content={choice}
-            handleCellUpdate={this.props.handleCellUpdate}
           />
         );
       });
@@ -35,7 +37,7 @@ class TableRow extends Component {
 
     // get the data names from target and remove choices
     const arr = Object.keys(target);
-    const filtered = arr.filter((dataValue) => dataValue !== "choices");
+    const filtered = arr.filter((dataValue) => dataValue !== "choices" && dataValue !== "_id");
 
     if (group === "companies" && editable === true) {
       return filtered.map((dataValue) => {
@@ -45,7 +47,6 @@ class TableRow extends Component {
             target={target}
             category={dataValue}
             content={target[dataValue]}
-            handleCellUpdate={this.props.handleCellUpdate}
           />
         );
       });
@@ -61,7 +62,7 @@ class TableRow extends Component {
   }
 
   render() {
-    const { t, target, group, editable } = this.props;
+    const { t, target, group, editable, deleteRow } = this.props;
 
     if (group === "companies" && editable === true) {
       return (
@@ -71,7 +72,7 @@ class TableRow extends Component {
               className="deleteButton"
               name="close"
               title={`${t("adminDashboard.companies.delete")} "${target.name}"`}
-              onClick={() => this.props.handleDelete(target.name)}
+              onClick={() => deleteRow(target._id)}
             />
           </Table.Cell>
           {this.renderOtherCells()}
@@ -89,4 +90,4 @@ class TableRow extends Component {
   }
 }
 
-export default TableRow;
+export default connect(null, actions) (TableRow);

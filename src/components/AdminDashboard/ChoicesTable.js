@@ -15,16 +15,16 @@ class ChoicesTable extends Component {
     await this.setState({ [group]: data });
     // format the data
     this.formatAndUpdateTable(this.state[group]);
-
   }
 
+  // match component state to redux store
   async componentDidUpdate(prevProps) {
     const { group, data } = this.props;
     if (data !== prevProps.data) {
-    await this.setState({ [group]: data });
-    // format the data
-    this.formatAndUpdateTable(this.state[group]);
-  }
+      await this.setState({ [group]: data });
+      // format the data
+      this.formatAndUpdateTable(this.state[group]);
+    }
   }
 
   formatAndUpdateTable = (choices) => {
@@ -80,8 +80,6 @@ class ChoicesTable extends Component {
             target={item}
             editable={editable}
             t={t}
-            handleDelete={this.props.handleDelete}
-            handleCellUpdate={this.props.handleCellUpdate}
           />
         );
       });

@@ -2,6 +2,8 @@ import axios from "axios";
 import { submit } from "redux-form";
 import i18n from "i18n";
 
+
+
 import {
   FETCH_STUDENTS,
   CHECK_NUMBER_OF_ADMINS,
@@ -16,8 +18,14 @@ import {
   STUDENT_SIGNUP,
   STUDENT_SIGNIN,
   FETCH_USER,
-  TOGGLE_LANGUAGE
+  TOGGLE_LANGUAGE,
+  DUPLICATE_COMPANIES
 } from "actions/types";
+
+
+// export tableEditing actions
+export * from "./tableEditingActions";
+
 
 export const studentSignup = (formData) => async (dispatch) => {
   try {
@@ -159,6 +167,14 @@ export const fetchStudents = () => async (dispatch) => {
     dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminDashboard.errors.fetchStudentsFailed") })
   }
 };
+
+
+export const duplicateCompanies = (companyChoices) => {
+  return {
+    type: DUPLICATE_COMPANIES,
+    payload: companyChoices
+  }
+}
 
 export const toggleLanguage = (language) => {
   return {

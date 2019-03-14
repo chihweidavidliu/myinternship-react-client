@@ -7,6 +7,7 @@ import companiesReducer from "reducers/companiesReducer";
 import signupAuthReducer from "reducers/signupAuthReducer";
 import numberOfAdminsReducer from "reducers/numberOfAdminsReducer";
 import studentChoicesReducer from "reducers/studentChoicesReducer";
+import saveStatusReducer from "reducers/saveStatusReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   companies: companiesReducer,
   signupAuth: signupAuthReducer,
   numberOfAdmins: numberOfAdminsReducer,
-  students: studentChoicesReducer
+  students: studentChoicesReducer,
+  unsavedChanges: saveStatusReducer
 });

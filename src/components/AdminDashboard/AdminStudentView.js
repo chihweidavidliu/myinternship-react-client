@@ -8,9 +8,9 @@ import requireAdminAuth from "requireAdminAuth";
 import ChoicesTable from "./ChoicesTable";
 
 class AdminStudentView extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     // clear error message
-    await this.props.removeErrorMessage();
+    this.props.removeErrorMessage();
     // action creator that fetches all Students - to be passed down to ChoicesTable
     this.props.fetchStudents();
   }
@@ -31,7 +31,6 @@ class AdminStudentView extends Component {
 
   renderTable() {
     const { students, t } = this.props;
-    console.log(students)
     if(students.length > 0) {
       return (
         <ChoicesTable
