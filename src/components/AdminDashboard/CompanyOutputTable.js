@@ -2,6 +2,13 @@ import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
 
 class CompanyOutputTable extends Component {
+  state = { longestArray: [] }
+
+  componentDidMount() {
+    const longestArray = this.getLongestChoicesArray();
+    this.setState({ longestArray: longestArray });
+  }
+
   renderChoices(choicesArray) {
     return choicesArray.map((choice, index) => {
       return <Table.Cell key={index}>{choice}</Table.Cell>;
@@ -9,7 +16,7 @@ class CompanyOutputTable extends Component {
   }
 
   renderEmptyCells(choicesArray) {
-    const longestArray = this.getLongestChoicesArray();
+    const { longestArray } = this.state;
     if(choicesArray.length < longestArray.length) {
       // create array of the same length as the required number of empty cells
       const array = longestArray.slice(0, longestArray.length - choicesArray.length);
@@ -34,7 +41,7 @@ class CompanyOutputTable extends Component {
 
   renderHeaders() {
     // get longest array of choices to work out how many choice headers are needed
-    const longestArray = this.getLongestChoicesArray();
+    const { longestArray } = this.state;
     console.log(longestArray)
     return longestArray.map((item, index) => {
       return <Table.HeaderCell key={index}>{`Choice ${index + 1}`}</Table.HeaderCell>;

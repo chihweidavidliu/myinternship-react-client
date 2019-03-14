@@ -21,7 +21,6 @@ class AdminCompanyView extends Component {
     this.setState({ unsavedChanges: true });
   };
 
-
   removeChoice = () => {
     const updatedCompanies = JSON.parse(JSON.stringify(this.state.companies));
     updatedCompanies.forEach((company) => company.choices.pop());
