@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import { Message, Table, Button } from "semantic-ui-react";
-import shortid from "shortid";
+import { Message, Button } from "semantic-ui-react";
 
 import * as actions from "actions";
-import TableRow from "./TableRow";
 import UploadCompaniesModal from "./UploadCompaniesModal";
-import addEmptyValues from "./addEmptyValues";
+import ChoicesTable from "./ChoicesTable";
 
 class AdminCompanyView extends Component {
   state = { companies: [], unsavedChanges: false };
@@ -80,7 +78,6 @@ class AdminCompanyView extends Component {
       }
       return company;
     });
-
     this.setState({ companies: updated });
     this.setState({ unsavedChanges: true });
   };
@@ -97,23 +94,11 @@ class AdminCompanyView extends Component {
     //update db
     await this.props.updateAdmin({ companyChoices: updatedCompanies });
     this.setState({ unsavedChanges: false });
-
-    // add empty strings back in ready to update state with new companies array
-    this.formatUpdatedTable(this.state.companies);
-  }
-
-  // takes newly updated company choices and pads them before setting them in state to render table
-  formatUpdatedTable = (companyChoices) => {
-    const longestArray = this.getLongestChoicesArray();
-    const paddedCompanies = addEmptyValues(companyChoices, longestArray);
-    this.setState({ companies: paddedCompanies });
   }
 
   async componentDidMount() {
     if (this.props.auth) {
       await this.setState({ companies: this.props.auth.companyChoices });
-      // pad out newly accessed companies array with empty strings
-      this.formatUpdatedTable(this.state.companies);
     }
   }
 
@@ -142,37 +127,6 @@ class AdminCompanyView extends Component {
     return longestArray;
   }
 
-
-  renderTableHeaders() {
-    const { t } = this.props;
-    const { companies } = this.state;
-    if (companies) {
-      // find longest student choices array
-      const longestArray = this.getLongestChoicesArray();
-
-      return longestArray.map((choice, index) => {
-        return <Table.HeaderCell key={index}>{`${t("adminDashboard.students.choice")} ${index + 1}`}</Table.HeaderCell>;
-      });
-    }
-  }
-
-  renderTableRows() {
-    // render tablerow for each company passing in the company as the row 'target'
-    // pass down handleDelete and handleCellUpdate to handle table edit functionality for child components
-    return this.state.companies.map((company, index) => {
-      return (
-        <TableRow
-          key={shortid.generate()}
-          for="company"
-          target={company}
-          t={this.props.t}
-          handleDelete={this.handleDelete}
-          handleCellUpdate={this.handleCellUpdate}
-        />
-      );
-    });
-  }
-
   renderSavePrompt() {
     const { t } = this.props;
     if(this.state.unsavedChanges === true) {
@@ -185,7 +139,28 @@ class AdminCompanyView extends Component {
       )
     }
   }
+  renderTable() {
+    // get companies from state - need to put companies in state
+    const { companies } = this.state;
+    const { t } = this.props;
 
+    if(companies.length > 0) {
+      return (
+        <ChoicesTable
+          editable={true}
+          group="companies"
+          data={companies}
+          fixedHeaders={[
+            null,
+            t("adminDashboard.companies.company"),
+            t("adminDashboard.companies.numberAccepted")
+          ]}
+          handleDelete={this.handleDelete}
+          handleCellUpdate={this.handleCellUpdate}
+        />
+      )
+    }
+  }
   render() {
     const { t } = this.props;
     return (
@@ -203,24 +178,13 @@ class AdminCompanyView extends Component {
           <Button basic size="small" onClick={this.removeChoice}>
             {t("adminDashboard.tableActions.removeChoice")}
           </Button>
-          <UploadCompaniesModal formatUpdatedTable={this.formatUpdatedTable}/>
+          <UploadCompaniesModal />
           <Button basic size="small" onClick={this.saveChanges} color={this.state.unsavedChanges ? "yellow" : null }>
             {t("adminDashboard.tableActions.save")}
           </Button>
         </div>
         <div className="table-container">
-          <Table size="small" celled striped>
-            <Table.Header>
-              <Table.Row>
-                <Table.HeaderCell />
-                <Table.HeaderCell>{t("adminDashboard.companies.company")}</Table.HeaderCell>
-                <Table.HeaderCell>{t("adminDashboard.companies.numberAccepted")}</Table.HeaderCell>
-                {this.renderTableHeaders()}
-              </Table.Row>
-            </Table.Header>
-
-            <Table.Body>{this.renderTableRows()}</Table.Body>
-          </Table>
+          {this.renderTable()}
         </div>
       </React.Fragment>
     );
