@@ -3,8 +3,9 @@ import { Message, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
-import CompanyOutputTable from "./CompanyOutputTable";
 import StudentOutputTable from "./StudentOutputTable";
+import ChoicesTable from "./ChoicesTable";
+
 import * as actions from "actions";
 
 class AdminSorter extends Component {
@@ -297,7 +298,13 @@ class AdminSorter extends Component {
   }
 
   renderOutput() {
+    const { t } = this.props;
     const { students, tentativeAdmits } = this.state;
+    // format data to be readable by ChoicesTable
+    const finalCompanyChoices = Object.keys(tentativeAdmits).map(company => {
+      return ({ name: company, choices: tentativeAdmits[company] })
+    });
+
     if (this.state.sortFinished === true) {
       // return tentative admits and student choices
       return (
@@ -305,7 +312,12 @@ class AdminSorter extends Component {
           <h3>Final Student Outcomes</h3>
           <StudentOutputTable students={students} />
           <h3>Final Company Outcomes</h3>
-          <CompanyOutputTable companyChoices={tentativeAdmits} />
+          <ChoicesTable
+            editable={false}
+            group="companies"
+            data={finalCompanyChoices}
+            fixedHeaders={[t("adminDashboard.companies.company")]}
+          />
         </React.Fragment>
       );
     }
