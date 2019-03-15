@@ -77,7 +77,7 @@ class AdminCompanyView extends Component {
     const { t } = this.props;
     return (
       <React.Fragment>
-        <h2>{t("adminDashboard.companies.navbarHeader")}</h2>
+        <h2>{t("adminDashboard.companies.header")}</h2>
         {this.renderSavePrompt()}
         {this.renderError()}
         <TableToolbar t={t} saveChanges={this.saveChanges} />

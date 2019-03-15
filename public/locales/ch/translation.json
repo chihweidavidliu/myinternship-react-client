@@ -4,10 +4,10 @@
   "studentForms": {
     "placeholders": {
       "institutionCode": "Institution code",
-      "studentid": "請輸入學號",
-      "name": "請輸入姓名",
-      "password": "請自訂密碼",
-      "department": "請選擇系別",
+      "studentid": "學號",
+      "name": "姓名",
+      "password": "密碼",
+      "department": "系別",
       "signup": "報名",
       "signin": "登入"
     },
@@ -77,9 +77,9 @@
       "fetchStudentsFailed": "Unable to fetch students"
     },
     "companies": {
-      "navbarHeader": "Companies",
-      "header": "Company Choices",
-      "company": "Company",
+      "navbarHeader": "公司",
+      "header": "公司錄取名單",
+      "company": "公司",
       "numberAccepted": "Number Accepted",
       "savePrompt": "You have unsaved changes. Remember to save!",
       "delete": "Delete"
@@ -89,9 +89,22 @@
       "header": "Student Choices",
       "choicesEnabled": "Student choices are enabled.",
       "choicesDisabled": "Student choices are disabled. Go to settings to enable.",
-      "choice": "Choice"
+      "choice": "錄取"
     },
-    "sorter": { "navbarHeader": "Sorter", "header": "Sorter" },
+    "sorter": {
+      "navbarHeader": "Sorter",
+      "header": "Sorter",
+      "startSort": "Start Sort",
+      "saveOutput": "Save Output",
+      "finalStudentOutcomes": "學生媒合結果",
+      "finalCompanyChoices": "公司錄取名單",
+      "console": {
+        "round": "Round",
+        "currentStudent": "CURRENT STUDENT",
+        "noChoicesWarning": "has not made any choices and has been removed from contention.",
+        "eliminatedWarning": "has been eliminated by all choices and has been removed from contention."
+      }
+    },
     "settings": {
       "navbarHeader": "Settings",
       "header": "Settings",

@@ -279,21 +279,22 @@ class AdminSorter extends Component {
   }
 
   renderActions() {
+    const { t } = this.props;
     if (this.state.sortFinished === true) {
       return (
         <React.Fragment>
           <Button basic size="small" onClick={this.startSort}>
-            Start Sort
+            {t("adminDashboard.sorter.startSort")}
           </Button>
           <Button basic size="small">
-            Save Output
+            {t("adminDashboard.sorter.saveOutput")}
           </Button>
         </React.Fragment>
       );
     }
     return (
       <Button basic size="small" onClick={this.startSort}>
-        Start Sort
+        {t("adminDashboard.sorter.startSort")}
       </Button>
     );
   }
@@ -312,7 +313,7 @@ class AdminSorter extends Component {
       // return tentative admits and student choices
       return (
         <React.Fragment>
-          <h3>Final Student Outcomes</h3>
+          <h3>{t("adminDashboard.sorter.finalStudentOutcomes")}</h3>
           <ChoicesTable
             editable={false}
             group="students"
@@ -323,7 +324,7 @@ class AdminSorter extends Component {
               t("studentForms.placeholders.department")
             ]}
           />
-          <h3>Final Company Outcomes</h3>
+          <h3>{t("adminDashboard.sorter.finalCompanyChoices")}</h3>
           <ChoicesTable
             editable={false}
             group="companies"

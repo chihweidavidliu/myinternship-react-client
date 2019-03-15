@@ -95,7 +95,20 @@
       "choicesDisabled": "Student choices are disabled. Go to settings to enable.",
       "choice": "Choice"
     },
-    "sorter": { "navbarHeader": "Sorter", "header": "Sorter" },
+    "sorter": {
+      "navbarHeader": "Sorter",
+      "header": "Sorter",
+      "startSort": "Start Sort",
+      "saveOutput": "Save Output",
+      "finalStudentOutcomes": "Final Student Outcomes",
+      "finalCompanyChoices": "Final Company Choices",
+      "console": {
+        "round": "Round",
+        "currentStudent": "CURRENT STUDENT",
+        "noChoicesWarning": "has not made any choices and has been removed from contention.",
+        "eliminatedWarning": "has been eliminated by all choices and has been removed from contention."
+      }
+    },
     "settings": {
       "navbarHeader": "Settings",
       "header": "Settings",
