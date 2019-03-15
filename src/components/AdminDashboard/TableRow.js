@@ -14,15 +14,7 @@ class TableRow extends Component {
     if (group === "companies" && editable === true) {
       // if dealing with companies that are editable
       return target.choices.map((choice, index) => {
-        return (
-          <EditableTableCell
-            key={index}
-            target={target}
-            category="choices"
-            index={index}
-            content={choice}
-          />
-        );
+        return <EditableTableCell key={index} target={target} category="choices" index={index} content={choice} />;
       });
     }
 
@@ -37,18 +29,13 @@ class TableRow extends Component {
 
     // get the data names from target and remove choices
     const arr = Object.keys(target);
-    const filtered = arr.filter((dataValue) => dataValue !== "choices" && dataValue !== "_id");
+    const filtered = arr.filter(
+      (dataValue) => dataValue !== "choices" && dataValue !== "_id" && dataValue !== "resolved"
+    );
 
     if (group === "companies" && editable === true) {
       return filtered.map((dataValue) => {
-        return (
-          <EditableTableCell
-            key={dataValue}
-            target={target}
-            category={dataValue}
-            content={target[dataValue]}
-          />
-        );
+        return <EditableTableCell key={dataValue} target={target} category={dataValue} content={target[dataValue]} />;
       });
     }
 
@@ -90,4 +77,7 @@ class TableRow extends Component {
   }
 }
 
-export default connect(null, actions) (TableRow);
+export default connect(
+  null,
+  actions
+)(TableRow);

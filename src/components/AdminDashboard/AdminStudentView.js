@@ -38,8 +38,8 @@ class AdminStudentView extends Component {
           group="students"
           data={students}
           fixedHeaders={[
-            t("studentForms.placeholders.name"),
             t("studentForms.placeholders.studentid"),
+            t("studentForms.placeholders.name"),
             t("studentForms.placeholders.department")
           ]}
         />

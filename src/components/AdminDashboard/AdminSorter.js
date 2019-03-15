@@ -3,7 +3,6 @@ import { Message, Button } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 
-import StudentOutputTable from "./StudentOutputTable";
 import ChoicesTable from "./ChoicesTable";
 
 import * as actions from "actions";
@@ -169,16 +168,18 @@ class AdminSorter extends Component {
           students[i]["resolved"] = "tentative";
 
           // log to console the name of the displaced person
-          console.log(`${tentativeAdmits[currentStudentChoice][lastPerson]} has been removed from ${currentStudentChoice}'s list.`);
+          console.log(
+            `${tentativeAdmits[currentStudentChoice][lastPerson]} has been removed from ${currentStudentChoice}'s list.`
+          );
           this.logger(
             "warning",
             `${tentativeAdmits[currentStudentChoice][lastPerson]} has been removed from ${currentStudentChoice}'s list.`
           );
 
           // remove the company name from the displaced student's choices array and mark the student as unresolved
-          students.forEach(student => {
-            if(student.name === tentativeAdmits[currentStudentChoice][lastPerson]) {
-              student.choices = [...student.choices].filter(choice => choice !== currentStudentChoice);
+          students.forEach((student) => {
+            if (student.name === tentativeAdmits[currentStudentChoice][lastPerson]) {
+              student.choices = [...student.choices].filter((choice) => choice !== currentStudentChoice);
               student.resolved = false;
             }
           });
@@ -301,16 +302,27 @@ class AdminSorter extends Component {
     const { t } = this.props;
     const { students, tentativeAdmits } = this.state;
     // format data to be readable by ChoicesTable
-    const finalCompanyChoices = Object.keys(tentativeAdmits).map(company => {
-      return ({ name: company, choices: tentativeAdmits[company] })
+    const finalCompanyChoices = Object.keys(tentativeAdmits).map((company) => {
+      return { name: company, choices: tentativeAdmits[company] };
     });
+    // remove all choices but first from student
+    const finalStudentOutcomes = students.map((student) => ({ ...student, choices: [student.choices[0]] }));
 
     if (this.state.sortFinished === true) {
       // return tentative admits and student choices
       return (
         <React.Fragment>
           <h3>Final Student Outcomes</h3>
-          <StudentOutputTable students={students} />
+          <ChoicesTable
+            editable={false}
+            group="students"
+            data={finalStudentOutcomes}
+            fixedHeaders={[
+              t("studentForms.placeholders.studentid"),
+              t("studentForms.placeholders.name"),
+              t("studentForms.placeholders.department")
+            ]}
+          />
           <h3>Final Company Outcomes</h3>
           <ChoicesTable
             editable={false}

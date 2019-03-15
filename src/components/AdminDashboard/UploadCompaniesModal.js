@@ -8,7 +8,7 @@ import shortid from "shortid";
 
 import * as actions from "actions";
 import UploadCompaniesInput from "./UploadCompaniesInput";
-import ExampleSpreadsheet from "./ExampleSpreadsheet";
+import ChoicesTable from "./ChoicesTable";
 
 class UploadCompaniesModal extends Component {
   state = { open: false };
@@ -19,7 +19,7 @@ class UploadCompaniesModal extends Component {
   onSubmit = async (formValues) => {
     const companyChoices = await this.parseSpreadSheet(formValues.companyUpload);
     // update redux store
-    await this.props.updateAdmin({ companyChoices: companyChoices});
+    await this.props.updateAdmin({ companyChoices: companyChoices });
     // reset companies
     this.props.duplicateCompanies(this.props.auth.companyChoices);
     this.close();
@@ -84,7 +84,15 @@ class UploadCompaniesModal extends Component {
           <Modal.Description>
             <Header>{t("adminDashboard.companyUpload.header")}</Header>
             <p>{t("adminDashboard.companyUpload.prompt")}</p>
-            <ExampleSpreadsheet />
+            <ChoicesTable
+              editable={false}
+              group="companies"
+              data={[
+                { name: "Apple", numberAccepted: "2", choices: ["Sam", "Paul"] },
+                { name: "Microsoft", numberAccepted: "1", choices: ["David", "Esther"] }
+              ]}
+              fixedHeaders={[t("adminDashboard.companies.company"), t("adminDashboard.companies.numberAccepted")]}
+            />
           </Modal.Description>
           <Form onSubmit={this.props.handleSubmit(this.onSubmit)}>
             <Form.Field>
