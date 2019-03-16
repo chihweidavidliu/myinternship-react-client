@@ -28,15 +28,14 @@ export default async (students, companyChoices, tentativeAdmits, logger) => {
 
         if (round === 1) {
           logger("warning", `${currentStudent} has not made any choices and has been removed from contention.`);
-          return console.log(`${currentStudent} has not made any choices and has been removed from contention.`);
+          console.log(`${currentStudent} has not made any choices and has been removed from contention.`);
+        } else {
+          logger(
+            "warning",
+            `${currentStudent} has been eliminated by all choices and has been removed from contention.`
+          );
+          console.log(`${currentStudent} has been eliminated by all choices and has been removed from contention.`);
         }
-
-        logger(
-          "warning",
-          `${currentStudent} has been eliminated by all choices and has been removed from contention.`
-        );
-        console.log(`${currentStudent} has been eliminated by all choices and has been removed from contention.`);
-
         continue;
       }
 
