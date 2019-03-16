@@ -16,7 +16,7 @@ const students = [
 
 const companyChoices = {
   Google: { _id: "LAgRMuXEtQ", name: "Google", numberAccepted: 2, choices: ["Sam", "Paul", "David", "Angela"] },
-  Apple: { _id: "wNmgJVHpQ", name: "Apple", numberAccepted: 2, choices: ["David", "Paul", "Angela", "Esther"] },
+  Apple: { _id: "wNmgJVHpQ", name: "Apple", numberAccepted: 2, choices: ["David", "Sam", "Angela", "Esther"] },
   Microsoft: { _id: "lQ-pTI2Lyf", name: "Microsoft", numberAccepted: 1, choices: ["Angela", "Esther", "Paul", "David"] }
 };
 
@@ -32,7 +32,7 @@ const logger = (type, text) => {
 it("Should sort students", async () => {
   const results = await sorter(students, companyChoices, tentativeAdmits, logger);
   // console.log(JSON.stringify(results, null, 2))
-  expect(results.tentativeAdmits.Google).toEqual(["Sam", "David"]);
-  expect(results.tentativeAdmits.Apple).toEqual(["Angela", "Esther"]);
-  expect(results.tentativeAdmits.Microsoft).toEqual(["Paul"]);
+  expect(results.tentativeAdmits.Google).toEqual(["Paul", "David"]);
+  expect(results.tentativeAdmits.Apple).toEqual(["Sam", "Angela"]);
+  expect(results.tentativeAdmits.Microsoft).toEqual(["Esther"]);
 });
