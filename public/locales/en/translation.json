@@ -107,6 +107,9 @@
         "currentStudent": "CURRENT STUDENT",
         "noChoicesWarning": "has not made any choices and has been removed from contention.",
         "eliminatedWarning": "has been eliminated by all choices and has been removed from contention."
+      },
+      "output": {
+        "fileName": "MyInternship Results"
       }
     },
     "settings": {

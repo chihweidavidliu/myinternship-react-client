@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1",
+    "file-saver": "^2.0.1",
     "http-proxy-middleware": "^0.19.1",
     "i18next": "^15.0.4",
     "i18next-browser-languagedetector": "^3.0.1",
