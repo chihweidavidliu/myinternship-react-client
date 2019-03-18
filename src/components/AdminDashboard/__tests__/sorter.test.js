@@ -26,7 +26,7 @@ const tentativeAdmits = {
   Microsoft: []
 };
 const logger = (type, text) => {
-  console.log(text);
+  return text;
 };
 
 it("Should sort students", async () => {
