@@ -12,7 +12,7 @@ class AdminNavbar extends Component {
     return (
       <Menu fluid borderless stackable inverted className="navbar">
         <Menu.Item>
-          <Link to="/admin/students">
+          <Link to="/admin/dashboard">
             <h3>MyInternship Admin</h3>
           </Link>
         </Menu.Item>
