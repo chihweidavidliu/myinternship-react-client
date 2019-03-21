@@ -171,7 +171,7 @@ class ConfirmationModal extends Component {
         }
         open={open}
         onClose={this.close}
-        style={{ width: "500px" }}
+        style={{ maxWidth: "500px" }}
       >
         <Modal.Content>
           <Modal.Description>
