@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Table, Icon } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import EditableTableCell from "./EditableTableCell";
 import * as actions from "actions";
 
-class TableRow extends Component {
+export class TableRow extends Component {
   // render methods
   renderChoices() {
     // target is the object item within the array of data that contains data about the member of the group
@@ -76,6 +77,14 @@ class TableRow extends Component {
     );
   }
 }
+
+TableRow.propTypes = {
+  target: PropTypes.object, // the object containing cell data 
+  group: PropTypes.string, // either "students" or "companies"
+  editable: PropTypes.bool,
+  deleteRow: PropTypes.func, // action creator passed via react-redux
+  t: PropTypes.func
+};
 
 export default connect(
   null,
