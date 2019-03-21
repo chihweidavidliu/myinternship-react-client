@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import * as actions from "actions";
 
-class ConfirmationModal extends Component {
+export class ConfirmationModal extends Component {
   state = { open: false, errorMessage: [] };
 
   close = () => this.setState({ open: false });

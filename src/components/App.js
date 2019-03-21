@@ -12,7 +12,7 @@ import AdminLandingPage from "components/AdminLandingPage/AdminLandingPage";
 import AdminDashboard from "components/AdminDashboard/AdminDashboard";
 import LoadingPage from "components/LoadingPage";
 
-class App extends Component {
+export class App extends Component {
 
   async componentDidMount() {
     await this.props.fetchUser();

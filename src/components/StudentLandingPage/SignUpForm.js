@@ -8,7 +8,7 @@ import submitSignup from "./submitSignup";
 
 import ConfirmationModal from "components/ConfirmationModal";
 
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   renderError = (meta) => {
     // meta object passed via the renderInput function and its formProps
     if (meta.touched === true && meta.error) {

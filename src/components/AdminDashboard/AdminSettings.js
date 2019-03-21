@@ -5,7 +5,7 @@ import { withTranslation } from "react-i18next";
 
 import * as actions from "actions";
 
-class AdminSettings extends Component {
+export class AdminSettings extends Component {
   onToggle = (target) => {
     const { auth, updateAdmin } = this.props;
     const object = {};

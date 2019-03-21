@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 import requireAdminAuth from "requireAdminAuth";
 import AdminNavbar from "./AdminNavbar";
@@ -9,7 +10,7 @@ import AdminCompanyView from "components/AdminDashboard/AdminCompanyView";
 import AdminSorter from "components/AdminDashboard/AdminSorter";
 import AdminSettings from "./AdminSettings";
 
-class AdminDashboard extends Component {
+export class AdminDashboard extends Component {
   render() {
     return (
       <div className="dashboard-container">
@@ -26,6 +27,10 @@ class AdminDashboard extends Component {
     )
   }
 }
+
+AdminDashboard.propTypes = {
+  t: PropTypes.func
+};
 
 
 const wrapped = requireAdminAuth(AdminDashboard);

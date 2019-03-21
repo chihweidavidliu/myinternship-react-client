@@ -15,7 +15,7 @@ body {
   height: 100vh;
   width: 100vw;
   color: white;
-  overflow: hidden;
+  overflow: auto;
 }
 
 
@@ -71,10 +71,6 @@ body {
   .main-box {
     width: 90vw !important;
     height: 100vh !important;
-  }
-
-  .app-container {
-    height: 160vh !important;
   }
 
   .dashboard-flex-box {

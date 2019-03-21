@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Flag } from "semantic-ui-react";
 import { withTranslation } from 'react-i18next';
 
-class LanguageSelector extends Component {
+export class LanguageSelector extends Component {
   handleClick = (language) => {
     const { i18n } = this.props;
     i18n.changeLanguage(language)

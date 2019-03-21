@@ -8,7 +8,7 @@ import requireStudentAuth from "requireStudentAuth";
 import Navbar from "./Navbar";
 import SharedList from "./SharedList";
 
-class Dashboard extends Component {
+export class Dashboard extends Component {
   async componentDidMount() {
     await this.props.removeErrorMessage();
     this.props.fetchCompanies();

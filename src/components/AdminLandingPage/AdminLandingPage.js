@@ -9,7 +9,7 @@ import LanguageSelector from "components/LanguageSelector";
 import AdminSignInForm from "./AdminSignInForm";
 import AdminSignUpForm from "./AdminSignUpForm";
 
-class AdminLandingPage extends Component {
+export class AdminLandingPage extends Component {
   state = { allowSignup: false };
 
   async componentDidMount() {

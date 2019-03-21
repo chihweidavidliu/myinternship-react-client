@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input } from "semantic-ui-react";
 
-class UploadCompaniesInput extends Component {
+export class UploadCompaniesInput extends Component {
   onChange = (e) => {
     e.preventDefault();
     const file = e.target.files[0];

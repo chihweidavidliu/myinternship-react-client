@@ -55,13 +55,13 @@ describe("Editable company table", () => {
     expect(wrapped.find(Icon).length).toEqual(1);
 
     expect(wrapped.find({ category: "name" }).length).toEqual(1);
-    expect(wrapped.find({ content: "Google" }).length).toEqual(1);
+    expect(wrapped.find({ category: "name" }).props().content).toEqual("Google");
 
     expect(wrapped.find({ category: "_id" }).length).toEqual(0);
 
     expect(wrapped.find({ category: "numberAccepted" }).length).toEqual(1);
-    expect(wrapped.find({ content: "2" }).length).toEqual(1);
-
+    expect(wrapped.find({ category: "numberAccepted" }).props().content).toEqual("2");
+    
     expect(wrapped.find({ category: "choices" }).length).toEqual(2);
     expect(wrapped.find({ content: "Sam" }).length).toEqual(1);
     expect(wrapped.find({ content: "Paul" }).length).toEqual(1);

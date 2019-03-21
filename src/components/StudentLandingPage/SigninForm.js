@@ -3,7 +3,7 @@ import { Button, Form, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from "react-i18next";
 
-class SignUpForm extends Component {
+export class SignUpForm extends Component {
   renderError = (meta) => {
     // meta object passed via the renderInput function and its formProps
     if (meta.touched === true && meta.error) {

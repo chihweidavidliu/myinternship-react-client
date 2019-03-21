@@ -10,7 +10,7 @@ import SignUpForm from "components/StudentLandingPage/SignUpForm";
 import SigninForm from "components/StudentLandingPage/SigninForm";
 import ToggleForm from "components/StudentLandingPage/ToggleForm";
 
-class LandingPage extends Component {
+export class LandingPage extends Component {
   state = { signUp: false, currentForm: "signUp" };
 
   async componentDidMount() {

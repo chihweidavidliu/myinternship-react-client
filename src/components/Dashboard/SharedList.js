@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Sortable from "react-sortablejs";
 
 // Functional Component
-const SharedList = ({ items, listType, onChange, auth, type }) => {
+export const SharedList = ({ items, listType, onChange, auth, type }) => {
   if (items && auth) {
     items = items.map((val) => {
       if (type === "options") {

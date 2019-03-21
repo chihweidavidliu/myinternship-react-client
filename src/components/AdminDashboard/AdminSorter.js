@@ -9,7 +9,7 @@ import ChoicesTable from "./ChoicesTable";
 import * as actions from "actions";
 import sorter from "./sorter";
 
-class AdminSorter extends Component {
+export class AdminSorter extends Component {
   state = { students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [], sortFinished: false };
 
   async componentDidMount() {

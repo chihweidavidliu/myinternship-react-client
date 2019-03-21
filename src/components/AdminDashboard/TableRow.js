@@ -79,8 +79,8 @@ export class TableRow extends Component {
 }
 
 TableRow.propTypes = {
-  target: PropTypes.object, // the object containing cell data 
-  group: PropTypes.string, // either "students" or "companies"
+  target: PropTypes.object, // the object containing cell data
+  group: PropTypes.oneOf(["students", "companies"]), 
   editable: PropTypes.bool,
   deleteRow: PropTypes.func, // action creator passed via react-redux
   t: PropTypes.func

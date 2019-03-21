@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import UploadCompaniesModal from "./UploadCompaniesModal";
 import * as actions from "actions";
 
-const TableToolbar = (props) => {
+export const TableToolbar = (props) => {
   const { addRow, addChoice, removeChoice, saveChanges, t, companies } = props;
   return (
     <div className="actions-bar">

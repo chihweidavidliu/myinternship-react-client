@@ -10,7 +10,7 @@ import * as actions from "actions";
 import UploadCompaniesInput from "./UploadCompaniesInput";
 import ChoicesTable from "./ChoicesTable";
 
-class UploadCompaniesModal extends Component {
+export class UploadCompaniesModal extends Component {
   state = { open: false };
 
   close = () => this.setState({ open: false });

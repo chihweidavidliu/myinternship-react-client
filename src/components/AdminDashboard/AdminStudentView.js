@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Message } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import * as actions from "actions";
 import requireAdminAuth from "requireAdminAuth";
 import ChoicesTable from "./ChoicesTable";
 
-class AdminStudentView extends Component {
+export class AdminStudentView extends Component {
   componentDidMount() {
     // clear error message
     this.props.removeErrorMessage();
@@ -65,6 +66,15 @@ class AdminStudentView extends Component {
     );
   }
 }
+
+AdminStudentView.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.object,
+  students: PropTypes.array,
+  authMessage: PropTypes.string,
+  removeErrorMessage: PropTypes.func, // action creator
+  fetchStudents: PropTypes.func // action creator
+};
 
 const mapStateToProps = (state) => {
   return {

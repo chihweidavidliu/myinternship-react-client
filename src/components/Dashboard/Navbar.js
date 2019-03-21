@@ -5,7 +5,7 @@ import { withTranslation } from 'react-i18next';
 
 import LanguageSelector from "components/LanguageSelector";
 
-class Navbar extends Component {
+export class Navbar extends Component {
   renderInfo(info) {
     const { t } = this.props;
     if(this.props.auth) {

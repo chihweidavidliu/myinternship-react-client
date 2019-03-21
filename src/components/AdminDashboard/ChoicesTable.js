@@ -5,7 +5,7 @@ import { Table } from "semantic-ui-react";
 import TableRow from "./TableRow";
 import addEmptyValues from "./addEmptyValues";
 
-class ChoicesTable extends Component {
+export class ChoicesTable extends Component {
   state = { companies: [], students: [] };
 
   async componentDidMount() {
