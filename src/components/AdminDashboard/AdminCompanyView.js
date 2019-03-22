@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 import * as actions from "actions";
 import ChoicesTable from "./ChoicesTable";
 import TableToolbar from "./TableToolbar";
 
-class AdminCompanyView extends Component {
+export class AdminCompanyView extends Component {
   saveChanges = async () => {
     // filter out empty strings in choices array
     const updatedCompanies = this.props.companies.map((company) => {
@@ -86,6 +87,17 @@ class AdminCompanyView extends Component {
     );
   }
 }
+
+AdminCompanyView.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.object,
+  authMessage: PropTypes.string,
+  companies: PropTypes.array,
+  unsavedChanges: PropTypes.bool,
+  duplicateCompanies: PropTypes.func, // action creator to duplicate companies for staging edits
+  updateAdmin: PropTypes.func, // action creator to save changes to admin on committing duplicated companies
+  markChangesAsSaved: PropTypes.func, // action creator to set unsavedChanges to false
+};
 
 const mapStateToProps = (state) => {
   return {

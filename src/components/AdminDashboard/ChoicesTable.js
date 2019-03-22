@@ -75,7 +75,8 @@ export class ChoicesTable extends Component {
       return data.map((item, index) => {
         return (
           <TableRow
-            key={index}
+            key={`table-row ${index}`}
+            id={`table-row ${index}`}
             group={group}
             target={item}
             editable={editable}

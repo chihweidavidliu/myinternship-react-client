@@ -158,10 +158,10 @@ export class AdminSorter extends Component {
     if (this.state.sortFinished === true) {
       return (
         <React.Fragment>
-          <Button basic size="small" onClick={this.startSort}>
+          <Button id="startSort-button" basic size="small" onClick={this.startSort}>
             {t("adminDashboard.sorter.startSort")}
           </Button>
-          <Button basic size="small" onClick={this.outputResults}>
+          <Button id="saveOutput-button" basic size="small" onClick={this.outputResults}>
             {t("adminDashboard.sorter.saveOutput")}
           </Button>
         </React.Fragment>

@@ -57,6 +57,7 @@ export class TableRow extends Component {
         <Table.Row>
           <Table.Cell style={{ textAlign: "center", width: "15px" }}>
             <Icon
+              company={target.name}
               className="deleteButton"
               name="close"
               title={`${t("adminDashboard.companies.delete")} "${target.name}"`}
@@ -80,7 +81,7 @@ export class TableRow extends Component {
 
 TableRow.propTypes = {
   target: PropTypes.object, // the object containing cell data
-  group: PropTypes.oneOf(["students", "companies"]), 
+  group: PropTypes.oneOf(["students", "companies"]),
   editable: PropTypes.bool,
   deleteRow: PropTypes.func, // action creator passed via react-redux
   t: PropTypes.func
