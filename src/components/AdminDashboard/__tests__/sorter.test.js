@@ -1,4 +1,4 @@
-import sorter from "components/adminDashboard/sorter";
+import { sorter } from "components/adminDashboard/sorter";
 
 const students = [
   {
@@ -30,7 +30,7 @@ const logger = (type, text) => {
 };
 
 it("Should sort students", async () => {
-  const results = await sorter(students, companyChoices, tentativeAdmits, logger);
+  const results = await sorter.sort(students, companyChoices, tentativeAdmits, logger);
   // console.log(JSON.stringify(results, null, 2))
   expect(results.tentativeAdmits.Google).toEqual(["Paul", "David"]);
   expect(results.tentativeAdmits.Apple).toEqual(["Sam", "Angela"]);

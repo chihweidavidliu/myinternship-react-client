@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import PropTypes from "prop-types";
 
 import ChoicesTable from "./ChoicesTable";
 import * as actions from "actions";
-import sorter from "./sorter";
+import { sorter } from "./sorter";
 
 export class AdminSorter extends Component {
   state = { students: [], companyChoices: {}, tentativeAdmits: {}, consoleContents: [], sortFinished: false };
@@ -39,7 +40,7 @@ export class AdminSorter extends Component {
     const students = JSON.parse(JSON.stringify(this.state.students));
     const companyChoices = JSON.parse(JSON.stringify(this.state.companyChoices));
     const tentativeAdmits = JSON.parse(JSON.stringify(this.state.tentativeAdmits));
-    const results = await sorter(students, companyChoices, tentativeAdmits, this.logger);
+    const results = await sorter.sort(students, companyChoices, tentativeAdmits, this.logger);
     await this.setState(results);
     console.log("newState", this.state);
   };
@@ -236,6 +237,15 @@ export class AdminSorter extends Component {
     );
   }
 }
+
+AdminSorter.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.object,
+  authMessage: PropTypes.string,
+  students: PropTypes.array,
+
+  fetchStudents: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {
