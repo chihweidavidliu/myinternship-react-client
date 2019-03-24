@@ -243,7 +243,6 @@ AdminSorter.propTypes = {
   auth: PropTypes.object,
   authMessage: PropTypes.string,
   students: PropTypes.array,
-
   fetchStudents: PropTypes.func,
 };
 

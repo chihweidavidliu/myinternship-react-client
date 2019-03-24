@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
 import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 import history from "history.js";
 import * as actions from "actions";
@@ -62,6 +63,14 @@ export class AdminLandingPage extends Component {
     );
   }
 }
+
+AdminLandingPage.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]), // false after failed auth,
+  authMessage: PropTypes.string,
+  numberOfAdmins: PropTypes.number,
+  checkNumberOfAdmins: PropTypes.func // action creator to see if signup is allowed
+};
 
 const mapStatetoProps = (state) => {
   return {
