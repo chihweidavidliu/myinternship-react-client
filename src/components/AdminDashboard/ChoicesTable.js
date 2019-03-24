@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { Table } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 import TableRow from "./TableRow";
 import addEmptyValues from "./addEmptyValues";
@@ -102,5 +103,13 @@ export class ChoicesTable extends Component {
     );
   }
 }
+
+ChoicesTable.propTypes = {
+  t: PropTypes.func,
+  editable: PropTypes.bool,
+  group: PropTypes.oneOf(["students", "companies"]),
+  data: PropTypes.array,
+  fixedHeaders: PropTypes.array
+};
 
 export default withTranslation()(ChoicesTable);

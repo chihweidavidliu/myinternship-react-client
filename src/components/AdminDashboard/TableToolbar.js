@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import UploadCompaniesModal from "./UploadCompaniesModal";
 import * as actions from "actions";
 
@@ -31,12 +33,23 @@ export const TableToolbar = (props) => {
   );
 };
 
+TableToolbar.propTypes = {
+  t: PropTypes.func,
+  unsavedChanges: PropTypes.bool,
+  companies: PropTypes.array,
+  addRow: PropTypes.func,
+  addChoice: PropTypes.func,
+  removeChoice: PropTypes.func,
+  saveChanges: PropTypes.func
+};
+
 const mapStateToProps = (state) => {
   return {
     unsavedChanges: state.unsavedChanges,
     companies: state.companies
   };
 };
+
 export default connect(
   mapStateToProps,
   actions

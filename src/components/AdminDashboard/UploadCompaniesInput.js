@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Input } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 export class UploadCompaniesInput extends Component {
   onChange = (e) => {
@@ -13,5 +14,9 @@ export class UploadCompaniesInput extends Component {
     return <Input type="file" accept=".xlsx, .xls" onChange={this.onChange} className="upload-input" />;
   }
 }
+
+UploadCompaniesInput.propTypes = {
+  onChange: PropTypes.func
+};
 
 export default UploadCompaniesInput;

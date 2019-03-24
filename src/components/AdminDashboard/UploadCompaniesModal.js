@@ -5,6 +5,7 @@ import { withTranslation } from "react-i18next";
 import { reduxForm, Field } from "redux-form";
 import XLSX from "xlsx";
 import shortid from "shortid";
+import PropTypes from 'prop-types';
 
 import * as actions from "actions";
 import UploadCompaniesInput from "./UploadCompaniesInput";
@@ -112,6 +113,14 @@ export class UploadCompaniesModal extends Component {
     );
   }
 }
+
+UploadCompaniesModal.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.object,
+  updateAdmin: PropTypes.func,
+  duplicateCompanies: PropTypes.func,
+  handleSubmit: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {
