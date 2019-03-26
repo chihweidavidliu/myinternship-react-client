@@ -67,10 +67,14 @@ body {
 
 /* Student Dashboard */
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .main-box {
+    height: 150vh !important;
+    margin-top: 50vh;
+  }
+
+  .main-box, .main-box-admin {
     width: 90vw !important;
-    height: 100vh !important;
   }
 
   .dashboard-flex-box {
@@ -84,7 +88,6 @@ body {
 
   ul, ol {
     width: 80vw !important;
-    height: 250vh !important;
   }
 
   @media only screen and (max-height: 414px) {
@@ -115,7 +118,7 @@ body {
   justify-content: center;
 }
 
-.main-box {
+.main-box, .main-box-admin {
   height: 80vh;
   width: 85vw;
   background-color: whitesmoke;
@@ -164,6 +167,7 @@ body {
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
+  height: 50vh;
 }
 
 #company-choices  li {

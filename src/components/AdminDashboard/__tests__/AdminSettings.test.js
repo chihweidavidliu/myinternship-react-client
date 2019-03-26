@@ -31,7 +31,6 @@ beforeEach(() => {
 });
 
 it("should render two Radio buttons", () => {
-  console.log(wrapped.find(Radio).debug())
   expect(wrapped.find(Radio).length).toEqual(2);
 });
 

@@ -32,7 +32,6 @@ describe("options", () => {
   });
 
   it("should render a Sortable", () => {
-    console.log(wrapped.debug())
     expect(wrapped.find(Sortable).length).toBe(1);
     expect(wrapped.find(Sortable).props().tag).toBe("ul");
   });

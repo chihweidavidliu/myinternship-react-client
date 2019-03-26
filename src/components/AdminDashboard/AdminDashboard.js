@@ -16,7 +16,7 @@ export class AdminDashboard extends Component {
       <div className="dashboard-container">
         <AdminNavbar />
         <div className="dashboard-flex-box">
-          <div className="main-box">
+          <div className="main-box-admin">
             <Route path="/admin/dashboard" exact component={AdminStudentView} />
             <Route path="/admin/dashboard/sorter" exact component={AdminSorter} />
             <Route path="/admin/dashboard/companies" exact component={AdminCompanyView} />

@@ -90,7 +90,7 @@ export class ChoicesTable extends Component {
 
   render() {
     return (
-      <Table size="small" celled striped>
+      <Table size="small" celled striped >
         <Table.Header>
           <Table.Row>
             {this.renderFixedHeaders()}
