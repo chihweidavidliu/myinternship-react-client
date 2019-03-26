@@ -18,7 +18,7 @@
     "react-i18next": "^10.2.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5",
+    "react-scripts": "^2.1.8",
     "react-sortablejs": "^1.5.1",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
