@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 export class AdminSignInForm extends Component {
   renderError = (meta) => {
@@ -72,6 +73,12 @@ const validate = (formValues, props) => {
   }
 
   return errors;
+};
+
+AdminSignInForm.propTypes = {
+  t: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  handleSignin: PropTypes.func,
 };
 
 const wrapped = reduxForm({ form: "adminSignin", validate: validate })(AdminSignInForm);

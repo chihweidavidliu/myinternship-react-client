@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 // custom submit function for signUp form to be passed to redux form constructor and triggered by modal confirm
 import submitAdminSignup from "./submitAdminSignup";
@@ -28,6 +29,8 @@ export class AdminSignUpForm extends Component {
 
   render() {
     const { t, handleSubmit } = this.props;
+    // here handleSubmit is not passed a callback submit method defined within the component itself as the submit will be triggered by separate component
+    // in these cases it is easier to pass the callback to handleSubmit via the reduxForm options wnen wrapping the component (see bottom of page)
     return (
       <Form onSubmit={handleSubmit} error>
         <Form.Field>
@@ -68,6 +71,12 @@ const validate = (formValues, props) => {
     errors.password = t("adminForms.formErrors.password.tooShort");
   }
   return errors;
+};
+
+AdminSignUpForm.propTypes = {
+  t: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  adminSignup: PropTypes.func // action creator passed down from AdminLandingPage to be called by external submitAdminSignup function
 };
 
 const wrapped = reduxForm({ form: "adminSignup", validate: validate, onSubmit: submitAdminSignup })(AdminSignUpForm);

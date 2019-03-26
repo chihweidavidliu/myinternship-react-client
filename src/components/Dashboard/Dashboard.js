@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withTranslation } from "react-i18next";
 import { Message } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 import * as actions from "actions";
 import requireStudentAuth from "requireStudentAuth";
@@ -83,6 +84,15 @@ export class Dashboard extends Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.object,
+  authMessage: PropTypes.string,
+  companies: PropTypes.array,
+  removeErrorMessage: PropTypes.func,
+  fetchCompanies: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {

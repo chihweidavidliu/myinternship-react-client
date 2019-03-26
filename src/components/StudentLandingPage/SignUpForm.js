@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Dropdown, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from "react-i18next";
-
+import PropTypes from "prop-types";
 // custom submit function for signUp form to be passed to redux form constructor and triggered by modal confirm
 import submitSignup from "./submitSignup";
 
@@ -109,6 +109,11 @@ const validate = (formValues, props) => {
   }
 
   return errors;
+};
+
+SignUpForm.propTypes = {
+  t: PropTypes.func,
+  handleSubmit: PropTypes.func,
 };
 
 const wrapped = reduxForm({ form: "studentSignup", validate: validate, onSubmit: submitSignup })(SignUpForm);

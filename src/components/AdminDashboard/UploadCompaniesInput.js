@@ -16,7 +16,7 @@ export class UploadCompaniesInput extends Component {
 }
 
 UploadCompaniesInput.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func // passed down by parent from the formProps.input object
 };
 
 export default UploadCompaniesInput;

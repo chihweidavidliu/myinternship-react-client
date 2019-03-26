@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Message } from "semantic-ui-react";
 import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
 import history from "history.js";
 import * as actions from "actions";
@@ -33,13 +34,12 @@ export class LandingPage extends Component {
     if (this.state.signUp === false) {
       return;
     }
-    if (this.state.currentForm === "signUp") {
-      // clear error messages
-      this.props.addErrorMesssage(null);
-      return this.setState({ currentForm: "signIn" });
-    }
     // clear error messages
     this.props.addErrorMesssage(null);
+
+    if (this.state.currentForm === "signUp") {
+      return this.setState({ currentForm: "signIn" });
+    }
     return this.setState({ currentForm: "signUp" });
   };
 
@@ -92,6 +92,15 @@ export class LandingPage extends Component {
     );
   }
 }
+
+LandingPage.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  authMessage: PropTypes.string,
+  signupAuth: PropTypes.bool,
+  checkSignupAuth: PropTypes.func, // action creator
+  addErrorMesssage: PropTypes.func, // action creator
+};
 
 const mapStatetoProps = (state) => {
   return {

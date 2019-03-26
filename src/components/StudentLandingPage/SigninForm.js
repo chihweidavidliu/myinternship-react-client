@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Button, Form, Message } from "semantic-ui-react";
 import { Field, reduxForm } from "redux-form";
 import { withTranslation } from "react-i18next";
+import PropTypes from "prop-types";
 
-export class SignUpForm extends Component {
+export class SigninForm extends Component {
   renderError = (meta) => {
     // meta object passed via the renderInput function and its formProps
     if (meta.touched === true && meta.error) {
@@ -28,7 +29,6 @@ export class SignUpForm extends Component {
   };
 
   onSubmit = (formValues) => {
-    // handleForm passed down from LandingPage
     this.props.handleSignin(formValues);
   };
 
@@ -76,5 +76,10 @@ const validate = (formValues, props) => {
   return errors;
 };
 
-const wrapped = reduxForm({ form: "studentSignin", validate: validate })(SignUpForm);
+SigninForm.propTypes = {
+  t: PropTypes.func,
+  handleSubmit: PropTypes.func, // reduxForm method
+  handleSignin: PropTypes.func, // passed down from LandingPage
+};
+const wrapped = reduxForm({ form: "studentSignin", validate: validate })(SigninForm);
 export default withTranslation()(wrapped);
