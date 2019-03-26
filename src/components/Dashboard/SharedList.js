@@ -2,6 +2,7 @@ import uniqueId from "lodash/uniqueId";
 import React from "react";
 import { connect } from "react-redux";
 import Sortable from "react-sortablejs";
+import PropTypes from "prop-types";
 
 // Functional Component
 export const SharedList = ({ items, listType, onChange, auth, type }) => {
@@ -40,6 +41,14 @@ export const SharedList = ({ items, listType, onChange, auth, type }) => {
       {items}
     </Sortable>
   );
+};
+
+SharedList.propTypes = {
+  items: PropTypes.array,
+  auth: PropTypes.object,
+  onChange: PropTypes.func,
+  listType: PropTypes.oneOf(["ol", "ul"]),
+  type: PropTypes.oneOf(["choices", "options"])
 };
 
 const mapStateToProps = (state) => {

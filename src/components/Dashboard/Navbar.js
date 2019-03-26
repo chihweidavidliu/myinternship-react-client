@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Menu } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
+import PropTypes from "prop-types";
 
 import LanguageSelector from "components/LanguageSelector";
 
@@ -46,5 +47,10 @@ export class Navbar extends Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  t: PropTypes.func,
+  auth: PropTypes.object
+};
 
 export default withTranslation() (Navbar);
