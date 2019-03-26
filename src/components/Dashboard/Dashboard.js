@@ -39,9 +39,6 @@ export class Dashboard extends Component {
             <SharedList
               items={this.props.auth.choices}
               onChange={(order, sortable, evt) => {
-                if(this.props.auth.choices.length >= 10) {
-                  return evt.preventDefault();
-                }
                 // action creator to submit choices
                 this.props.updateStudentChoices(order);
 
