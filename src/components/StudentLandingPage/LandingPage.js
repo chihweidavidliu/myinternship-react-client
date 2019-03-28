@@ -69,13 +69,14 @@ export class LandingPage extends Component {
   }
 
   renderToggleButton() {
+    const { t } = this.props;
     if (this.state.signUp === false) {
       return;
     }
     if (this.state.currentForm === "signUp") {
-      return <ToggleForm message="Click to sign-in" prompt="Already registered?" onClick={this.toggleForm} />;
+      return <ToggleForm message={t("studentForms.toggleForm.signInMessage")} prompt={t("studentForms.toggleForm.signInPrompt")} onClick={this.toggleForm} />;
     }
-    return <ToggleForm message="Click to sign-up" prompt="Not registered?" onClick={this.toggleForm} />;
+    return <ToggleForm message={t("studentForms.toggleForm.signUpMessage")} prompt={t("studentForms.toggleForm.signUpPrompt")} onClick={this.toggleForm} />;
   }
 
   render() {

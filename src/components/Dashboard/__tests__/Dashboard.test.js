@@ -5,6 +5,7 @@ import { Message } from "semantic-ui-react";
 import { Dashboard } from "components/Dashboard/Dashboard";
 import Navbar from "components/Dashboard/Navbar";
 import SharedList from "components/Dashboard/SharedList";
+import ChoicesModal from "components/Dashboard/ChoicesModal";
 
 let wrapped;
 let mockT;
@@ -50,6 +51,10 @@ it("should render any authMessages", () => {
 
 it("should render two SharedLists", () => {
   expect(wrapped.find(SharedList).length).toBe(2);
+});
+
+it("should render a ChoicesModal", () => {
+  expect(wrapped.find(ChoicesModal).length).toBe(1);
 });
 
 it("should call appropriate action creators on mount", () => {

@@ -2,6 +2,12 @@
   "title": "My Internship",
   "loading": "Loading",
   "studentForms": {
+    "toggleForm": {
+      "signInMessage": "Click to sign-in",
+      "signUpMessage": "Click to sign-up",
+      "signInPrompt": "Already registered?",
+      "signUpPrompt": "Not yet registered?"
+    },
     "placeholders": {
       "institutionCode": "Institution code",
       "studentid": "Studentid",
@@ -66,9 +72,28 @@
     "signout": "Log Out",
     "header": "Internship Choices",
     "choices": "Your Choices",
-    "choicesPrompt": "Choose up to 10 companies. Choices are saved automatically.",
+    "choicesPrompt": "Remember to confirm your choices by clicking the button below.",
     "options": "Companies",
     "optionsPrompt": "Drag choices to the 'Your Choices' section",
+    "choicesConfirmation": {
+      "buttonText": "Confirm Choices",
+      "header": "Confirm Choices",
+      "noChoicesPrompt": "You have chosen not to sign up for any internships, are you sure?",
+      "choicesPrompt": "You have chosen the following companies:",
+      "downloadInstructions": "On confirmation you will be prompted to download a paper confirmation form.",
+      "signSlipPrompt": "Please sign this and submit it to the internship coordinator.",
+      "downloadingPdf": "Downloading PDF",
+      "confirmationSlip": {
+        "header": "Confirmation of Choices",
+        "renounce": "I confirm that I do not wish to apply for any internships",
+        "renouncePrompt": "Please sign below to confirm your withdrawal:",
+        "signature": "Signature: ....................................",
+        "confirmPrompt": "Please sign below to confirm your choices:",
+        "sumbitInstructions": "Please submit this slip to the internship administrator by the due date.",
+        "date": "Date",
+        "time": "Time"
+      }
+    },
     "errors": {
       "failedCompanyFetch": "Error fetching companies",
       "failedStudentUpdate": "Error updating choices",
@@ -102,12 +127,6 @@
       "saveOutput": "Save Output",
       "finalStudentOutcomes": "Final Student Outcomes",
       "finalCompanyChoices": "Final Company Choices",
-      "console": {
-        "round": "Round",
-        "currentStudent": "CURRENT STUDENT",
-        "noChoicesWarning": "has not made any choices and has been removed from contention.",
-        "eliminatedWarning": "has been eliminated by all choices and has been removed from contention."
-      },
       "output": {
         "fileName": "MyInternship Results"
       }

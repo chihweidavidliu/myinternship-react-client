@@ -8,6 +8,7 @@ import Dashboard from "components/Dashboard/Dashboard";
 import Navbar from "components/Dashboard/Navbar";
 import SharedList from "components/Dashboard/SharedList";
 import LanguageSelector from "components/LanguageSelector";
+import ChoicesModal from "components/Dashboard/ChoicesModal";
 
 jest.mock("react-i18next", () => {
   // copy the real library to get initReactI18next method to pass on (need this to avoid initiation error)
@@ -19,6 +20,7 @@ jest.mock("react-i18next", () => {
   };
   return { withTranslation: withTranslation, initReactI18next: i18next.initReactI18next };
 });
+
 
 let wrapped;
 beforeEach(() => {
@@ -92,5 +94,12 @@ describe("components rendered", () => {
       expect(studentChoices.find("li").length).toEqual(1);
       expect(studentChoices.find("li").text()).toBe("Google");
     });
+  });
+
+  describe("confirmation modal", () => {
+    it("should render a ChoicesModal", () => {
+      expect(wrapped.find(ChoicesModal).length).toBe(1);
+    });
+
   });
 });

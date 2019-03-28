@@ -8,12 +8,15 @@ import * as actions from "actions";
 import requireStudentAuth from "requireStudentAuth";
 import Navbar from "./Navbar";
 import SharedList from "./SharedList";
+import ChoicesModal from "./ChoicesModal";
 
 export class Dashboard extends Component {
   async componentDidMount() {
     await this.props.removeErrorMessage();
     this.props.fetchCompanies();
   }
+
+  handleConfirm = () => {};
 
   renderError() {
     const { authMessage, t } = this.props;
@@ -29,9 +32,10 @@ export class Dashboard extends Component {
     }
   }
   renderChoices() {
-    if(this.props.companies) {
+    if (this.props.companies) {
       const { t } = this.props;
       return (
+        <React.Fragment>
         <div id="company-choices">
           <div id="choices">
             <h2>{t("dashboard.choices")}</h2>
@@ -41,7 +45,6 @@ export class Dashboard extends Component {
               onChange={(order, sortable, evt) => {
                 // action creator to submit choices
                 this.props.updateStudentChoices(order);
-
               }}
               listType="ol"
               type="choices"
@@ -60,7 +63,9 @@ export class Dashboard extends Component {
             />
           </div>
         </div>
-      )
+        <ChoicesModal auth={this.props.auth} choices={this.props.auth.choices} />
+        </React.Fragment>
+      );
     }
   }
 
@@ -75,6 +80,7 @@ export class Dashboard extends Component {
             <h1>{t("dashboard.header")}</h1>
             {this.renderError()}
             {this.renderChoices()}
+
           </div>
         </div>
       </div>
@@ -88,7 +94,7 @@ Dashboard.propTypes = {
   authMessage: PropTypes.string,
   companies: PropTypes.array,
   removeErrorMessage: PropTypes.func,
-  fetchCompanies: PropTypes.func,
+  fetchCompanies: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -99,5 +105,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const wrapped = connect(mapStateToProps, actions)(requireStudentAuth(Dashboard));
+const wrapped = connect(
+  mapStateToProps,
+  actions
+)(requireStudentAuth(Dashboard));
 export default withTranslation()(wrapped);

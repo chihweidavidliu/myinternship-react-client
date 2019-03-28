@@ -167,7 +167,7 @@ body {
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
-  height: 50vh;
+  height: 45vh;
 }
 
 #company-choices  li {
@@ -178,6 +178,12 @@ body {
   border: 1px #a8a8a8 solid;
   border-radius: 5px;
   width: 130px;
+}
+
+.confirm-choices-list {
+  height: auto;
+  max-height: 30vh;
+  width: 90%;
 }
 
 /* Admin Dashboard */
