@@ -98,11 +98,11 @@ export const fetchCompanies = () => async (dispatch) => {
   } catch (err) {
     if (err.response.data === "choices disabled by admin") {
       // value of false in state tells us that admin has explicitly disabled choices
-      dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.choicesDisabled") });
+      dispatch({ type: ADD_ERROR_MESSAGE, payload: "dashboard.errors.choicesDisabled.message" });
       return dispatch({ type: FETCH_COMPANIES, payload: false });
     }
     dispatch({ type: FETCH_COMPANIES, payload: null });
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.failedCompanyFetch") });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "dashboard.errors.failedCompanyFetch" });
   }
 };
 
@@ -111,7 +111,7 @@ export const updateStudentChoices = (choices) => async (dispatch) => {
     const response = await axios.patch("/api/updateStudent", { choices: choices });
     dispatch({ type: UPDATE_STUDENT, payload: response.data });
   } catch (err) {
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("dashboard.errors.failedStudentUpdate") });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "dashboard.errors.failedStudentUpdate" });
   }
 };
 
@@ -121,7 +121,7 @@ export const adminSignin = (formData) => async (dispatch) => {
     dispatch({ type: ADMIN_SIGNIN, payload: response.data });
   } catch (err) {
     dispatch({ type: ADMIN_SIGNIN, payload: false });
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.signinFailure") });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminForms.formErrors.signinFailure" });
   }
 };
 
@@ -132,12 +132,12 @@ export const adminSignup = (formData) => async (dispatch) => {
   } catch (err) {
     if (err.response.data.message === "admin already exists") {
       dispatch({ type: ADMIN_SIGNUP, payload: false });
-      return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.username.adminExists") });
+      return dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminForms.formErrors.username.adminExists" });
     } else if (err.response.data.message === "incorrect adminSecret") {
-      return dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.wrongAdminSecret") });
+      return dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminForms.formErrors.wrongAdminSecret" });
     }
     dispatch({ type: ADMIN_SIGNUP, payload: false });
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminForms.formErrors.signupFailure") });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminForms.formErrors.signupFailure" });
   }
 };
 
@@ -146,7 +146,7 @@ export const updateAdmin = (values) => async (dispatch) => {
     const response = await axios.patch("/api/updateAdmin", values);
     dispatch({ type: UPDATE_ADMIN, payload: response.data });
   } catch (err) {
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminDashboard.errors.updateFailed") });
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminDashboard.errors.updateFailed" });
   }
 };
 
@@ -164,7 +164,7 @@ export const fetchStudents = () => async (dispatch) => {
     const response = await axios.get("/api/studentChoices");
     dispatch({ type: FETCH_STUDENTS, payload: response.data.students });
   } catch(err) {
-    dispatch({ type: ADD_ERROR_MESSAGE, payload: i18n.t("adminDashboard.errors.fetchStudentsFailed") })
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminDashboard.errors.fetchStudentsFailed" })
   }
 };
 

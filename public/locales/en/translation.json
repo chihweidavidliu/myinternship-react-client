@@ -97,7 +97,7 @@
     "errors": {
       "failedCompanyFetch": "Error fetching companies",
       "failedStudentUpdate": "Error updating choices",
-      "choicesDisabled": "The administrator has not yet activated internship choices. Please sign-in again later."
+      "choicesDisabled": { "header": "Sign-up complete", "message": "The administrator has not yet activated internship choices. Please sign-in again later to make your choices." }
     }
   },
   "adminDashboard": {

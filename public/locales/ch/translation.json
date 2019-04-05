@@ -67,6 +67,7 @@
     "welcome": "歡迎",
     "signout": "退出",
     "header": "學生實習志願",
+    "choicesDisabled": { "header": "Welcome" },
     "choices": "志願",
     "choicesPrompt": "系統會自動儲存您選取的志願。選取完畢，請按下方確認鍵。",
     "options": "公司名稱",
@@ -93,7 +94,7 @@
     "errors": {
       "failedCompanyFetch": "抓取公司失敗",
       "failedStudentUpdate": "更新志願失敗",
-      "choicesDisabled": "尚未開放選取志願.請於開放後,再行登入."
+      "choicesDisabled": { "header": "您已完成報名!", "message": "尚未開放選取志願.請於開放後,再行登入."}
     }
   },
   "adminDashboard": {

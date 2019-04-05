@@ -21,12 +21,22 @@ export class Dashboard extends Component {
   renderError() {
     const { authMessage, t } = this.props;
     if (authMessage) {
+      let header;
+      let error;
+      // if the message is merely a warning about disabled choices, change header and turn error to false
+      if (authMessage === "dashboard.errors.choicesDisabled.message") {
+        error = false;
+        header = t("dashboard.errors.choicesDisabled.header");
+      } else {
+        error = true;
+        header = t("studentForms.formErrors.errorHeader");
+      }
       return (
         <Message
           style={{ marginBottom: "15px", width: "80%" }}
-          error
-          header={t("studentForms.formErrors.errorHeader")}
-          content={authMessage}
+          error={error}
+          header={header}
+          content={t(authMessage)}
         />
       );
     }
@@ -36,34 +46,34 @@ export class Dashboard extends Component {
       const { t } = this.props;
       return (
         <React.Fragment>
-        <div id="company-choices">
-          <div id="choices">
-            <h2>{t("dashboard.choices")}</h2>
-            <p>{t("dashboard.choicesPrompt")}</p>
-            <SharedList
-              items={this.props.auth.choices}
-              onChange={(order, sortable, evt) => {
-                // action creator to submit choices
-                this.props.updateStudentChoices(order);
-              }}
-              listType="ol"
-              type="choices"
-            />
+          <div id="company-choices">
+            <div id="choices">
+              <h2>{t("dashboard.choices")}</h2>
+              <p>{t("dashboard.choicesPrompt")}</p>
+              <SharedList
+                items={this.props.auth.choices}
+                onChange={(order, sortable, evt) => {
+                  // action creator to submit choices
+                  this.props.updateStudentChoices(order);
+                }}
+                listType="ol"
+                type="choices"
+              />
+            </div>
+            <div id="options">
+              <h2>{t("dashboard.options")}</h2>
+              <p>{t("dashboard.optionsPrompt")}</p>
+              <SharedList
+                items={this.props.companies}
+                onChange={(order, sortable, evt) => {
+                  this.setState({ options: order });
+                }}
+                listType="ul"
+                type="options"
+              />
+            </div>
           </div>
-          <div id="options">
-            <h2>{t("dashboard.options")}</h2>
-            <p>{t("dashboard.optionsPrompt")}</p>
-            <SharedList
-              items={this.props.companies}
-              onChange={(order, sortable, evt) => {
-                this.setState({ options: order });
-              }}
-              listType="ul"
-              type="options"
-            />
-          </div>
-        </div>
-        <ChoicesModal auth={this.props.auth} choices={this.props.auth.choices} />
+          <ChoicesModal auth={this.props.auth} choices={this.props.auth.choices} />
         </React.Fragment>
       );
     }
@@ -80,7 +90,6 @@ export class Dashboard extends Component {
             <h1>{t("dashboard.header")}</h1>
             {this.renderError()}
             {this.renderChoices()}
-
           </div>
         </div>
       </div>

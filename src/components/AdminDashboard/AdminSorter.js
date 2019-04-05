@@ -131,7 +131,7 @@ export class AdminSorter extends Component {
           style={{ marginBottom: "15px", width: "80%" }}
           error
           header={t("studentForms.formErrors.errorHeader")}
-          content={authMessage}
+          content={t(authMessage)}
         />
       );
     }

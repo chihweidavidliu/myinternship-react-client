@@ -46,7 +46,6 @@ it("should render a Navbar", () => {
 
 it("should render any authMessages", () => {
   expect(wrapped.find(Message).length).toBe(1);
-  expect(wrapped.find(Message).props().content).toBe("Test message");
 });
 
 it("should render two SharedLists", () => {

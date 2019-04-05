@@ -56,7 +56,6 @@ describe("components", () => {
 
   it("should render a Message with any error messages", () => {
     expect(wrapped.find(Message).length).toEqual(1);
-    expect(wrapped.find(Message).props().content).toEqual("Test message");
   });
 });
 
