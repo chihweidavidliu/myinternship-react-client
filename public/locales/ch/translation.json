@@ -48,7 +48,7 @@
   "adminForms": {
     "placeholders": {
       "username": "系統管理員名稱",
-      "password": "請自訂密碼",
+      "password": "密碼",
       "adminSecret": "系統管理員密碼"
     },
     "formErrors": {
