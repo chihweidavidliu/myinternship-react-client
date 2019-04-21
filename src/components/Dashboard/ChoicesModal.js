@@ -4,6 +4,7 @@ import { withTranslation } from "react-i18next";
 import { PDFDocumentFactory, PDFDocumentWriter, drawText, StandardFonts } from "pdf-lib";
 import { saveAs } from "file-saver";
 import PropTypes from "prop-types";
+import _ from "lodash";
 
 import SimHei from "./SimHei.ttf";
 import LoadingPage from "components/LoadingPage";
@@ -49,7 +50,7 @@ export class ChoicesModal extends Component {
     const headerStyle = { x: 30, size: 14, font: "SimHei", colorRgb: [0, 0, 0] };
     const normalStyle = { x: 30, size: fontSize, font: "SimHei", colorRgb: [0, 0, 0] };
 
-    const contentStream = pdfDoc.createContentStream(
+    let pdfContents = [
       drawText(simHeiFont.encodeText(t("dashboard.choicesConfirmation.confirmationSlip.header")), {
         ...headerStyle,
         y: 450
@@ -69,14 +70,41 @@ export class ChoicesModal extends Component {
       drawText(simHeiFont.encodeText(t(`dashboard.choicesConfirmation.confirmationSlip.${prompt}`)), {
         ...normalStyle,
         y: 360
-      }),
+      })
+    ];
+
+    // prepare choices text
+    let startY = 340;
+    // split into nested array of groups of 3
+    const dividedChoices = _.chunk(choices, 4);
+    let index = 1;
+    // loop through the array of arrays
+    dividedChoices.forEach((subArray) => {
+      let text = "";
+      subArray.forEach((choice) => {
+        text += `${index}.${choice}  `;
+        index++;
+      });
+
+      // push the text of the row of four choices to pdfContents
+      pdfContents.push(
+        drawText(simHeiFont.encodeText(text), {
+          ...normalStyle,
+          y: startY
+        })
+      );
+      // at the end of each subArray start a new line
+      startY -= 20;
+    });
+
+    const contentEnd = [
       drawText(simHeiFont.encodeText(t(`dashboard.choicesConfirmation.confirmationSlip.signature`)), {
         ...normalStyle,
-        y: 320
+        y: startY - 20
       }),
       drawText(simHeiFont.encodeText(t("dashboard.choicesConfirmation.confirmationSlip.sumbitInstructions")), {
         ...normalStyle,
-        y: 250
+        y: startY - 50
       }),
       drawText(
         simHeiFont.encodeText(
@@ -86,10 +114,15 @@ export class ChoicesModal extends Component {
         ),
         {
           ...normalStyle,
-          y: 280
+          y: startY - 80
         }
       )
-    );
+    ];
+
+    pdfContents = [...pdfContents, ...contentEnd];
+
+    // using apply method on a function allows you to pass arguments as an array;
+    const contentStream = pdfDoc.createContentStream.apply(null, pdfContents);
 
     page.addContentStreams(pdfDoc.register(contentStream));
 
