@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Message, Radio } from "semantic-ui-react";
+import { Message, Radio, Button } from "semantic-ui-react";
 import { withTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 
@@ -33,6 +33,9 @@ export class AdminSettings extends Component {
   }
   render() {
     const { t, auth } = this.props;
+
+    const deleteAllConfirm = t("adminDashboard.settings.deleteAllConfirm")
+    const deleteAllSuccess = t("adminDashboard.settings.deleteAllSuccess")
     return (
       <Fragment>
         <h2>{t("adminDashboard.settings.header")}</h2>
@@ -66,6 +69,11 @@ export class AdminSettings extends Component {
               }
             />
           </div>
+        </div>
+
+        <div>
+          <h4>{t("adminDashboard.settings.deleteAll")}</h4>
+          <Button color="red" onClick={() => this.props.deleteAll(deleteAllConfirm, deleteAllSuccess)}>{t("adminDashboard.settings.deleteAll")}</Button>
         </div>
       </Fragment>
     );

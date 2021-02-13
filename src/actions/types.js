@@ -19,3 +19,4 @@ export const ADD_CHOICE = "ADD_CHOICE";
 export const REMOVE_CHOICE = "REMOVE_CHOICE";
 export const UPDATE_CELL = "UPDATE_CELL";
 export const MARK_CHANGES_AS_SAVED = "MARK_CHANGES_AS_SAVED";
+export const DELETE_ALL = "DELETE_ALL"
