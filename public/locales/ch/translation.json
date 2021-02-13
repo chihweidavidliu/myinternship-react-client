@@ -134,7 +134,9 @@
       "allowStudentSignup": "開放學生報名",
       "allowStudentChoices": "允許學生選取志願",
       "enabled": "開放",
-      "disabled": "關閉"
+      "disabled": "關閉",
+      "deleteAll": "刪除所有公司及學生資料",
+      "deleteAllConfirm": "確定要刪除全部資料?"
     },
     "tableActions": {
       "addRow": "增加 列",

@@ -137,7 +137,9 @@
       "allowStudentSignup": "Allow Student Signup",
       "allowStudentChoices": "Allow Student Choices",
       "enabled": "Enabled",
-      "disabled": "Disabled"
+      "disabled": "Disabled",
+      "deleteAll": "Delete all Companies and Students",
+      "deleteAllConfirm": "Are you sure you want to clear all data?"
     },
     "tableActions": {
       "addRow": "Add Row",
