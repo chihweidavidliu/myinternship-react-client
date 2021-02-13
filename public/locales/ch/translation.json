@@ -136,7 +136,8 @@
       "enabled": "開放",
       "disabled": "關閉",
       "deleteAll": "刪除所有公司及學生資料",
-      "deleteAllConfirm": "確定要刪除全部資料?"
+      "deleteAllConfirm": "確定要刪除全部資料?",
+      "deleteAllSuccess": "成功刪除資料"
     },
     "tableActions": {
       "addRow": "增加 列",

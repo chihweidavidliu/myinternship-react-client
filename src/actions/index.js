@@ -19,7 +19,8 @@ import {
   STUDENT_SIGNIN,
   FETCH_USER,
   TOGGLE_LANGUAGE,
-  DUPLICATE_COMPANIES
+  DUPLICATE_COMPANIES,
+  DELETE_ALL
 } from "actions/types";
 
 
@@ -124,6 +125,18 @@ export const adminSignin = (formData) => async (dispatch) => {
     dispatch({ type: ADD_ERROR_MESSAGE, payload: "adminForms.formErrors.signinFailure" });
   }
 };
+
+export const deleteAll = (confirmMessage, successMessage) => async (dispatch) => {
+  try {
+    if(window.confirm(confirmMessage)) {
+      const response = await axios.delete("/api/all");
+      alert(successMessage);
+      dispatch({ type: DELETE_ALL, payload: response.data });
+    }
+  } catch (error) {
+    dispatch({ type: ADD_ERROR_MESSAGE, payload: "dashboard.errors.failedStudentUpdate" });
+  }
+}
 
 export const adminSignup = (formData) => async (dispatch) => {
   try {

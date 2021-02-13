@@ -5,7 +5,8 @@ import {
   DELETE_ROW,
   ADD_CHOICE,
   REMOVE_CHOICE,
-  UPDATE_CELL
+  UPDATE_CELL, 
+  DELETE_ALL
 } from "actions/types";
 
 export default (state = null, action) => {
@@ -61,6 +62,8 @@ export default (state = null, action) => {
         // skip over irrelevant companies
         return company;
       });
+    case DELETE_ALL:
+      return null
     default:
       return state;
   }

@@ -1,6 +1,6 @@
 ::-webkit-scrollbar {
-   width: 3px !important;
-   height: 3px !important;
+  width: 3px !important;
+  height: 3px !important;
 }
 
 * {
@@ -17,7 +17,6 @@ body {
   color: white;
   overflow: auto;
 }
-
 
 .flex-container {
   height: 100vh;
@@ -73,7 +72,8 @@ body {
     margin-top: 50vh;
   }
 
-  .main-box, .main-box-admin {
+  .main-box,
+  .main-box-admin {
     width: 90vw !important;
   }
 
@@ -86,7 +86,8 @@ body {
     width: 90% !important;
   }
 
-  ul, ol {
+  ul,
+  ol {
     width: 80vw !important;
   }
 
@@ -95,7 +96,6 @@ body {
       height: 180vh !important;
     }
   }
-
 }
 
 .dashboard-container {
@@ -118,7 +118,8 @@ body {
   justify-content: center;
 }
 
-.main-box, .main-box-admin {
+.main-box,
+.main-box-admin {
   height: 80vh;
   width: 85vw;
   background-color: whitesmoke;
@@ -137,16 +138,15 @@ body {
   display: flex;
   justify-content: space-around;
   width: 80%;
-
 }
 
-#options, #choices {
+#options,
+#choices {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 40vw;
 }
-
 
 #company-choices ul {
   list-style-type: none;
@@ -158,7 +158,8 @@ body {
   min-height: 50px;
 }
 
-#company-choices ul, ol {
+#company-choices ul,
+ol {
   width: 32vw;
   padding: 3px;
   display: flex;
@@ -170,7 +171,7 @@ body {
   height: 45vh;
 }
 
-#company-choices  li {
+#company-choices li {
   margin: 6px;
   background-color: whitesmoke;
   padding: 3px 10px 3px 10px;
@@ -204,7 +205,6 @@ body {
   transition: all 0.3s;
   color: grey;
 }
-
 
 .deleteButton:hover {
   transform: scale(1.2);
@@ -273,7 +273,6 @@ body {
 }
 
 .console-message {
-
 }
 
 .console-warning {

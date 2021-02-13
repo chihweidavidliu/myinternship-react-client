@@ -139,7 +139,8 @@
       "enabled": "Enabled",
       "disabled": "Disabled",
       "deleteAll": "Delete all Companies and Students",
-      "deleteAllConfirm": "Are you sure you want to clear all data?"
+      "deleteAllConfirm": "Are you sure you want to clear all data?",
+      "deleteAllSuccess": "Deletion Successful"
     },
     "tableActions": {
       "addRow": "Add Row",
