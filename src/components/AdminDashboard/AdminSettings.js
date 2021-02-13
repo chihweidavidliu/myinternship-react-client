@@ -73,9 +73,7 @@ export class AdminSettings extends Component {
 
         <div>
           <h4>{t("adminDashboard.settings.deleteAll")}</h4>
-
           <Button color="red" onClick={() => this.props.deleteAll(deleteAllConfirm, deleteAllSuccess)}>{t("adminDashboard.settings.deleteAll")}</Button>
-
         </div>
       </Fragment>
     );

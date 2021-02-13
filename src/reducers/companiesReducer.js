@@ -63,7 +63,7 @@ export default (state = null, action) => {
         return company;
       });
     case DELETE_ALL:
-      return null
+      return []
     default:
       return state;
   }
